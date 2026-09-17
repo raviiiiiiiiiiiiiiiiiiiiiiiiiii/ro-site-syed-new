@@ -26,10 +26,10 @@ export const CallWidgets: React.FC<CallWidgetsProps> = ({
 
   return (
     <>
-      {/* Floating "Click To Call" Widget on Bottom Right */}
+      {/* Floating "Click To Call" Widget on Bottom Right (Mobile Only) */}
       <div 
         id="floating-call-widget" 
-        className="fixed bottom-14 sm:bottom-16 right-3 sm:right-5 z-40 select-none"
+        className="fixed bottom-14 sm:bottom-16 right-3 sm:right-5 z-40 select-none lg:hidden"
       >
         <a
           href={telLink}
@@ -62,11 +62,11 @@ export const CallWidgets: React.FC<CallWidgetsProps> = ({
         </a>
       </div>
 
-      {/* Full-width Sticky Bottom Call Bar */}
+      {/* Full-width Sticky Bottom Call Bar (Mobile Only) */}
       <div
         id="sticky-call-footer"
         style={{ backgroundColor: theme.primary }}
-        className="fixed bottom-0 left-0 right-0 z-40 text-white py-3 sm:py-3.5 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.18)] transition-colors border-t border-white/20"
+        className="fixed bottom-0 left-0 right-0 z-40 text-white py-3 sm:py-3.5 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.18)] transition-colors border-t border-white/20 lg:hidden"
       >
         <a
           href={telLink}
