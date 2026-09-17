@@ -64,7 +64,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const [pincode, setPincode] = useState('');
-  const [serviceType, setServiceType] = useState('RO Repair & Service');
+  const [serviceType, setServiceType] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formError, setFormError] = useState('');
 
@@ -121,7 +121,6 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   const lightBgColor = brand.brandThemeColors?.lightBg || '#f0fdf4';
   const borderColor = brand.brandThemeColors?.border || '#a7f3d0';
 
-  const brandTollFree = brand.tollFree || '1800-103-2468';
   const displayPhone = BUSINESS_DETAILS.phone;
 
   // Hero Image resolution: prioritize brand.heroBgImage, then fallback to brand-specific requested Cloudinary URLs or showcaseImage
@@ -155,6 +154,10 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
     const cleanPhone = phone.replace(/\D/g, '');
     if (!cleanPhone || cleanPhone.length < 10) {
       setFormError('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+    if (!serviceType) {
+      setFormError('Please select a service type.');
       return;
     }
     setFormError('');
@@ -334,10 +337,10 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                 </div>
                 <div className="flex flex-col text-left">
                   <a
-                    href={`tel:${brandTollFree}`}
+                    href={`tel:${displayPhone}`}
                     className="text-xs sm:text-sm font-bold text-slate-950 hover:text-blue-700 leading-none"
                   >
-                    {brandTollFree}
+                    {displayPhone}
                   </a>
                   <span className="text-[10px] text-slate-500 font-medium mt-0.5">
                     Mon - Sun | 8AM - 8PM
@@ -389,49 +392,50 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
           </div>
         )}
 
-        {/* Fullscreen Mobile menu overlay */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 z-[100] bg-white flex flex-col pt-4 px-6 pb-6 overflow-y-auto">
-            <div className="flex justify-end mb-8">
-              <button 
-                onClick={() => setMobileMenuOpen(false)} 
-                className="p-2 text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors"
-                aria-label="Close menu"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-            
-            <nav className="flex flex-col space-y-4 text-xl font-extrabold text-slate-800">
-              <Link href={brand.slug} onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100 text-slate-900">Home</Link>
-              <a href="#services" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">Services</a>
-              <a href="#services" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">AMC Plans</a>
-              <a href="#parts" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">Filters &amp; Parts</a>
-              <a href="#why-choose-us" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">Why {brand.name}</a>
-              <a href="#support-faqs" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">Support</a>
-            </nav>
-
-            <div className="mt-auto pt-8 flex flex-col items-start gap-4">
-              <div className="w-full pt-4 border-t border-slate-100">
-                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">Toll-Free Helpline</span>
-                <a href={`tel:${brandTollFree}`} className="text-lg font-black text-[#0b5cbe]">
-                  {brandTollFree}
-                </a>
-              </div>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  scrollToBookingForm();
-                }}
-                className="w-full bg-[#0b5cbe] hover:bg-[#094fa5] text-white text-base font-bold py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                Book a Service
-                <ArrowRight className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-        )}
       </header>
+
+      {/* Fullscreen Mobile menu overlay */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden fixed inset-0 z-[100] bg-white flex flex-col pt-4 px-6 pb-6 overflow-y-auto animate-fadeIn">
+          <div className="flex justify-end mb-8">
+            <button 
+              onClick={() => setMobileMenuOpen(false)} 
+              className="p-2 text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors"
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+          
+          <nav className="flex flex-col space-y-4 text-xl font-extrabold text-slate-800">
+            <Link href={brand.slug} onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100 text-slate-900">Home</Link>
+            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">Services</a>
+            <a href="#services" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">AMC Plans</a>
+            <a href="#parts" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">Filters &amp; Parts</a>
+            <a href="#why-choose-us" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">Why {brand.name}</a>
+            <a href="#support-faqs" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">Support</a>
+          </nav>
+
+          <div className="mt-auto pt-8 flex flex-col items-start gap-4">
+            <div className="w-full pt-4 border-t border-slate-100">
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">Helpline</span>
+              <a href={`tel:${displayPhone}`} className="text-lg font-black text-[#0b5cbe]">
+                {displayPhone}
+              </a>
+            </div>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                scrollToBookingForm();
+              }}
+              className="w-full bg-[#0b5cbe] hover:bg-[#094fa5] text-white text-base font-bold py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              Book a Service
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ========================================================
           2. HERO SECTION + DOCKED BOOKING FORM
@@ -679,14 +683,16 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                         <select
                           value={serviceType}
                           onChange={(e) => setServiceType(e.target.value)}
-                          className="w-full pl-9 pr-8 py-2.5 bg-white text-slate-900 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400 appearance-none cursor-pointer"
+                          className={`w-full pl-9 pr-8 py-2.5 bg-white text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400 appearance-none cursor-pointer ${
+                            serviceType === '' ? 'text-slate-400' : 'text-slate-900'
+                          }`}
                         >
-                          <option value="RO Repair & Service">Select Service Type</option>
-                          <option value="RO Repair & Service">RO Repair &amp; Service</option>
-                          <option value="Filter Replacement">Filter Replacement</option>
-                          <option value="AMC Maintenance Plan">AMC Maintenance Plan</option>
-                          <option value="Water Quality Check">Water Quality Check</option>
-                          <option value="Installation / Relocation">Installation / Relocation</option>
+                          <option value="" disabled>Select Service Type</option>
+                          <option value="RO Repair & Service" className="text-slate-900">RO Repair &amp; Service</option>
+                          <option value="Filter Replacement" className="text-slate-900">Filter Replacement</option>
+                          <option value="AMC Maintenance Plan" className="text-slate-900">AMC Maintenance Plan</option>
+                          <option value="Water Quality Check" className="text-slate-900">Water Quality Check</option>
+                          <option value="Installation / Relocation" className="text-slate-900">Installation / Relocation</option>
                         </select>
                         <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
                           <ChevronDown className="w-3.5 h-3.5" />
@@ -1175,7 +1181,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                   </button>
                 </li>
                 <li>
-                  <a href={`tel:${brandTollFree}`} className="hover:text-slate-950 transition-colors">
+                  <a href={`tel:${displayPhone}`} className="hover:text-slate-950 transition-colors">
                     Contact Us
                   </a>
                 </li>
