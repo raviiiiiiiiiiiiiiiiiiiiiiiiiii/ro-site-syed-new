@@ -966,7 +966,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
           {/* Healthy Water Banner Image */}
           <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-slate-100">
             <img 
-              src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789673944/file_00000000fa948211b1730f89d0bddb9f_ux9naz.png"
+              src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743272/IMG-20260918-WA0049_o2bgrk.jpg"
               alt="Healthy Water For Every Family"
               className="w-full h-auto object-cover"
             />
