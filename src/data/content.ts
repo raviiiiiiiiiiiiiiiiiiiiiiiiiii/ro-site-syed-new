@@ -141,6 +141,8 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     showcaseImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787239134/file_00000000cb9082119ada12e5c50c238d_yb23pj.png',
     heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194243_himoc3.jpg',
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000087882078f47eb6ab54f5d99_aeo7v5.png',
+    partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789672646/file_0000000075fc8208a4db72abe1abf045_bakaut.png',
+    bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789674504/IMG-20260918-WA0002_whpvlb.jpg',
   },
 
   'aquaguard-service': {
@@ -223,6 +225,8 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     showcaseImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787239134/file_000000009e748211af646f5d6dda5fcb_wzukgr.png',
     heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194328_pcq7uw.png',
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000b97c8211b0ff0be33d753076_wncmpj.png',
+    partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742669/file_00000000dca481f594fbe17b45c4fbf9_o20n4v.png',
+    bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0044_mt8t6n.jpg',
   },
 
   'pureit-service': {
@@ -305,6 +309,8 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     showcaseImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787239134/file_0000000011a48211aeafadfc49fb86c5_ohr8va.png',
     heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194420_cdv3yx.jpg',
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666101/file_00000000c8308206b3080195508f65f9_kdu2po.png',
+    partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742669/file_000000006a7881f89f7423968dbdf36e_nnkyny.png',
+    bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742395/file_0000000062e4820b88f376aa9d87322a_zgjamt.png',
   },
 
   'aosmith-service': {
@@ -387,6 +393,8 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     showcaseImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787239134/file_00000000fd3c8211b4b336a783a3474e_wzjdjr.png',
     heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194311_vmj5ot.jpg',
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000921882309edc5ef9e9e59e59_oi7mpt.png',
+    partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742670/file_0000000009ec81fdad912727b6638014_jadzuy.png',
+    bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0043_lofbp9.jpg',
   },
 
   'livpure-service': {
@@ -394,7 +402,7 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     name: 'Livpure',
     slug: '/livpure-service',
     logoText: 'Livpure',
-    logoUrl: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787456695/IMG-20260822-WA0038_eea1tq.jpg',
+    logoUrl: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742538/livpure-logo-png_seeklogo-449577_ygozys.png',
     subTagline: 'Crafted for Better Living',
     tagline: 'Intelligent RO Purification & Pure Care — Specialized Livpure Water Purifier Maintenance',
     accentColor: 'from-purple-600 to-indigo-500',
@@ -469,7 +477,9 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     ],
     showcaseImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787239134/file_00000000cb9082119ada12e5c50c238d_yb23pj.png',
     heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194243_himoc3.jpg',
-    heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194243_himoc3.jpg',
+    heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_0000000053b082099c9bb495de926e14_zlptot.png',
+    partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742670/file_00000000980c8230b73a31ab0aba807a_jujtjk.png',
+    bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0045_otqkvz.jpg',
   },
 };
 
@@ -538,6 +548,46 @@ export const HOMEPAGE_FAQS: FAQItem[] = [
   {
     question: 'What are the main warning signs that my RO purifier needs immediate repair?',
     answer: 'Key warning signs include continuous water leakage from the bottom or pipes, low or stopped water output, foul smell or bitter/metallic taste, loud pump buzzing/vibrations, and persistent beeping or red indicator error lights.',
+  },
+  {
+    question: 'What is the ideal TDS level for drinking water after RO purification?',
+    answer: 'According to WHO and BIS guidelines, ideal drinking water TDS ranges between 50 and 150 PPM. Our technician tests both input and output water with a calibrated digital TDS meter and adjusts the mineralizer or TDS modulator to ensure healthy essential mineral retention.',
+  },
+  {
+    question: 'What causes foul odor or bitter taste in purified water?',
+    answer: 'Unpleasant taste or odor usually stems from an exhausted post-carbon polish filter, bio-film accumulation in the internal storage tank, or an expired RO membrane. Our technician sanitizes the storage tank and installs silver-impregnated carbon blocks to restore refreshing water taste.',
+  },
+  {
+    question: 'Why does reject water continuously leak or drain even when the tank is full?',
+    answer: 'Continuous reject drain flow even after the purified tank is full is typically caused by a failing Auto Cut-Off Solenoid Valve (SV) or low pressure cutoff switch. This wastes significant water and strains the booster pump. Our technician carries genuine replacement solenoid valves to fix this on the spot.',
+  },
+  {
+    question: 'Do you supply genuine booster pumps, SMPS adapters, and UV lamps?',
+    answer: 'Yes! We stock certified high-pressure copper-wound booster pumps (75 GPD / 100 GPD), surge-protected SMPS power adapters, long-life quartz glass UV lamps, and leak-proof push-fit connectors with manufacturer-backed replacement warranties.',
+  },
+  {
+    question: 'Can you uninstall, shift, and reinstall my water purifier when moving homes in Bangalore?',
+    answer: 'Absolutely! We provide safe de-installation, protective transit packaging, and complete re-installation at your new apartment or home anywhere in Bangalore, including wall drilling, plumbing inlet connections, and high-pressure leak testing.',
+  },
+  {
+    question: 'What immediate steps should I take if my RO machine starts leaking water on the floor?',
+    answer: 'Immediately shut off the cold water divertor valve feeding the purifier and unplug the electrical adapter from the wall socket to prevent electrical hazards. Then call our Bangalore helpline at 080502 91180 for prompt 60–90 minute doorstep emergency assistance.',
+  },
+  {
+    question: 'Is borewell or tanker water with high TDS suitable for domestic RO purifiers?',
+    answer: 'Yes. Many Bangalore localities depend on deep borewells or private water tankers with TDS exceeding 1000–1800 PPM and high mineral hardness. We equip your system with high-rejection anti-scalant membranes capable of purifying input water up to 2500 PPM TDS.',
+  },
+  {
+    question: 'How long does a typical doorstep servicing or filter change visit take?',
+    answer: 'A standard preventive maintenance and filter cartridge change visit takes around 45 to 60 minutes. This includes multi-stage physical inspection, cartridge replacement, electrical safety check, tank disinfection, and digital pre/post TDS verification.',
+  },
+  {
+    question: 'Are service engineers available on weekends and holidays across Bangalore?',
+    answer: 'Yes, our service engineers operate 7 days a week from 8:00 AM to 9:00 PM, including Saturdays, Sundays, and public holidays across all Bangalore zones, ensuring you never run out of clean drinking water.',
+  },
+  {
+    question: 'What payment options are available once the service is completed?',
+    answer: 'We provide complete post-service billing with no advance fees. Once you inspect the purifier and verify water purity, you can pay conveniently via UPI (Google Pay, PhonePe, Paytm), debit/credit card, net banking, or cash.',
   },
 ];
 

@@ -52,6 +52,8 @@ export interface BrandInfo {
   showcaseImage?: string;
   heroImage?: string;
   heroBgImage?: string;
+  partsBannerImage?: string;
+  bottomBannerImage?: string;
 }
 
 export interface FAQItem {

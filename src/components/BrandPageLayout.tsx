@@ -126,15 +126,41 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
   // Hero Image resolution: prioritize brand.heroBgImage, then fallback to brand-specific requested Cloudinary URLs or showcaseImage
   const heroImageToDisplay = brand.heroBgImage || (
-    brand.id === 'kent'
-      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000087882078f47eb6ab54f5d99_aeo7v5.png'
-      : brand.id === 'ao-smith'
-      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000921882309edc5ef9e9e59e59_oi7mpt.png'
-      : brand.id === 'aquaguard'
+    brand.id === 'aquaguard'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000b97c8211b0ff0be33d753076_wncmpj.png'
+      : brand.id === 'livpure'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_0000000053b082099c9bb495de926e14_zlptot.png'
       : brand.id === 'pureit'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666101/file_00000000c8308206b3080195508f65f9_kdu2po.png'
-      : brand.heroImage || brand.showcaseImage
+      : brand.id === 'ao-smith'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000921882309edc5ef9e9e59e59_oi7mpt.png'
+      : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000087882078f47eb6ab54f5d99_aeo7v5.png'
+  );
+
+  // Bottom Banner Image resolution (Section above footer): prioritize brand.bottomBannerImage, then fallback to brand-specific requested URLs
+  const bottomBannerToDisplay = brand.bottomBannerImage || (
+    brand.id === 'pureit'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742395/file_0000000062e4820b88f376aa9d87322a_zgjamt.png'
+      : brand.id === 'ao-smith'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0043_lofbp9.jpg'
+      : brand.id === 'livpure'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0045_otqkvz.jpg'
+      : brand.id === 'aquaguard'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0044_mt8t6n.jpg'
+      : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789674504/IMG-20260918-WA0002_whpvlb.jpg'
+  );
+
+  // Parts / Filters Banner Image resolution (Section just above Why Choose Us): prioritize brand.partsBannerImage, then fallback to brand-specific requested URLs
+  const partsBannerToDisplay = brand.partsBannerImage || (
+    brand.id === 'aquaguard'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742669/file_00000000dca481f594fbe17b45c4fbf9_o20n4v.png'
+      : brand.id === 'pureit'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742669/file_000000006a7881f89f7423968dbdf36e_nnkyny.png'
+      : brand.id === 'ao-smith'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742670/file_0000000009ec81fdad912727b6638014_jadzuy.png'
+      : brand.id === 'livpure'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742670/file_00000000980c8230b73a31ab0aba807a_jujtjk.png'
+      : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789672646/file_0000000075fc8208a4db72abe1abf045_bakaut.png'
   );
 
   const toggleFaq = (index: number) => {
@@ -236,28 +262,68 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
     },
   ];
 
-  // 4 Primary Reference FAQs matching screenshot exactly
+  // 14 Primary Reference FAQs (including 10 comprehensive expert additions)
   const primaryFaqs = [
     {
       question: `Why is my ${brand.name} water purifier not dispensing water?`,
-      answer: `Possible reasons include clogged filters, low inlet pressure, membrane issues, or electrical faults. Our trained technician performs complete diagnostics at your doorstep to restore normal flow.`,
+      answer: `Possible reasons include clogged pre-filters, low inlet water pressure, a worn-out RO membrane, or power supply faults. Our certified technician conducts a comprehensive multi-point diagnostic check at your doorstep to quickly identify the blockage and restore normal flow.`,
     },
     {
       question: `How often should ${brand.name} RO filters be replaced?`,
-      answer: `Filter replacement depends on water quality and usage. Regular maintenance helps maintain purification efficiency; sediment and carbon filters typically need replacement every 6-12 months.`,
+      answer: `Sediment and activated carbon pre-filters should generally be replaced every 6 to 12 months depending on your daily usage and water quality. High-rejection RO membranes typically last 18 to 24 months. We conduct digital TDS tests before and after service to verify purification efficiency.`,
     },
     {
       question: `Do you provide ${brand.name} AMC service?`,
-      answer: `Yes, annual maintenance plans help maintain purifier performance through scheduled servicing and component checks, protecting you against unexpected breakdowns.`,
+      answer: `Yes! Our Annual Maintenance Contract (AMC) plans include scheduled preventive maintenance visits, complete replacement of sediment and carbon cartridges, membrane health checks, and priority zero-labor breakdown support throughout Bangalore.`,
     },
     {
       question: `Do technicians provide doorstep service?`,
-      answer: `Yes, we provide doorstep service for ${brand.name} water purifiers within serviceable areas across Bangalore with fast response times.`,
+      answer: `Yes, we provide 60 to 90 minute fast doorstep service for ${brand.name} water purifiers across all major localities in Bangalore, equipped with genuine spare parts and specialized diagnostic tools.`,
+    },
+    {
+      question: `What is the ideal TDS level for drinking water after ${brand.name} purification?`,
+      answer: `According to WHO and Bureau of Indian Standards (BIS), ideal drinking water TDS ranges between 50 and 150 PPM. Our technician measures input raw water and treated water with a calibrated digital TDS meter, adjusting the mineralizer and TDS controller to ensure healthy essential mineral retention while filtering out heavy metals.`,
+    },
+    {
+      question: `What causes foul odor or bitter taste in ${brand.name} purified water?`,
+      answer: `Unpleasant taste or odor usually stems from an exhausted post-carbon polishing filter, bio-film accumulation in the internal storage tank, or an expired RO membrane. Our technician thoroughly sanitizes the storage tank and installs high-grade silver-impregnated carbon blocks to restore refreshing water taste.`,
+    },
+    {
+      question: `Why does reject water continuously leak or drain from my ${brand.name} RO?`,
+      answer: `Continuous drain flow even when the purified tank is full is typically caused by a failing Auto Cut-Off Solenoid Valve (SV) or low pressure cutoff switch. This wastes substantial water and strains the booster pump. Our technician carries authentic replacement solenoid valves to resolve this immediately.`,
+    },
+    {
+      question: `Do you supply genuine booster pumps, SMPS adapters, and UV lamps for ${brand.name}?`,
+      answer: `Yes, we stock certified high-pressure copper-wound booster pumps (75 GPD / 100 GPD), surge-protected SMPS power adapters, long-life quartz glass UV lamps, and leak-proof push-fit connectors with manufacturer-backed replacement warranties.`,
+    },
+    {
+      question: `Can you uninstall, shift, and reinstall my ${brand.name} water purifier when moving homes?`,
+      answer: `Absolutely! We provide safe de-installation, protective transit packaging, and complete re-installation at your new apartment or home anywhere in Bangalore, including wall drilling, plumbing inlet connections, and high-pressure leak testing.`,
+    },
+    {
+      question: `What immediate steps should I take if my ${brand.name} RO starts leaking water?`,
+      answer: `Immediately turn off the cold water divertor valve feeding the purifier and unplug the electrical adapter from the wall socket to prevent electrical hazards. Then call our Bangalore helpline at 080502 91180 for prompt 60–90 minute doorstep emergency assistance.`,
+    },
+    {
+      question: `Is borewell or tanker water with high TDS suitable for ${brand.name} purifiers?`,
+      answer: `Yes. Many Bangalore localities depend on deep borewells or private water tankers with TDS exceeding 1000–1800 PPM and high mineral hardness. We equip your ${brand.name} system with high-rejection anti-scalant membranes capable of purifying input water up to 2500 PPM TDS.`,
+    },
+    {
+      question: `How long does a typical ${brand.name} doorstep servicing or filter change take?`,
+      answer: `A standard preventive maintenance and filter cartridge change visit takes around 45 to 60 minutes. This includes multi-stage physical inspection, cartridge replacement, electrical safety check, tank disinfection, and digital pre/post TDS verification.`,
+    },
+    {
+      question: `Are service engineers available on weekends and holidays across Bangalore?`,
+      answer: `Yes, our service engineers operate 7 days a week from 8:00 AM to 9:00 PM, including Saturdays, Sundays, and public holidays across all Bangalore zones, ensuring you never run out of clean drinking water.`,
+    },
+    {
+      question: `What payment options are available once the ${brand.name} service is completed?`,
+      answer: `We provide complete post-service billing with no advance fees. Once you inspect the purifier and verify water purity, you can pay conveniently via UPI (Google Pay, PhonePe, Paytm), debit/credit card, net banking, or cash.`,
     },
     ...(brand.brandFaqs || []),
   ];
 
-  const displayedFaqs = showAllFaqs ? primaryFaqs : primaryFaqs.slice(0, 4);
+  const displayedFaqs = showAllFaqs ? primaryFaqs : primaryFaqs.slice(0, 8);
 
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-slate-900 selection:text-white">
@@ -834,7 +900,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       ======================================================== */}
       <section id="parts" className="w-full bg-white">
         <img
-          src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789672646/file_0000000075fc8208a4db72abe1abf045_bakaut.png"
+          src={partsBannerToDisplay}
           alt={`${brand.name} Compatible Filters`}
           className="w-full h-auto object-cover block"
         />
@@ -938,7 +1004,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               style={{ color: primaryColor }}
               className="text-xs sm:text-sm font-bold hover:underline flex items-center gap-1 cursor-pointer self-start sm:self-auto"
             >
-              <span>{showAllFaqs ? 'Show Fewer FAQs' : 'View All FAQs'}</span>
+              <span>{showAllFaqs ? 'Show Fewer FAQs' : `View All ${primaryFaqs.length} FAQs`}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -1040,25 +1106,15 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       </section>
 
       {/* ========================================================
-          10. BOTTOM BANNER (Replaced with Custom Image)
+          10. BOTTOM BANNER (Section Above Footer)
       ======================================================== */}
-      {brand.id === 'kent' ? (
-        <section className="w-full bg-white">
-          <img 
-            src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789674504/IMG-20260918-WA0002_whpvlb.jpg"
-            alt="Brand Banner"
-            className="w-full h-auto object-cover block"
-          />
-        </section>
-      ) : (
-        <section className="w-full bg-white">
-          <img 
-            src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789674504/IMG-20260918-WA0002_whpvlb.jpg"
-            alt="Brand Banner"
-            className="w-full h-auto object-cover block"
-          />
-        </section>
-      )}
+      <section className="w-full bg-white">
+        <img 
+          src={bottomBannerToDisplay}
+          alt={`${brand.name} Banner`}
+          className="w-full h-auto object-cover block"
+        />
+      </section>
 
       {/* ========================================================
           11. MAIN FOOTER (Clean White Background)
