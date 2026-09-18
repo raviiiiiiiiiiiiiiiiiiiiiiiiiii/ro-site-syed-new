@@ -317,7 +317,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       : brand.id === 'pureit'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666101/file_00000000c8308206b3080195508f65f9_kdu2po.png'
       : brand.id === 'ao-smith'
-      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000921882309edc5ef9e9e59e59_oi7mpt.png'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789748961/IMG-20260918-WA0071_woclww.jpg'
       : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000087882078f47eb6ab54f5d99_aeo7v5.png'
   );
 
@@ -562,14 +562,14 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
     <div className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-slate-900 selection:text-white">
       
       {/* ========================================================
-          1. STICKY HEADER
+          1. STICKY HEADER (Hidden on desktop devices, visible on mobile)
              - Logo (left)
              - Nav links (center): Home, Services, AMC Plans, Filters & Parts, Why [Brand], Support
              - Search icon + phone number w/ icon (right)
              - Primary CTA button (rounded pill, right-most)
              - Mobile: collapse nav into hamburger menu, keep logo + CTA visible
       ======================================================== */}
-      <header className={`sticky top-0 z-50 bg-white border-b border-slate-200 shadow-2xs transition-transform duration-300 ${isHeaderHidden ? '-translate-y-full' : 'translate-y-0'}`}>
+      <header className={`md:hidden sticky top-0 z-50 bg-white border-b border-slate-200 shadow-2xs transition-transform duration-300 ${isHeaderHidden ? '-translate-y-full' : 'translate-y-0'}`}>
         {/* Top Announcement Bar: announcement | announcement | announcement (strictly 1 line on all devices) */}
         <div className="bg-[#002b66] text-white py-1.5 sm:py-2 px-2 overflow-hidden select-none">
           <div className="max-w-7xl mx-auto flex items-center justify-center gap-1.5 min-[380px]:gap-2.5 sm:gap-4 md:gap-6 whitespace-nowrap flex-nowrap text-[9.5px] min-[360px]:text-[10.5px] sm:text-xs font-medium">
@@ -687,7 +687,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
       {/* Fullscreen Mobile menu overlay */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[100] bg-white flex flex-col pt-4 px-6 pb-6 overflow-y-auto animate-fadeIn">
+        <div className="md:hidden fixed inset-0 z-[100] bg-white flex flex-col pt-4 px-6 pb-6 overflow-y-auto animate-fadeIn">
           <div className="flex justify-end mb-8">
             <button 
               onClick={() => setMobileMenuOpen(false)} 

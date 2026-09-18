@@ -409,8 +409,8 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
       'AO Smith AMC cost Bangalore'
     ],
     showcaseImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787239134/file_00000000fd3c8211b4b336a783a3474e_wzjdjr.png',
-    heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194311_vmj5ot.jpg',
-    heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000921882309edc5ef9e9e59e59_oi7mpt.png',
+    heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789748961/IMG-20260918-WA0071_woclww.jpg',
+    heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789748961/IMG-20260918-WA0071_woclww.jpg',
     partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742670/file_0000000009ec81fdad912727b6638014_jadzuy.png',
     bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0043_lofbp9.jpg',
     serviceImages: {
