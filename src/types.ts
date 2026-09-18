@@ -54,6 +54,12 @@ export interface BrandInfo {
   heroBgImage?: string;
   partsBannerImage?: string;
   bottomBannerImage?: string;
+  serviceImages?: {
+    repair?: string;
+    filter?: string;
+    amc?: string;
+    quality?: string;
+  };
 }
 
 export interface FAQItem {

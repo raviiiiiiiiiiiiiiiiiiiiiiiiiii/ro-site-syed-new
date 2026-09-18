@@ -211,29 +211,68 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
     });
   };
 
+  // Resolve service images per brand
+  const qualityImage = 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg';
+
+  const repairImage = brand.serviceImages?.repair || (
+    brand.id === 'ao-smith'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0051_ov3w2q.jpg'
+      : brand.id === 'pureit'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0052_wlnsxq.jpg'
+      : brand.id === 'livpure'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0053_jzf7ky.jpg'
+      : brand.id === 'aquaguard'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0050_ffapvn.jpg'
+      : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0015_ptidj8.jpg'
+  );
+
+  const filterImage = brand.serviceImages?.filter || (
+    brand.id === 'ao-smith'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743947/IMG-20260918-WA0061_tsglkw.jpg'
+      : brand.id === 'pureit'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743947/IMG-20260918-WA0060_1_r10zsw.jpg'
+      : brand.id === 'livpure'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743946/IMG-20260918-WA0058_fwab01.jpg'
+      : brand.id === 'aquaguard'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743946/IMG-20260918-WA0059_ndexit.jpg'
+      : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0017_qm0y3k.jpg'
+  );
+
+  const amcImage = brand.serviceImages?.amc || (
+    brand.id === 'ao-smith'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743916/IMG-20260918-WA0055_uvysaw.jpg'
+      : brand.id === 'pureit'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0056_ayukpn.jpg'
+      : brand.id === 'livpure'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0054_qks7en.jpg'
+      : brand.id === 'aquaguard'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0057_hnngfr.jpg'
+      : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0016_y94ufa.jpg'
+  );
+
   const servicesList = [
     {
       title: 'Repair & Service',
       description: `Quick and reliable repair for all ${brand.name} RO water purifiers.`,
-      image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0015_ptidj8.jpg',
+      image: repairImage,
       icon: Wrench,
     },
     {
       title: 'Filter Replacement',
       description: 'Replace sediment, carbon filters and RO membranes for better purification.',
-      image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0017_qm0y3k.jpg',
+      image: filterImage,
       icon: Filter,
     },
     {
       title: 'AMC Plans',
       description: 'Affordable maintenance plans for uninterrupted performance.',
-      image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0016_y94ufa.jpg',
+      image: amcImage,
       icon: ShieldCheck,
     },
     {
       title: 'Water Quality Check',
       description: 'Get your water tested and ensure your purifier is working efficiently.',
-      image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg',
+      image: qualityImage,
       icon: Droplets,
     },
   ];

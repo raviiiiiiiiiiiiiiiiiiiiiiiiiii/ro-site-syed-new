@@ -143,6 +143,12 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000087882078f47eb6ab54f5d99_aeo7v5.png',
     partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789672646/file_0000000075fc8208a4db72abe1abf045_bakaut.png',
     bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789674504/IMG-20260918-WA0002_whpvlb.jpg',
+    serviceImages: {
+      repair: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0015_ptidj8.jpg',
+      filter: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0017_qm0y3k.jpg',
+      amc: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0016_y94ufa.jpg',
+      quality: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg',
+    },
   },
 
   'aquaguard-service': {
@@ -227,6 +233,12 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000b97c8211b0ff0be33d753076_wncmpj.png',
     partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742669/file_00000000dca481f594fbe17b45c4fbf9_o20n4v.png',
     bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0044_mt8t6n.jpg',
+    serviceImages: {
+      repair: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0050_ffapvn.jpg',
+      filter: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743946/IMG-20260918-WA0059_ndexit.jpg',
+      amc: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0057_hnngfr.jpg',
+      quality: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg',
+    },
   },
 
   'pureit-service': {
@@ -311,6 +323,12 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666101/file_00000000c8308206b3080195508f65f9_kdu2po.png',
     partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742669/file_000000006a7881f89f7423968dbdf36e_nnkyny.png',
     bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742395/file_0000000062e4820b88f376aa9d87322a_zgjamt.png',
+    serviceImages: {
+      repair: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0052_wlnsxq.jpg',
+      filter: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743947/IMG-20260918-WA0060_1_r10zsw.jpg',
+      amc: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0056_ayukpn.jpg',
+      quality: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg',
+    },
   },
 
   'aosmith-service': {
@@ -395,6 +413,12 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000921882309edc5ef9e9e59e59_oi7mpt.png',
     partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742670/file_0000000009ec81fdad912727b6638014_jadzuy.png',
     bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0043_lofbp9.jpg',
+    serviceImages: {
+      repair: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0051_ov3w2q.jpg',
+      filter: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743947/IMG-20260918-WA0061_tsglkw.jpg',
+      amc: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743916/IMG-20260918-WA0055_uvysaw.jpg',
+      quality: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg',
+    },
   },
 
   'livpure-service': {
@@ -480,6 +504,12 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_0000000053b082099c9bb495de926e14_zlptot.png',
     partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742670/file_00000000980c8230b73a31ab0aba807a_jujtjk.png',
     bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0045_otqkvz.jpg',
+    serviceImages: {
+      repair: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0053_jzf7ky.jpg',
+      filter: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743946/IMG-20260918-WA0058_fwab01.jpg',
+      amc: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0054_qks7en.jpg',
+      quality: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg',
+    },
   },
 };
 

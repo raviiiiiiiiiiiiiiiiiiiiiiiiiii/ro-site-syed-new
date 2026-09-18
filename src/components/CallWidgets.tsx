@@ -29,7 +29,7 @@ export const CallWidgets: React.FC<CallWidgetsProps> = ({
       {/* Minimal & Aesthetic Floating Call Button */}
       <div 
         id="floating-call-widget" 
-        className="fixed bottom-16 sm:bottom-20 lg:bottom-7 right-4 sm:right-6 z-50 select-none"
+        className="fixed bottom-6 sm:bottom-7 right-4 sm:right-6 z-50 select-none"
       >
         <a
           href={telLink}
@@ -52,23 +52,6 @@ export const CallWidgets: React.FC<CallWidgetsProps> = ({
               />
             </div>
           </div>
-        </a>
-      </div>
-
-      {/* Full-width Sticky Bottom Call Bar (Mobile Only) */}
-      <div
-        id="sticky-call-footer"
-        style={{ backgroundColor: theme.primary }}
-        className="fixed bottom-0 left-0 right-0 z-40 text-white py-3 sm:py-3.5 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.18)] transition-colors border-t border-white/20 lg:hidden"
-      >
-        <a
-          href={telLink}
-          className="max-w-7xl mx-auto flex items-center justify-center gap-2 text-center text-white focus:outline-none"
-        >
-          <Phone className="w-5 h-5 sm:w-6 sm:h-6 fill-white animate-pulse shrink-0" />
-          <span className="text-base sm:text-xl font-black tracking-wide">
-            Call Now : <span className="font-mono tracking-wider">{phone}</span>
-          </span>
         </a>
       </div>
     </>
