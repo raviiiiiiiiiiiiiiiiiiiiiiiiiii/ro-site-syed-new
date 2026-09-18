@@ -1,9 +1,9 @@
 import { BrandInfo, FAQItem, ServiceItem, Testimonial } from '../types';
 
 export const BUSINESS_DETAILS = {
-  name: 'RO Service 24x7',
-  fullName: 'RO Service 24x7 - Water Purifier Repair & Maintenance',
-  logoUrl: 'https://i.ibb.co/k6cRgnyt/IMG-20260805-WA0010.jpg',
+  name: 'RO Service Center Online 24x7',
+  fullName: 'RO Service Center Online 24x7 - Water Purifier Repair & Maintenance',
+  logoUrl: '',
   phone: '08050291180',
   formattedPhone: '080502 91180',
   whatsappNumber: '918050291180',

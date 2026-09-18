@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Phone, MapPin, Mail, Clock } from 'lucide-react';
+import { Phone, MapPin, Mail, Clock, Droplets } from 'lucide-react';
 import { BUSINESS_DETAILS, BANGALORE_LOCALITIES } from '@/src/data/content';
 import { PageRoute } from '@/src/types';
 
@@ -66,24 +66,15 @@ export const Footer: React.FC<FooterProps> = ({ currentRoute: propCurrentRoute, 
           {/* Column 1: Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="h-11 bg-white px-2 py-0.5 rounded-xl flex items-center justify-center shadow-md overflow-hidden shrink-0">
-                <img 
-                  src={BUSINESS_DETAILS.logoUrl} 
-                  alt={BUSINESS_DETAILS.name}
-                  width="80"
-                  height="44"
-                  loading="lazy"
-                  decoding="async" 
-                  className="h-full w-auto max-w-[100px] object-contain rounded-lg"
-                />
+              <div className="w-11 h-11 bg-white/10 border border-white/20 rounded-xl flex items-center justify-center shadow-md overflow-hidden shrink-0">
+                <Droplets className="w-6 h-6 text-cyan-300" />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center font-['Outfit'] font-bold text-xl sm:text-2xl tracking-tight leading-none text-white">
-                  <span style={{ color: badgeAccent }}>Bangalore</span>
-                  <span className="ml-1.5 text-white font-bold">Service Centre</span>
+                  <span>RO Service Center</span>
                 </div>
-                <span className="text-[10px] sm:text-[11px] font-semibold text-white/80 tracking-wider uppercase mt-0.5 block font-['Plus_Jakarta_Sans']">
-                  Water Purifier Experts
+                <span className="text-[11px] font-black text-cyan-200 tracking-wider uppercase mt-1 block">
+                  Online 24x7
                 </span>
               </div>
             </div>

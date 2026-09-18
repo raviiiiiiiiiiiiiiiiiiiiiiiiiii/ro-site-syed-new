@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Phone, Menu, X, ChevronDown, Calendar, ShieldCheck, User, Truck, Headset } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown, Calendar, ShieldCheck, User, Truck, Headset, Droplets } from 'lucide-react';
 import { BUSINESS_DETAILS, BRAND_PAGES_DATA } from '@/src/data/content';
 import { PageRoute } from '@/src/types';
 import { getBrandTheme } from '@/src/utils/brandTheme';
@@ -125,26 +125,21 @@ export const Header: React.FC<HeaderProps> = ({
                 setMobileMenuOpen(false);
                 setPoliciesDropdownOpen(false);
               }}
-              className="flex items-center gap-2.5 sm:gap-3.5 text-left focus:outline-none group py-1"
+              className="flex items-center gap-2.5 sm:gap-3 text-left focus:outline-none group py-1"
             >
-              <div className="h-9 sm:h-11 bg-white px-2 py-1 rounded-xl shrink-0 overflow-hidden border border-slate-200 shadow-2xs flex items-center justify-center group-hover:border-[#0070e0]/40 transition-colors">
-                <img
-                  src={BUSINESS_DETAILS.logoUrl}
-                  alt={BUSINESS_DETAILS.name}
-                  width="44"
-                  height="44"
-                  loading="eager"
-                  decoding="async"
-                  className="h-full w-auto max-w-[80px] sm:max-w-[95px] object-contain"
-                />
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#003d82] via-[#005bb5] to-[#0070e0] flex items-center justify-center text-white shadow-xs shrink-0 group-hover:scale-[1.03] transition-transform">
+                <Droplets className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-200" />
               </div>
               <div className="flex flex-col">
-                <span className="font-['Outfit',sans-serif] font-bold text-xl sm:text-2xl lg:text-[26px] tracking-tight text-[#0070e0] hover:text-[#005ec4] transition-colors leading-tight">
-                  {BUSINESS_DETAILS.name}
+                <span className="font-extrabold text-base sm:text-lg lg:text-xl text-[#002b66] tracking-tight leading-tight group-hover:text-[#0052a3] transition-colors">
+                  RO Service Center
                 </span>
-                <span className="text-[10px] sm:text-[11px] font-semibold text-slate-500 tracking-wider uppercase">
-                  Doorstep RO Water Purifier Repair
-                </span>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-black tracking-wider text-[#0070e0] uppercase">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.8)]" />
+                    Online 24x7
+                  </span>
+                </div>
               </div>
             </Link>
 

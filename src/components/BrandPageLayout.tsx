@@ -50,6 +50,181 @@ interface BrandPageLayoutProps {
   brand: BrandInfo;
 }
 
+const SEO_BRAND_KEYWORDS = [
+  {
+    id: 'kent',
+    brandName: 'KENT',
+    title: 'KENT Service Near Me',
+    lookingFor: [
+      'KENT Water purifier service',
+      'KENT RO Service Near Me',
+      'KENT Water Purifier Service Near Me',
+      'KENT RO Repair Near Me',
+      'KENT Water Purifier Repair Near Me',
+      'KENT Service Center Near Me',
+      'KENT Authorized Service Center Near Me',
+      'KENT Filter Replacement Near Me',
+      'KENT RO Filter Change Near Me',
+      'KENT Technician Near Me',
+      'KENT RO Technician Near Me',
+      'KENT Membrane Replacement Near Me',
+      'KENT Doorstep Service Near Me',
+      'KENT Water Filter Service Near Me',
+      'KENT Genuine Filter Replacement Near Me',
+      'KENT Emergency Repair Near Me',
+      'KENT Home Service Near Me',
+      'KENT Water Purifier Repair Service Near Me',
+      'KENT Drinking Water Purifier Service Near Me',
+      'KENT Purifier Service Near Me',
+      'KENT Ro service booking',
+    ],
+  },
+  {
+    id: 'pureit',
+    brandName: 'Pureit',
+    title: 'Pureit Service Near Me',
+    lookingFor: [
+      'Pureit RO Service Near Me',
+      'Pureit Water Purifier Service Near Me',
+      'Pureit RO Repair Near Me',
+      'Pureit Water Purifier Repair Near Me',
+      'Pureit Service Center Near Me',
+      'Pureit Authorized Service Center Near Me',
+      'Pureit Filter Replacement Near Me',
+      'Pureit RO Filter Change Near Me',
+      'Pureit Technician Near Me',
+      'Pureit RO Technician Near Me',
+      'Pureit Installation Service Near Me',
+      'Pureit Membrane Replacement Near Me',
+      'Pureit RO Maintenance Near Me',
+      'Pureit Doorstep Service Near Me',
+      'Pureit Water Filter Service Near Me',
+      'Pureit Genuine Filter Replacement Near Me',
+      'Pureit Emergency Repair Near Me',
+      'Pureit Home Service Near Me',
+      'Pureit Water Purifier Repair Service Near Me',
+      'Pureit Drinking Water Purifier Service Near Me',
+      'Pureit Purifier Service Near Me',
+      'Pureit Service Booking Near Me',
+    ],
+  },
+  {
+    id: 'aquaguard',
+    brandName: 'Aquaguard',
+    title: 'Aquaguard Service Near Me',
+    lookingFor: [
+      'Aquaguard RO Service Near Me',
+      'Aquaguard Water Purifier Service Near Me',
+      'Aquaguard RO Repair Near Me',
+      'Aquaguard Water Purifier Repair Near Me',
+      'Aquaguard Service Center Near Me',
+      'Aquaguard Authorized Service Center Near Me',
+      'Aquaguard Filter Replacement Near Me',
+      'Aquaguard RO Filter Change Near Me',
+      'Aquaguard Technician Near Me',
+      'Aquaguard RO Technician Near Me',
+      'Aquaguard Membrane Replacement Near Me',
+      'Aquaguard Doorstep Service Near Me',
+      'Aquaguard Water Filter Service Near Me',
+      'Aquaguard Genuine Filter Replacement Near Me',
+      'Aquaguard Water Purifier Repair Service Near Me',
+      'Aquaguard Drinking Water Purifier Service Near Me',
+      'Aquaguard Purifier Service Near Me',
+      'Aquaguard service Booking',
+    ],
+  },
+  {
+    id: 'ao-smith',
+    brandName: 'AO Smith',
+    title: 'AO Smith Service Near Me',
+    lookingFor: [
+      'AO Smith RO Service',
+      'AO Smith Water Purifier Service',
+      'AO Smith RO Repair',
+      'AO Smith Repair Near Me',
+      'AO Smith Service Center',
+      'AO Smith Service Center Near Me',
+      'AO Smith Filter Replacement',
+      'AO Smith RO Filter Change',
+      'AO Smith Water Purifier Repair',
+      'AO Smith Membrane Replacement',
+      'AO Smith RO Membrane Change',
+      'AO Smith Doorstep Service',
+      'AO Smith Genuine Filter Replacement',
+      'AO Smith RO Service Near Me',
+      'AO Smith Water Filter Service',
+      'AO Smith Repair Service',
+      'AO Smith Drinking Water Purifier Service',
+      'AO Smith Purifier Service',
+      'AO Smith Water Purifier Repair Near Me',
+      'Ao smith ro service booking',
+    ],
+  },
+  {
+    id: 'livpure',
+    brandName: 'Livpure',
+    title: 'Livpure ro service near me',
+    lookingFor: [
+      'Livpure RO Service',
+      'Livpure Water Purifier Service',
+      'Livpure RO Repair',
+      'Livpure Repair Near Me',
+      'Livpure Service Center',
+      'Livpure Service Center Near Me',
+      'Livpure Filter Replacement',
+      'Livpure RO Filter Change',
+      'Livpure Water Purifier Repair',
+      'Livpure Membrane Replacement',
+      'Livpure RO Membrane Change',
+      'Livpure Doorstep Service',
+      'Livpure Genuine Filter Replacement',
+      'Livpure RO Service Near Me',
+      'Livpure Water Filter Service',
+      'Livpure Repair Service',
+      'Livpure Drinking Water Purifier Service',
+      'Livpure Purifier Service',
+      'Livpure Water Purifier Repair Near Me',
+      'Livpure service booking',
+      'Livpure RO Service Center',
+    ],
+  },
+  {
+    id: 'ro-service-24x7',
+    brandName: 'Havells / Multi-Brand',
+    title: 'Havells ro service near me',
+    lookingFor: [
+      'Water Purifier Service',
+      'RO Service',
+      'RO Repair Service',
+      'Water Purifier Repair',
+      'Filter Replacement Service',
+      'RO Service Center',
+      'KENT Water Purifier Service',
+      'Aquaguard Water Purifier Service',
+      'Pureit Water Purifier Service',
+      'AO Smith Water Purifier Service',
+      'Livpure Water Purifier Service',
+      'Havells Water Purifier Service',
+      'V-Guard Water Purifier Service',
+      'ZeroB Water Purifier Service',
+      'KENT RO Service',
+      'Aquaguard RO Service',
+      'Pureit RO Service',
+      'AO Smith RO Service',
+      'Livpure RO Service',
+      'RO Water Purifier Service',
+    ],
+  },
+];
+
+const FOOTER_KEYWORD_LINES = [
+  'KENT Water Purifier Service | KENT RO Service | KENT Water Purifier Repair | KENT Service Center | KENT Filter Replacement | KENT AMC Service',
+  'Aquaguard Water Purifier Service | Aquaguard RO Service | Aquaguard Water Purifier Repair | Aquaguard Service Center | Aquaguard Filter Replacement | Eureka Aquaguard Service',
+  'AO Smith Water Purifier Service | AO Smith RO Service | AO Smith Water Purifier Repair | AO Smith Service Center | AO Smith Filter Replacement | AO Smith RO Repair',
+  'Pureit Water Purifier Service | Pureit RO Service | Pureit Water Purifier Repair | Pureit Service Center | Pureit Filter Replacement | Pureit RO Repair',
+  'Livpure Water Purifier Service | Livpure RO Service | Livpure Water Purifier Repair | Livpure Service Center | Livpure Filter Replacement | Livpure RO Repair',
+];
+
 export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   // Navigation & Mobile menu
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -60,6 +235,13 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   // Search Bar state
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // SEO Keywords Tab state
+  const [selectedKeywordTab, setSelectedKeywordTab] = useState(brand.id);
+
+  useEffect(() => {
+    setSelectedKeywordTab(brand.id);
+  }, [brand.id]);
 
   // Booking Form State
   const [fullName, setFullName] = useState('');
@@ -126,7 +308,9 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
   // Hero Image resolution: prioritize brand.heroBgImage, then fallback to brand-specific requested Cloudinary URLs or showcaseImage
   const heroImageToDisplay = brand.heroBgImage || (
-    brand.id === 'aquaguard'
+    brand.id === 'ro-service-24x7'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744713/file_0000000034308206b0aa824a3917a047_ogubmc.png'
+      : brand.id === 'aquaguard'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000b97c8211b0ff0be33d753076_wncmpj.png'
       : brand.id === 'livpure'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_0000000053b082099c9bb495de926e14_zlptot.png'
@@ -139,7 +323,9 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
   // Bottom Banner Image resolution (Section above footer): prioritize brand.bottomBannerImage, then fallback to brand-specific requested URLs
   const bottomBannerToDisplay = brand.bottomBannerImage || (
-    brand.id === 'pureit'
+    brand.id === 'ro-service-24x7'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744714/file_00000000c0e082118f500d75d9418d25_a6woez.png'
+      : brand.id === 'pureit'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742395/file_0000000062e4820b88f376aa9d87322a_zgjamt.png'
       : brand.id === 'ao-smith'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0043_lofbp9.jpg'
@@ -152,7 +338,9 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
   // Parts / Filters Banner Image resolution (Section just above Why Choose Us): prioritize brand.partsBannerImage, then fallback to brand-specific requested URLs
   const partsBannerToDisplay = brand.partsBannerImage || (
-    brand.id === 'aquaguard'
+    brand.id === 'ro-service-24x7'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744713/file_00000000be388230a7ea3fe9b5fef059_oqqijq.png'
+      : brand.id === 'aquaguard'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742669/file_00000000dca481f594fbe17b45c4fbf9_o20n4v.png'
       : brand.id === 'pureit'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742669/file_000000006a7881f89f7423968dbdf36e_nnkyny.png'
@@ -215,7 +403,9 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   const qualityImage = 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg';
 
   const repairImage = brand.serviceImages?.repair || (
-    brand.id === 'ao-smith'
+    brand.id === 'ro-service-24x7'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744767/file_0000000072548211b75cdf8e48b91b7d_mmuame.png'
+      : brand.id === 'ao-smith'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0051_ov3w2q.jpg'
       : brand.id === 'pureit'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0052_wlnsxq.jpg'
@@ -227,7 +417,9 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   );
 
   const filterImage = brand.serviceImages?.filter || (
-    brand.id === 'ao-smith'
+    brand.id === 'ro-service-24x7'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744766/file_00000000696c8211b0e9d31b75c0009e_rpigfw.png'
+      : brand.id === 'ao-smith'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743947/IMG-20260918-WA0061_tsglkw.jpg'
       : brand.id === 'pureit'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743947/IMG-20260918-WA0060_1_r10zsw.jpg'
@@ -239,7 +431,9 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   );
 
   const amcImage = brand.serviceImages?.amc || (
-    brand.id === 'ao-smith'
+    brand.id === 'ro-service-24x7'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744767/file_000000008d20821198976eef39c910a9_dwhpb5.png'
+      : brand.id === 'ao-smith'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743916/IMG-20260918-WA0055_uvysaw.jpg'
       : brand.id === 'pureit'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0056_ayukpn.jpg'
@@ -402,33 +596,34 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             
-            {/* Logo (left) - Exact brand logo image + House of Purity */}
-            <div className="flex items-center gap-4 sm:gap-5">
-              <Link href="/" className="flex items-center group">
-                {brand.logoUrl ? (
-                  <div className="h-10 sm:h-12 flex items-center justify-center">
-                    <img
-                      src={brand.logoUrl}
-                      alt={`${brand.name} Logo`}
-                      className="h-full w-auto max-w-[120px] sm:max-w-[140px] object-contain"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex flex-col">
-                    <span
-                      style={{ color: primaryColor }}
-                      className="font-black text-2xl sm:text-3xl tracking-tight leading-none uppercase"
-                    >
-                      {brand.name}
+            {/* Logo (left) - Styled RO Service Center Online 24x7 Brand Identity */}
+            <div className="flex items-center gap-3 sm:gap-4">
+              <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group select-none">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#003d82] via-[#005bb5] to-[#0070e0] flex items-center justify-center text-white shadow-xs shrink-0 group-hover:scale-[1.03] transition-transform">
+                  <Droplets className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-200" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-extrabold text-[15px] sm:text-[18px] lg:text-[20px] text-[#002b66] tracking-tight leading-tight group-hover:text-[#0052a3] transition-colors">
+                    RO Service Center
+                  </span>
+                  <div className="flex items-center gap-1.5 mt-0.5">
+                    <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-black tracking-wider text-[#0070e0] uppercase">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_rgba(16,185,129,0.8)]" />
+                      Online 24x7
                     </span>
                   </div>
-                )}
+                </div>
               </Link>
               
               <div className="hidden sm:block h-8 w-px bg-slate-200"></div>
               
-              <div className="hidden sm:block text-[11px] font-bold text-slate-700 tracking-[0.15em] uppercase">
-                {brand.subTagline || 'HOUSE OF PURITY'}
+              <div className="hidden sm:flex flex-col justify-center">
+                <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-none mb-0.5">
+                  Doorstep Support
+                </span>
+                <span className="text-[11px] font-bold text-slate-700 tracking-wider uppercase leading-none">
+                  {brand.id === 'ro-service-24x7' ? 'Multi-Brand Care' : `${brand.name} Service`}
+                </span>
               </div>
             </div>
 
@@ -535,43 +730,18 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
       {/* ========================================================
           2. HERO SECTION + DOCKED BOOKING FORM
-             Matches IMG-20260917-WA0019.jpg exactly:
-             - Upper Hero:
-               * Left: Eyebrow, bold H1 ("KENT RO Service at Your Doorstep"), Tagline, Description, 4 Feature Badges row, 2 CTA buttons ("Book a Service →" and "Watch How It Works")
-               * Center: Kent Grand+ RO water purifier with glass tumbler dispensing water + floating badge "Mineral RO™ Technology with UV + UF + TDS Control"
-               * Right: 4 Vertical Trust Badges ("Safer Water", "Healthier Families", "Trusted by Millions", "A Cleaner Greener Tomorrow") + Blue cursive script "Pure Water Pure Happiness"
-             - Lower Hero (The Booking Card):
-               * Custom banner background image
-               * Header: "Book {BRAND} Service Now"
-               * 2-Row Form: Full Name, Mobile Number, Enter Your Pincode, Select Service Type, Book Service Now →
-               * Microcopy: "🔒 Your information is safe with us."
       ======================================================== */}
-      {/* ========================================================
-          3. HERO BANNER SECTION (16:9 Aspect Ratio)
-             - Fitted 16:9 banner with brand background image
-             - Reduced white overlay opacity for vivid image visibility
-             - Left: Clean title, motto, description, 4 badges & CTAs
-             - Right: Open space for background purifier & graphics
-      ======================================================== */}
-      <section className="relative w-full aspect-[5/3] sm:aspect-auto min-h-0 sm:min-h-[440px] max-h-none sm:max-h-[580px] lg:max-h-[640px] flex items-start sm:items-center overflow-hidden border-b border-slate-200/80 bg-white">
-        {/* HERO BACKGROUND IMAGE: 16:9 background banner */}
-        {heroImageToDisplay && (
-          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-            <div
-              className="w-full h-full bg-cover bg-[right_top] sm:bg-[center_top] bg-no-repeat"
-              style={{ backgroundImage: `url(${heroImageToDisplay})` }}
-            />
-            {/* Reduced white overlay opacity as requested */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent sm:from-white/35 sm:via-white/15 pointer-events-none" />
-          </div>
-        )}
-
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:py-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+      {brand.id === 'ro-service-24x7' ? (
+        /* ========================================================
+            HOMEPAGE HERO SECTION:
+            Exact same header, text, badges, button, rating
+            Layout: text -> image (rounded container) -> form
+        ======================================================== */
+        <section className="bg-white pt-6 sm:pt-8 pb-10 sm:pb-14 border-b border-slate-200/80">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
             
-            {/* Left Column: Title, Subheading, Description, Badges & CTAs */}
-            <div className="lg:col-span-6 xl:col-span-5 space-y-2 sm:space-y-3.5 text-left">
-              
+            {/* 1. TEXT, BUTTONS, BADGES ETC (Exact same as before) */}
+            <div className="space-y-2 sm:space-y-3.5 text-left max-w-3xl">
               {/* Eyebrow Label */}
               <div className="text-[9px] sm:text-xs font-bold uppercase tracking-wider text-slate-600">
                 INDIA&apos;S MOST TRUSTED RO BRAND
@@ -589,7 +759,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               </p>
 
               {/* Short description paragraph */}
-              <p className="hidden sm:block text-xs sm:text-[13px] text-slate-600 leading-relaxed max-w-md">
+              <p className="hidden sm:block text-xs sm:text-[13px] text-slate-600 leading-relaxed max-w-xl">
                 Get expert {brand.name.toUpperCase()} water purifier service, repair, filter replacement, installation and AMC support from certified technicians. Genuine spare parts, fast and reliable service across your city.
               </p>
 
@@ -604,7 +774,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                   const IconComp = item.icon;
                   return (
                     <div
-                      key={`marquee-item-${idx}`}
+                      key={`home-feature-${idx}`}
                       className="flex items-center gap-1.5 bg-white/90 border border-slate-200/90 rounded-md px-2 py-1 shadow-2xs"
                     >
                       <div className="w-4 h-4 rounded-full border border-blue-200 bg-blue-50 text-[#0066cc] flex items-center justify-center shrink-0">
@@ -652,181 +822,424 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               </div>
             </div>
 
-            {/* Right Column: Open space so background image remains unobstructed */}
-            <div className="hidden lg:block lg:col-span-6 xl:col-span-7 pointer-events-none" />
+            {/* 2. THEN IMAGE (ROUNDED CONTAINER) */}
+            <div className="w-full">
+              <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm bg-white">
+                <img
+                  src={heroImageToDisplay}
+                  alt={`${brand.name} RO Service`}
+                  className="w-full h-auto object-cover"
+                  loading="eager"
+                />
+              </div>
+            </div>
 
-          </div>
-        </div>
-      </section>
+            {/* 3. THEN FORM (Exact same form as before) */}
+            <div
+              ref={bookingFormRef}
+              id="booking-section"
+              className="rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-white relative shadow-2xl overflow-hidden border border-blue-900/50 bg-[#0c3975] bg-cover bg-center sm:bg-[center_right] bg-no-repeat"
+              style={{
+                backgroundImage: `url('https://res.cloudinary.com/dieq3fjuv/image/upload/v1789668617/file_00000000aa70820b93ba0ee61bc6377c_prruge.png')`,
+              }}
+            >
+              {/* Soft gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0c2b5e]/90 via-[#0c2b5e]/60 to-transparent sm:from-[#0c2b5e]/80 sm:via-[#0c2b5e]/30 sm:to-transparent pointer-events-none" />
 
-      {/* ========================================================
-          LOWER HERO: THE BOOKING FORM CARD WITH BACKGROUND IMAGE
-      ======================================================== */}
-      <section className="bg-slate-50 py-8 sm:py-12 border-b border-slate-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            ref={bookingFormRef}
-            id="booking-section"
-            className="rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-white relative shadow-2xl overflow-hidden border border-blue-900/50 bg-[#0c3975] bg-cover bg-center sm:bg-[center_right] bg-no-repeat"
-            style={{
-              backgroundImage: `url('https://res.cloudinary.com/dieq3fjuv/image/upload/v1789668617/file_00000000aa70820b93ba0ee61bc6377c_prruge.png')`,
-            }}
-          >
-            {/* Soft gradient overlay to ensure text contrast while letting background graphic shine through */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0c2b5e]/90 via-[#0c2b5e]/60 to-transparent sm:from-[#0c2b5e]/80 sm:via-[#0c2b5e]/30 sm:to-transparent pointer-events-none" />
-
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              
-              {/* Form Column */}
-              <div className="lg:col-span-8 xl:col-span-7 space-y-4">
+              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 
-                {/* Header inside Card */}
-                <div>
-                  <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                    Book {brand.name.toUpperCase()} Service Now
-                  </h2>
-                  <p className="text-xs sm:text-sm text-blue-100/90 mt-1">
-                    Get professional {brand.name.toUpperCase()} RO repair, installation, maintenance and filter replacement at your doorstep.
-                  </p>
+                {/* Form Column */}
+                <div className="lg:col-span-8 xl:col-span-7 space-y-4">
+                  <div>
+                    <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                      Book {brand.name.toUpperCase()} Service Now
+                    </h2>
+                    <p className="text-xs sm:text-sm text-blue-100/90 mt-1">
+                      Get professional {brand.name.toUpperCase()} RO repair, installation, maintenance and filter replacement at your doorstep.
+                    </p>
+                  </div>
+
+                  {formSubmitted ? (
+                    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 text-center space-y-2">
+                      <CheckCircle className="w-9 h-9 text-emerald-400 mx-auto" />
+                      <h3 className="text-base font-bold text-white">Service Request Received!</h3>
+                      <p className="text-xs text-blue-100 max-w-md mx-auto">
+                        Thank you, <strong className="text-white">{fullName}</strong>. A certified {brand.name.toUpperCase()} technician will contact you on <strong className="text-white">{phone}</strong> shortly.
+                      </p>
+                      <button
+                        onClick={() => {
+                          setFormSubmitted(false);
+                          setFullName('');
+                          setPhone('');
+                          setPincode('');
+                        }}
+                        className="text-xs text-emerald-300 underline font-semibold mt-1 cursor-pointer"
+                      >
+                        Book another service
+                      </button>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleBookingSubmit} className="space-y-3">
+                      {formError && (
+                        <div className="bg-rose-900/80 border border-rose-400 text-rose-100 text-xs px-3 py-2 rounded-lg">
+                          {formError}
+                        </div>
+                      )}
+
+                      {/* Row 1: 3 Fields (Full Name, Mobile Number, Enter Your Pincode) */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <User className="w-3.5 h-3.5" />
+                          </div>
+                          <input
+                            type="text"
+                            required
+                            placeholder="Full Name"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          />
+                        </div>
+
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <Phone className="w-3.5 h-3.5" />
+                          </div>
+                          <input
+                            type="tel"
+                            required
+                            maxLength={10}
+                            placeholder="Mobile Number"
+                            value={phone}
+                            onChange={(e) => setPhone(e.target.value)}
+                            className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          />
+                        </div>
+
+                        <div className="relative">
+                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <MapPin className="w-3.5 h-3.5" />
+                          </div>
+                          <input
+                            type="text"
+                            maxLength={6}
+                            placeholder="Enter Your Pincode"
+                            value={pincode}
+                            onChange={(e) => setPincode(e.target.value)}
+                            className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Row 2: 2 Fields (Select Service Type ~60%, Submit Button ~40%) */}
+                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+                        <div className="relative sm:col-span-7">
+                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <Wrench className="w-3.5 h-3.5" />
+                          </div>
+                          <select
+                            value={serviceType}
+                            onChange={(e) => setServiceType(e.target.value)}
+                            className={`w-full pl-9 pr-8 py-2.5 bg-white text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400 appearance-none cursor-pointer ${
+                              serviceType === '' ? 'text-slate-400' : 'text-slate-900'
+                            }`}
+                          >
+                            <option value="" disabled>Select Service Type</option>
+                            <option value="RO Repair & Service" className="text-slate-900">RO Repair &amp; Service</option>
+                            <option value="Filter Replacement" className="text-slate-900">Filter Replacement</option>
+                            <option value="AMC Maintenance Plan" className="text-slate-900">AMC Maintenance Plan</option>
+                            <option value="Water Quality Check" className="text-slate-900">Water Quality Check</option>
+                            <option value="Installation / Relocation" className="text-slate-900">Installation / Relocation</option>
+                          </select>
+                          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                            <ChevronDown className="w-3.5 h-3.5" />
+                          </div>
+                        </div>
+
+                        <div className="sm:col-span-5">
+                          <button
+                            type="submit"
+                            className="w-full bg-[#0070e0] hover:bg-[#0060c5] text-white font-bold text-xs py-2.5 px-5 rounded-lg shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
+                          >
+                            <span>Book Service Now</span>
+                            <ArrowRight className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-center gap-1.5 text-[11px] text-blue-200/90 pt-1">
+                        <Lock className="w-3 h-3 text-blue-200" />
+                        <span>Your information is safe with us.</span>
+                      </div>
+                    </form>
+                  )}
                 </div>
 
-                {formSubmitted ? (
-                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 text-center space-y-2">
-                    <CheckCircle className="w-9 h-9 text-emerald-400 mx-auto" />
-                    <h3 className="text-base font-bold text-white">Service Request Received!</h3>
-                    <p className="text-xs text-blue-100 max-w-md mx-auto">
-                      Thank you, <strong className="text-white">{fullName}</strong>. A certified {brand.name.toUpperCase()} technician will contact you on <strong className="text-white">{phone}</strong> shortly.
-                    </p>
+                <div className="hidden lg:block lg:col-span-4 xl:col-span-5 pointer-events-none" />
+              </div>
+            </div>
+
+          </div>
+        </section>
+      ) : (
+        /* BRAND PAGES EXISTING HERO + FORM */
+        <>
+          <section className="relative w-full aspect-[5/3] sm:aspect-auto min-h-0 sm:min-h-[440px] max-h-none sm:max-h-[580px] lg:max-h-[640px] flex items-start sm:items-center overflow-hidden border-b border-slate-200/80 bg-white">
+            {/* HERO BACKGROUND IMAGE: 16:9 background banner */}
+            {heroImageToDisplay && (
+              <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <div
+                  className="w-full h-full bg-cover bg-[right_top] sm:bg-[center_top] bg-no-repeat"
+                  style={{ backgroundImage: `url(${heroImageToDisplay})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent sm:from-white/35 sm:via-white/15 pointer-events-none" />
+              </div>
+            )}
+
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:py-6">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                
+                {/* Left Column: Title, Subheading, Description, Badges & CTAs */}
+                <div className="lg:col-span-6 xl:col-span-5 space-y-2 sm:space-y-3.5 text-left">
+                  
+                  {/* Eyebrow Label */}
+                  <div className="text-[9px] sm:text-xs font-bold uppercase tracking-wider text-slate-600">
+                    INDIA&apos;S MOST TRUSTED RO BRAND
+                  </div>
+
+                  {/* Large Bold H1 */}
+                  <h1 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0c2b5e] leading-tight sm:leading-[1.15]">
+                    <span className="block">{brand.name.toUpperCase()} RO</span>
+                    <span className="block">Service at Your Doorstep</span>
+                  </h1>
+
+                  {/* Subheading / Tagline */}
+                  <p className="hidden sm:block text-xs sm:text-sm font-bold text-slate-800 tracking-tight">
+                    Pure Water. Healthy Families. Brighter Tomorrows.
+                  </p>
+
+                  {/* Short description paragraph */}
+                  <p className="hidden sm:block text-xs sm:text-[13px] text-slate-600 leading-relaxed max-w-md">
+                    Get expert {brand.name.toUpperCase()} water purifier service, repair, filter replacement, installation and AMC support from certified technicians. Genuine spare parts, fast and reliable service across your city.
+                  </p>
+
+                  {/* Row of 4 small icon+text feature badges */}
+                  <div className="hidden sm:grid grid-cols-2 sm:grid-cols-4 gap-1.5 pt-0.5 max-w-lg">
+                    {[
+                      { label: 'Same Day Service', icon: Zap },
+                      { label: 'Certified Technicians', icon: ShieldCheck },
+                      { label: `Genuine ${brand.name.toUpperCase()} Parts`, icon: Settings },
+                      { label: 'Doorstep Support', icon: Clock },
+                    ].map((item, idx) => {
+                      const IconComp = item.icon;
+                      return (
+                        <div
+                          key={`marquee-item-${idx}`}
+                          className="flex items-center gap-1.5 bg-white/90 border border-slate-200/90 rounded-md px-2 py-1 shadow-2xs"
+                        >
+                          <div className="w-4 h-4 rounded-full border border-blue-200 bg-blue-50 text-[#0066cc] flex items-center justify-center shrink-0">
+                            <IconComp className="w-2.5 h-2.5" />
+                          </div>
+                          <span className="text-[10px] sm:text-[10.5px] font-semibold text-slate-800 leading-tight">
+                            {item.label}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* CTA Button */}
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1">
                     <button
-                      onClick={() => {
-                        setFormSubmitted(false);
-                        setFullName('');
-                        setPhone('');
-                        setPincode('');
-                      }}
-                      className="text-xs text-emerald-300 underline font-semibold mt-1 cursor-pointer"
+                      onClick={scrollToBookingForm}
+                      className="bg-[#0066cc] hover:bg-[#0055b3] text-white text-[10px] sm:text-sm font-bold px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-lg shadow-sm transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer"
                     >
-                      Book another service
+                      <span>Book a Service</span>
+                      <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                     </button>
                   </div>
-                ) : (
-                  <form onSubmit={handleBookingSubmit} className="space-y-3">
-                    {formError && (
-                      <div className="bg-rose-900/80 border border-rose-400 text-rose-100 text-xs px-3 py-2 rounded-lg">
-                        {formError}
-                      </div>
-                    )}
 
-                    {/* Row 1: 3 Fields (Full Name, Mobile Number, Enter Your Pincode) */}
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                      
-                      {/* Full Name */}
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                          <User className="w-3.5 h-3.5" />
+                  {/* 4.5 Star Rating & 10,000+ Happy Customers Social Proof */}
+                  <div className="flex items-center flex-wrap gap-1.5 sm:gap-2 pt-1.5">
+                    <div className="flex items-center gap-1 sm:gap-1.5 bg-white/90 backdrop-blur-2xs border border-slate-200/90 rounded-full px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-2xs">
+                      <div className="flex items-center">
+                        {[1, 2, 3, 4].map((i) => (
+                          <Star key={i} className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400" />
+                        ))}
+                        <div className="relative w-2.5 h-2.5 sm:w-3.5 sm:h-3.5">
+                          <Star className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-slate-300 fill-slate-200" />
+                          <div className="absolute inset-0 overflow-hidden w-1/2">
+                            <Star className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400" />
+                          </div>
                         </div>
-                        <input
-                          type="text"
-                          required
-                          placeholder="Full Name"
-                          value={fullName}
-                          onChange={(e) => setFullName(e.target.value)}
-                          className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
                       </div>
-
-                      {/* Mobile Number */}
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                          <Phone className="w-3.5 h-3.5" />
-                        </div>
-                        <input
-                          type="tel"
-                          required
-                          maxLength={10}
-                          placeholder="Mobile Number"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </div>
-
-                      {/* Enter Your Pincode */}
-                      <div className="relative">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                          <MapPin className="w-3.5 h-3.5" />
-                        </div>
-                        <input
-                          type="text"
-                          maxLength={6}
-                          placeholder="Enter Your Pincode"
-                          value={pincode}
-                          onChange={(e) => setPincode(e.target.value)}
-                          className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                      </div>
-
+                      <span className="text-[10px] sm:text-xs font-extrabold text-slate-900">4.5</span>
                     </div>
 
-                    {/* Row 2: 2 Fields (Select Service Type ~60%, Submit Button ~40%) */}
-                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
-                      
-                      {/* Select Service Type */}
-                      <div className="relative sm:col-span-7">
-                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                          <Wrench className="w-3.5 h-3.5" />
-                        </div>
-                        <select
-                          value={serviceType}
-                          onChange={(e) => setServiceType(e.target.value)}
-                          className={`w-full pl-9 pr-8 py-2.5 bg-white text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400 appearance-none cursor-pointer ${
-                            serviceType === '' ? 'text-slate-400' : 'text-slate-900'
-                          }`}
-                        >
-                          <option value="" disabled>Select Service Type</option>
-                          <option value="RO Repair & Service" className="text-slate-900">RO Repair &amp; Service</option>
-                          <option value="Filter Replacement" className="text-slate-900">Filter Replacement</option>
-                          <option value="AMC Maintenance Plan" className="text-slate-900">AMC Maintenance Plan</option>
-                          <option value="Water Quality Check" className="text-slate-900">Water Quality Check</option>
-                          <option value="Installation / Relocation" className="text-slate-900">Installation / Relocation</option>
-                        </select>
-                        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
-                          <ChevronDown className="w-3.5 h-3.5" />
-                        </div>
-                      </div>
+                    <span className="text-[9px] sm:text-xs font-semibold text-slate-800 bg-white/70 sm:bg-transparent rounded-md px-1.5 sm:px-0 py-0.5">
+                      <span className="font-bold text-slate-950">10,000+</span> happy customers
+                    </span>
+                  </div>
+                </div>
 
-                      {/* Book Service Now → Button */}
-                      <div className="sm:col-span-5">
-                        <button
-                          type="submit"
-                          className="w-full bg-[#0070e0] hover:bg-[#0060c5] text-white font-bold text-xs py-2.5 px-5 rounded-lg shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
-                        >
-                          <span>Book Service Now</span>
-                          <ArrowRight className="w-4 h-4" />
-                        </button>
-                      </div>
-
-                    </div>
-
-                    {/* Security Microcopy centered below */}
-                    <div className="flex items-center justify-center gap-1.5 text-[11px] text-blue-200/90 pt-1">
-                      <Lock className="w-3 h-3 text-blue-200" />
-                      <span>Your information is safe with us.</span>
-                    </div>
-
-                  </form>
-                )}
+                {/* Right Column: Open space so background image remains unobstructed */}
+                <div className="hidden lg:block lg:col-span-6 xl:col-span-7 pointer-events-none" />
 
               </div>
-
-              {/* Right Column: Kept open so the background image artwork is unobstructed */}
-              <div className="hidden lg:block lg:col-span-4 xl:col-span-5 pointer-events-none" />
-
             </div>
-          </div>
+          </section>
 
-        </div>
-      </section>
+          {/* LOWER HERO: THE BOOKING FORM CARD WITH BACKGROUND IMAGE */}
+          <section className="bg-slate-50 py-8 sm:py-12 border-b border-slate-200/80">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div
+                ref={bookingFormRef}
+                id="booking-section"
+                className="rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-white relative shadow-2xl overflow-hidden border border-blue-900/50 bg-[#0c3975] bg-cover bg-center sm:bg-[center_right] bg-no-repeat"
+                style={{
+                  backgroundImage: `url('https://res.cloudinary.com/dieq3fjuv/image/upload/v1789668617/file_00000000aa70820b93ba0ee61bc6377c_prruge.png')`,
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0c2b5e]/90 via-[#0c2b5e]/60 to-transparent sm:from-[#0c2b5e]/80 sm:via-[#0c2b5e]/30 sm:to-transparent pointer-events-none" />
+
+                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  
+                  {/* Form Column */}
+                  <div className="lg:col-span-8 xl:col-span-7 space-y-4">
+                    <div>
+                      <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                        Book {brand.name.toUpperCase()} Service Now
+                      </h2>
+                      <p className="text-xs sm:text-sm text-blue-100/90 mt-1">
+                        Get professional {brand.name.toUpperCase()} RO repair, installation, maintenance and filter replacement at your doorstep.
+                      </p>
+                    </div>
+
+                    {formSubmitted ? (
+                      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 text-center space-y-2">
+                        <CheckCircle className="w-9 h-9 text-emerald-400 mx-auto" />
+                        <h3 className="text-base font-bold text-white">Service Request Received!</h3>
+                        <p className="text-xs text-blue-100 max-w-md mx-auto">
+                          Thank you, <strong className="text-white">{fullName}</strong>. A certified {brand.name.toUpperCase()} technician will contact you on <strong className="text-white">{phone}</strong> shortly.
+                        </p>
+                        <button
+                          onClick={() => {
+                            setFormSubmitted(false);
+                            setFullName('');
+                            setPhone('');
+                            setPincode('');
+                          }}
+                          className="text-xs text-emerald-300 underline font-semibold mt-1 cursor-pointer"
+                        >
+                          Book another service
+                        </button>
+                      </div>
+                    ) : (
+                      <form onSubmit={handleBookingSubmit} className="space-y-3">
+                        {formError && (
+                          <div className="bg-rose-900/80 border border-rose-400 text-rose-100 text-xs px-3 py-2 rounded-lg">
+                            {formError}
+                          </div>
+                        )}
+
+                        {/* Row 1: 3 Fields (Full Name, Mobile Number, Enter Your Pincode) */}
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                          <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                              <User className="w-3.5 h-3.5" />
+                            </div>
+                            <input
+                              type="text"
+                              required
+                              placeholder="Full Name"
+                              value={fullName}
+                              onChange={(e) => setFullName(e.target.value)}
+                              className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            />
+                          </div>
+
+                          <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                              <Phone className="w-3.5 h-3.5" />
+                            </div>
+                            <input
+                              type="tel"
+                              required
+                              maxLength={10}
+                              placeholder="Mobile Number"
+                              value={phone}
+                              onChange={(e) => setPhone(e.target.value)}
+                              className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            />
+                          </div>
+
+                          <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                              <MapPin className="w-3.5 h-3.5" />
+                            </div>
+                            <input
+                              type="text"
+                              maxLength={6}
+                              placeholder="Enter Your Pincode"
+                              value={pincode}
+                              onChange={(e) => setPincode(e.target.value)}
+                              className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Row 2: 2 Fields */}
+                        <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+                          <div className="relative sm:col-span-7">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                              <Wrench className="w-3.5 h-3.5" />
+                            </div>
+                            <select
+                              value={serviceType}
+                              onChange={(e) => setServiceType(e.target.value)}
+                              className={`w-full pl-9 pr-8 py-2.5 bg-white text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400 appearance-none cursor-pointer ${
+                                serviceType === '' ? 'text-slate-400' : 'text-slate-900'
+                              }`}
+                            >
+                              <option value="" disabled>Select Service Type</option>
+                              <option value="RO Repair & Service" className="text-slate-900">RO Repair &amp; Service</option>
+                              <option value="Filter Replacement" className="text-slate-900">Filter Replacement</option>
+                              <option value="AMC Maintenance Plan" className="text-slate-900">AMC Maintenance Plan</option>
+                              <option value="Water Quality Check" className="text-slate-900">Water Quality Check</option>
+                              <option value="Installation / Relocation" className="text-slate-900">Installation / Relocation</option>
+                            </select>
+                            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                              <ChevronDown className="w-3.5 h-3.5" />
+                            </div>
+                          </div>
+
+                          <div className="sm:col-span-5">
+                            <button
+                              type="submit"
+                              className="w-full bg-[#0070e0] hover:bg-[#0060c5] text-white font-bold text-xs py-2.5 px-5 rounded-lg shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
+                            >
+                              <span>Book Service Now</span>
+                              <ArrowRight className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center justify-center gap-1.5 text-[11px] text-blue-200/90 pt-1">
+                          <Lock className="w-3 h-3 text-blue-200" />
+                          <span>Your information is safe with us.</span>
+                        </div>
+                      </form>
+                    )}
+                  </div>
+
+                  <div className="hidden lg:block lg:col-span-4 xl:col-span-5 pointer-events-none" />
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* ========================================================
           4. OUR SERVICES SECTION (Exact layout matching IMG-20260917-WA0022.jpg)
@@ -1156,44 +1569,122 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       </section>
 
       {/* ========================================================
+          POPULAR RO SERVICE SEARCHES & FOOTER KEYWORDS (Above Footer)
+      ======================================================== */}
+      <section className="bg-slate-50 border-t border-slate-200/90 py-10 sm:py-14 text-slate-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+          {/* Header & Brand Switcher */}
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="text-xs font-extrabold tracking-wider uppercase text-slate-800 flex items-center gap-1.5">
+                <Search className="w-3.5 h-3.5 text-[#0066cc]" />
+                <span>Popular RO Service Searches</span>
+              </div>
+              <div className="flex flex-wrap items-center gap-1">
+                {SEO_BRAND_KEYWORDS.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setSelectedKeywordTab(item.id)}
+                    className={`text-[11px] font-semibold px-2.5 py-1 rounded-md transition-all cursor-pointer ${
+                      selectedKeywordTab === item.id
+                        ? 'bg-[#0d3b84] text-white shadow-2xs'
+                        : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 hover:text-slate-900'
+                    }`}
+                  >
+                    {item.brandName}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Active Brand Keyword Block */}
+            {(() => {
+              const activeKw = SEO_BRAND_KEYWORDS.find((k) => k.id === selectedKeywordTab) || SEO_BRAND_KEYWORDS[0];
+              return (
+                <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 space-y-3 shadow-2xs">
+                  <div className="flex items-center justify-between flex-wrap gap-2">
+                    <h4 className="text-xs sm:text-sm font-bold text-slate-900">
+                      Title: {activeKw.title}
+                    </h4>
+                    <span className="text-[11px] font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full">
+                      Looking For:
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                    {activeKw.lookingFor.map((kw, idx) => (
+                      <button
+                        key={`kw-${idx}`}
+                        onClick={scrollToBookingForm}
+                        className="text-[10px] sm:text-[11px] bg-slate-50 border border-slate-200 hover:border-blue-400 hover:text-blue-700 text-slate-700 px-2.5 py-1 rounded-md transition-colors shadow-2xs text-left cursor-pointer"
+                      >
+                        {kw}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
+          </div>
+
+          {/* Footer Keywords Piped Strings */}
+          <div className="space-y-2 pt-4 border-t border-slate-200/80">
+            <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+              Footer Keywords
+            </div>
+            <div className="space-y-2 text-[11px] sm:text-xs text-slate-600 leading-relaxed">
+              {FOOTER_KEYWORD_LINES.map((line, idx) => (
+                <p key={`footer-kw-line-${idx}`} className="bg-white border border-slate-200 rounded-lg px-3.5 py-2 font-medium text-slate-700 shadow-2xs">
+                  {line}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
           11. MAIN FOOTER (Clean White Background)
               - 6 Columns:
                 1. Brand Logo Card
                 2. Our Services
                 3. Company
-                4. Support
+                4. Legal & Policies
                 5. Follow Us (Social Media Icons)
                 6. Subscribe for Updates (Email Input + Circular Arrow Button)
+              - Formal Disclaimer & Brand Notice
               - Bottom Bar:
-                - Left: © 2024 KENT RO Systems Ltd. All rights reserved.
-                - Right: Pure Water. Healthy Families. Brighter Tomorrows.
+                - Left: © 2026 RO Service Center Online 24x7. All rights reserved.
+                - Right: Motto
       ======================================================== */}
-      <footer className="bg-white pt-12 pb-8 text-slate-700 text-xs">
+      <footer className="bg-white pt-12 pb-8 text-slate-700 text-xs border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Main 6-Column Section */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-start mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-start mb-10">
             
-            {/* Col 1: Brand Logo Card */}
-            <div className="col-span-2 sm:col-span-1 flex items-start">
-              {brand.logoUrl ? (
-                <div className="bg-white border border-slate-200/90 shadow-2xs rounded-lg overflow-hidden flex items-center justify-center p-2.5">
-                  <img
-                    src={brand.logoUrl}
-                    alt={`${brand.name} Logo`}
-                    className="h-10 sm:h-11 w-auto max-w-[130px] object-contain"
-                  />
-                </div>
-              ) : (
-                <div className="w-full py-1">
-                  <span style={{ color: primaryColor }} className="font-black text-lg tracking-tight block uppercase leading-none">
-                    {brand.name}
-                  </span>
-                  <span className="text-[8px] font-bold text-slate-500 tracking-wider block uppercase mt-0.5">
-                    {brand.subTagline || 'Water Purifiers'}
+            {/* Col 1: Styled Brand Identity */}
+            <div className="col-span-2 sm:col-span-1 flex flex-col items-start gap-2">
+              <Link href="/" className="flex flex-col group select-none">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#003d82] via-[#005bb5] to-[#0070e0] flex items-center justify-center text-white shadow-xs shrink-0">
+                    <Droplets className="w-5 h-5 text-cyan-200" />
+                  </div>
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#0070e0] bg-blue-50 px-2 py-0.5 rounded border border-blue-200/80 flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    24x7
                   </span>
                 </div>
-              )}
+                <span className="font-extrabold text-base text-[#002b66] tracking-tight leading-tight group-hover:text-[#0052a3] transition-colors">
+                  RO Service Center
+                </span>
+                <span className="text-xs font-black tracking-wide text-[#0070e0] mt-0.5 uppercase">
+                  Online 24x7
+                </span>
+              </Link>
+              <p className="text-[11px] text-slate-500 mt-1 leading-relaxed max-w-[170px]">
+                Certified doorstep water purifier repair &amp; maintenance service.
+              </p>
             </div>
 
             {/* Col 2: Our Services */}
@@ -1232,53 +1723,58 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               </h3>
               <ul className="space-y-2 text-xs text-slate-600">
                 <li>
-                  <Link href="/" className="hover:text-slate-950 transition-colors">
+                  <Link href="/about-us" className="hover:text-slate-950 transition-colors">
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/privacy-policy" className="hover:text-slate-950 transition-colors">
-                    Careers
+                  <Link href="/contact" className="hover:text-slate-950 transition-colors">
+                    Contact Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/terms-of-service" className="hover:text-slate-950 transition-colors">
-                    Blog
+                  <Link href="/warranty-policy" className="hover:text-slate-950 transition-colors">
+                    Warranty Policy
                   </Link>
                 </li>
                 <li>
-                  <Link href="/disclaimer" className="hover:text-slate-950 transition-colors">
-                    Media
+                  <Link href="/cancellation-policy" className="hover:text-slate-950 transition-colors">
+                    Cancellation Policy
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Col 4: Support */}
+            {/* Col 4: Legal & Policies */}
             <div className="space-y-3">
               <h3 className="font-bold text-slate-900 text-sm tracking-tight">
-                Support
+                Policies &amp; Legal
               </h3>
               <ul className="space-y-2 text-xs text-slate-600">
                 <li>
-                  <a href="#support-faqs" className="hover:text-slate-950 transition-colors">
-                    FAQs
-                  </a>
+                  <Link href="/privacy-policy" className="hover:text-slate-950 transition-colors">
+                    Privacy Policy
+                  </Link>
                 </li>
                 <li>
-                  <button onClick={scrollToBookingForm} className="hover:text-slate-950 transition-colors cursor-pointer text-left">
-                    Track Service
-                  </button>
+                  <Link href="/terms-of-service" className="hover:text-slate-950 transition-colors">
+                    Terms &amp; Conditions
+                  </Link>
                 </li>
                 <li>
-                  <a href={`tel:${displayPhone}`} className="hover:text-slate-950 transition-colors">
-                    Contact Us
-                  </a>
+                  <Link href="/disclaimer" className="hover:text-slate-950 transition-colors">
+                    Disclaimer &amp; Notice
+                  </Link>
                 </li>
                 <li>
-                  <button onClick={scrollToBookingForm} className="hover:text-slate-950 transition-colors cursor-pointer text-left">
-                    Locate Service Center
-                  </button>
+                  <Link href="/refund-policy" className="hover:text-slate-950 transition-colors">
+                    Refund &amp; Return Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/cookie-policy" className="hover:text-slate-950 transition-colors">
+                    Cookie Policy
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -1358,10 +1854,28 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
           </div>
 
+          {/* ========================================================
+              FORMAL BRAND DISCLAIMER & NON-AFFILIATION NOTICE
+          ======================================================== */}
+          <div className="pt-6 pb-6 border-t border-slate-200">
+            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 sm:p-5 text-slate-600 space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-800 uppercase tracking-wide">
+                <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0" />
+                <span>Formal Disclaimer &amp; Brand Notice</span>
+              </div>
+              <p className="text-[11px] sm:text-xs leading-relaxed text-slate-600">
+                <strong>RO Service Center Online 24x7</strong> is an independent multi-brand doorstep water purifier sales, service, maintenance, and repair provider. We are <strong>not affiliated with, associated with, authorized by, endorsed by, or in any way officially connected</strong> with Kent RO Systems Ltd., Eureka Forbes Ltd. (Aquaguard), Hindustan Unilever Ltd. (Pureit), A.O. Smith India Water Products Pvt. Ltd., Livpure Pvt. Ltd., Havells India Ltd., or any of their respective subsidiaries or affiliates.
+              </p>
+              <p className="text-[11px] sm:text-xs leading-relaxed text-slate-500">
+                All brand names, product logos, model numbers, and registered trademarks displayed on this website belong to their respective proprietary holders. Any reference to these trademarks is strictly made for customer convenience, identification, compatibility, and descriptive purposes to indicate the types of water purifiers our certified independent technicians service. We use 100% genuine compatible spare parts and provide our own 30-day labor and service warranty on all completed repairs.
+              </p>
+            </div>
+          </div>
+
           {/* Bottom Bar: Divider + Copyright (Left) + Motto (Right) */}
           <div className="pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 text-center sm:text-left">
             <div>
-              © 2024 {brand.name.toLowerCase().includes('kent') || brand.slug.includes('kent') ? 'KENT' : brand.name.toUpperCase()} RO Systems Ltd. All rights reserved.
+              © 2026 RO Service Center Online 24x7. All rights reserved.
             </div>
             <div className="text-slate-600 font-normal">
               {brand.heroMotto || 'Pure Water. Healthy Families. Brighter Tomorrows.'}

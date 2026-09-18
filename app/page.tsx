@@ -21,11 +21,11 @@ export const metadata: Metadata = {
 export default function HomePage() {
   const genericBrand: BrandInfo = {
     id: 'ro-service-24x7',
-    name: 'RO Service 24x7',
+    name: 'RO Service Center Online 24x7',
     slug: '/',
-    logoText: 'RO Service 24x7',
-    logoUrl: 'https://i.ibb.co/k6cRgnyt/IMG-20260805-WA0010.jpg',
-    subTagline: 'Expert Water Purifier Service',
+    logoText: 'RO Service Center Online 24x7',
+    logoUrl: '',
+    subTagline: 'Doorstep Water Purifier Service',
     tagline: 'Expert Water Purifier Repair & Maintenance',
     description: 'Fastest 60–90 min doorstep RO water purifier repair, filter replacement, AMC & installation service in Bangalore. Expert technicians for all major brands.',
     accentColor: 'blue',
@@ -45,7 +45,16 @@ export default function HomePage() {
       accent: '#1874e0',
       lightBg: '#f0f5fb',
       border: '#e1e9f2',
-    }
+    },
+    heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744713/file_0000000034308206b0aa824a3917a047_ogubmc.png',
+    partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744713/file_00000000be388230a7ea3fe9b5fef059_oqqijq.png',
+    bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744714/file_00000000c0e082118f500d75d9418d25_a6woez.png',
+    serviceImages: {
+      repair: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744767/file_0000000072548211b75cdf8e48b91b7d_mmuame.png',
+      filter: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744766/file_00000000696c8211b0e9d31b75c0009e_rpigfw.png',
+      amc: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744767/file_000000008d20821198976eef39c910a9_dwhpb5.png',
+      quality: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg',
+    },
   };
 
   return <BrandPageLayout brand={genericBrand} />;
