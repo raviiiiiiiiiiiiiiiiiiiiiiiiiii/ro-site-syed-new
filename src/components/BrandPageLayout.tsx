@@ -271,22 +271,25 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
              - Mobile: collapse nav into hamburger menu, keep logo + CTA visible
       ======================================================== */}
       <header className={`sticky top-0 z-50 bg-white border-b border-slate-200 shadow-2xs transition-transform duration-300 ${isHeaderHidden ? '-translate-y-full' : 'translate-y-0'}`}>
-        {/* Top Banner (from user screenshot) */}
-        <div className="bg-[#002b66] text-white text-[10px] sm:text-xs py-2 px-4 font-medium tracking-wide">
-          <div className="max-w-7xl mx-auto flex items-center justify-center sm:justify-between gap-3 sm:gap-4 flex-wrap">
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
-              <span>India's Most Trusted RO Brand</span>
+        {/* Top Announcement Bar: announcement | announcement | announcement (strictly 1 line on all devices) */}
+        <div className="bg-[#002b66] text-white py-1.5 sm:py-2 px-2 overflow-hidden select-none">
+          <div className="max-w-7xl mx-auto flex items-center justify-center gap-1.5 min-[380px]:gap-2.5 sm:gap-4 md:gap-6 whitespace-nowrap flex-nowrap text-[9.5px] min-[360px]:text-[10.5px] sm:text-xs font-medium">
+            <div className="flex items-center gap-1 shrink-0">
+              <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/90 shrink-0 hidden min-[480px]:inline" />
+              <span className="hidden sm:inline">India's Most Trusted RO Service</span>
+              <span className="sm:hidden">Trusted RO Service</span>
             </div>
-            <div className="hidden sm:block text-white/30 text-xs">|</div>
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <Truck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
-              <span>Service Across 500+ Cities</span>
+            <span className="text-white/40 font-light shrink-0 select-none">|</span>
+            <div className="flex items-center gap-1 shrink-0">
+              <Truck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/90 shrink-0 hidden min-[480px]:inline" />
+              <span className="hidden sm:inline">Doorstep Service in 60–90 Mins</span>
+              <span className="sm:hidden">60–90 Min Doorstep</span>
             </div>
-            <div className="hidden sm:block text-white/30 text-xs">|</div>
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <Headset className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
-              <span>24x7 Customer Support</span>
+            <span className="text-white/40 font-light shrink-0 select-none">|</span>
+            <div className="flex items-center gap-1 shrink-0">
+              <Headset className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/90 shrink-0 hidden min-[480px]:inline" />
+              <span className="hidden sm:inline">24x7 Customer Support</span>
+              <span className="sm:hidden">24x7 Support</span>
             </div>
           </div>
         </div>
@@ -324,13 +327,22 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               </div>
             </div>
 
-            {/* Right: Search + Phone + Hamburger */}
-            <div className="flex items-center gap-5 sm:gap-7 text-slate-800">
-              <button onClick={() => setSearchOpen(!searchOpen)} className="hover:text-blue-700 transition-colors">
+            {/* Right: Search + Profile + Phone + Hamburger */}
+            <div className="flex items-center gap-4 sm:gap-6 text-slate-800">
+              <button onClick={() => setSearchOpen(!searchOpen)} aria-label="Search Services" className="hover:text-blue-700 transition-colors">
                 <Search className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
               </button>
+
+              <button
+                onClick={scrollToBookingForm}
+                aria-label="User Profile"
+                title="Account / My Bookings"
+                className="hover:text-blue-700 transition-colors"
+              >
+                <User className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
+              </button>
               
-              <a href={`tel:${displayPhone}`} className="hover:text-blue-700 transition-colors">
+              <a href={`tel:${displayPhone}`} aria-label="Call Helpline" className="hover:text-blue-700 transition-colors">
                 <Phone className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
               </a>
 
@@ -779,14 +791,6 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-black/10 opacity-60 group-hover:opacity-30 transition-opacity" />
-
-                    {/* Floating Glass Pill Badge with White Glow */}
-                    <div className="absolute top-3 left-3 z-10">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10.5px] font-semibold bg-white/95 backdrop-blur-md text-slate-800 shadow-[0_2px_8px_rgba(0,0,0,0.06),0_0_12px_rgba(255,255,255,0.9)] border border-white">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        Doorstep Service
-                      </span>
-                    </div>
                   </div>
 
                   {/* Card Body */}

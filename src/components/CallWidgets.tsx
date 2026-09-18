@@ -26,37 +26,30 @@ export const CallWidgets: React.FC<CallWidgetsProps> = ({
 
   return (
     <>
-      {/* Floating "Click To Call" Widget on Bottom Right (Mobile Only) */}
+      {/* Minimal & Aesthetic Floating Call Button */}
       <div 
         id="floating-call-widget" 
-        className="fixed bottom-14 sm:bottom-16 right-3 sm:right-5 z-40 select-none lg:hidden"
+        className="fixed bottom-16 sm:bottom-20 lg:bottom-7 right-4 sm:right-6 z-50 select-none"
       >
         <a
           href={telLink}
-          aria-label={`Click to call ${phone}`}
-          style={{ backgroundColor: theme.primary }}
-          className="group flex items-center text-white pl-1.5 pr-2.5 sm:pr-3 py-1 sm:py-1.5 rounded-xl shadow-lg border border-white/80 transition-all duration-300 transform hover:scale-105 active:scale-95"
+          aria-label={`Call ${phone}`}
+          title={`Call ${phone}`}
+          className="group relative flex items-center"
         >
-          {/* Circular Phone Icon Button */}
-          <div 
-            style={{
-              background: `linear-gradient(135deg, ${theme.gradientFrom}, ${theme.gradientTo})`,
-            }}
-            className="w-7 h-7 sm:w-8 sm:h-8 rounded-full text-white flex items-center justify-center shadow-xs mr-1.5 sm:mr-2 shrink-0 group-hover:rotate-12 transition-transform duration-300"
-          >
-            <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white text-white drop-shadow-xs" />
-          </div>
+          {/* Minimalist Hover Tooltip */}
+          <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 text-white text-xs font-semibold shadow-md backdrop-blur-sm mr-2.5 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0 pointer-events-none whitespace-nowrap">
+            <span>Call {phone}</span>
+          </span>
 
-          {/* Text Labels Stack */}
-          <div className="flex flex-col items-start justify-center">
-            <span className="text-[9px] sm:text-[10px] font-black tracking-wider uppercase text-white/95 leading-tight">
-              Click To Call
-            </span>
-            <div 
-              style={{ color: '#0f172a' }}
-              className="mt-0.5 bg-white font-black font-mono text-[10px] sm:text-[11px] px-1.5 py-0.2 rounded shadow-xs leading-tight tracking-tight"
-            >
-              {phone}
+          {/* Minimalist Circular Button */}
+          <div className="relative w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center border border-slate-200/80 shadow-[0_6px_20px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] group-hover:shadow-[0_10px_28px_rgba(0,82,204,0.18)] group-hover:border-blue-300/80 group-hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer">
+            {/* Gentle Bouncing Call Handset Icon */}
+            <div className="flex items-center justify-center animate-soft-bounce">
+              <Phone 
+                style={{ fill: theme.primary || '#0047ba', color: theme.primary || '#0047ba' }}
+                className="w-5 h-5 sm:w-5.5 sm:h-5.5 transition-transform duration-300 group-hover:scale-110" 
+              />
             </div>
           </div>
         </a>

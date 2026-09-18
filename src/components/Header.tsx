@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Phone, Menu, X, ChevronDown, Calendar, ShieldCheck } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown, Calendar, ShieldCheck, User, Truck, Headset } from 'lucide-react';
 import { BUSINESS_DETAILS, BRAND_PAGES_DATA } from '@/src/data/content';
 import { PageRoute } from '@/src/types';
 import { getBrandTheme } from '@/src/utils/brandTheme';
@@ -88,32 +88,31 @@ export const Header: React.FC<HeaderProps> = ({
       id="main-header"
       className="relative z-40 bg-white border-b border-slate-200/80"
     >
-      {/* Top Info Banner with dynamic brand background */}
-        <div 
-          style={{ backgroundColor: brandTheme.bannerBg }}
-          className="text-white text-[11px] sm:text-xs py-1.5 px-4 font-medium tracking-wide transition-colors duration-300"
-        >
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <div className="flex items-center gap-2 mx-auto sm:mx-0 overflow-hidden">
-              <ShieldCheck className="w-3.5 h-3.5 text-white/80 shrink-0 hidden sm:inline" />
-              <span key={announcementIndex} className="animate-fadeIn truncate text-center">
-                {ANNOUNCEMENTS[announcementIndex]}
-              </span>
-            </div>
-            
-            <div className="hidden sm:flex items-center gap-4 text-white/90 text-xs">
-              <span>Bangalore Doorstep Service</span>
-              <span>•</span>
-              <a
-                href={`tel:${BUSINESS_DETAILS.phone}`}
-                className="font-bold text-white hover:underline flex items-center gap-1"
-              >
-                <Phone className="w-3 h-3 text-white/80" />
-                {BUSINESS_DETAILS.phone}
-              </a>
-            </div>
+      {/* Top Announcement Bar: announcement | announcement | announcement (strictly 1 line on all devices) */}
+      <div 
+        style={{ backgroundColor: brandTheme.bannerBg }}
+        className="text-white py-1.5 sm:py-2 px-2 overflow-hidden select-none transition-colors duration-300"
+      >
+        <div className="max-w-7xl mx-auto flex items-center justify-center gap-1.5 min-[380px]:gap-2.5 sm:gap-4 md:gap-6 whitespace-nowrap flex-nowrap text-[9.5px] min-[360px]:text-[10.5px] sm:text-xs font-medium">
+          <div className="flex items-center gap-1 shrink-0">
+            <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/90 shrink-0 hidden min-[480px]:inline" />
+            <span className="hidden sm:inline">India's Most Trusted RO Service</span>
+            <span className="sm:hidden">Trusted RO Service</span>
+          </div>
+          <span className="text-white/40 font-light shrink-0 select-none">|</span>
+          <div className="flex items-center gap-1 shrink-0">
+            <Truck className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/90 shrink-0 hidden min-[480px]:inline" />
+            <span className="hidden sm:inline">Doorstep Service in 60–90 Mins</span>
+            <span className="sm:hidden">60–90 Min Doorstep</span>
+          </div>
+          <span className="text-white/40 font-light shrink-0 select-none">|</span>
+          <div className="flex items-center gap-1 shrink-0">
+            <Headset className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/90 shrink-0 hidden min-[480px]:inline" />
+            <span className="hidden sm:inline">24x7 Customer Support</span>
+            <span className="sm:hidden">24x7 Support</span>
           </div>
         </div>
+      </div>
 
         {/* Main Navbar */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -246,8 +245,17 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </nav>
 
-            {/* Right Action Call Button */}
+            {/* Right Action Call Button & Profile Icon */}
             <div className="hidden sm:flex items-center gap-3">
+              <button
+                onClick={handleScrollToForm}
+                className="w-10 h-10 rounded-xl border border-slate-200/90 text-slate-700 hover:text-slate-900 hover:bg-slate-50 flex items-center justify-center transition-colors shadow-2xs"
+                title="Account / My Bookings"
+                aria-label="User Profile"
+              >
+                <User className="w-5 h-5 text-slate-700" />
+              </button>
+
               <a
                 href={`tel:${BUSINESS_DETAILS.phone}`}
                 style={{
@@ -260,8 +268,17 @@ export const Header: React.FC<HeaderProps> = ({
               </a>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu & Profile Button */}
             <div className="flex lg:hidden items-center gap-2">
+              <button
+                onClick={handleScrollToForm}
+                className="p-2.5 rounded-lg border border-slate-200 text-slate-700 hover:bg-slate-50 focus:outline-none"
+                aria-label="User Profile"
+                title="Account / My Bookings"
+              >
+                <User className="w-4 h-4" />
+              </button>
+
               <a
                 href={`tel:${BUSINESS_DETAILS.phone}`}
                 style={{ backgroundColor: brandTheme.primary }}

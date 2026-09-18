@@ -69,3 +69,15 @@ div[data-nextjs-toast] {
   animation: marquee 75s linear infinite;
 }
 
+@keyframes softBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+.animate-soft-bounce {
+  animation: softBounce 1.8s ease-in-out infinite;
+}
+
