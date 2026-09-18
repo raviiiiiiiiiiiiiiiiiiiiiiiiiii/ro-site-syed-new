@@ -4,7 +4,6 @@ export type PageRoute =
   | '/aquaguard-service'
   | '/pureit-service'
   | '/aosmith-service'
-  | '/lg-service'
   | '/livpure-service'
   | '/privacy-policy'
   | '/terms-of-service'

@@ -389,87 +389,6 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000921882309edc5ef9e9e59e59_oi7mpt.png',
   },
 
-  'lg-service': {
-    id: 'lg',
-    name: 'LG',
-    slug: '/lg-service',
-    logoText: 'LG',
-    logoUrl: 'https://res.cloudinary.com/dieq3fjuv/image/upload/q_auto,f_auto/v1786032689/images_5_t36ctz.png',
-    subTagline: "Life's Good",
-    tagline: 'Hygienic Sterilization & Pure Care — Specialized LG Water Purifier Maintenance',
-    accentColor: 'from-rose-600 to-red-600',
-    heroMotto: 'Pure Water. Healthy Families. Brighter Tomorrows.',
-    calloutScript: 'Hygienic Care Pure Living',
-    techBadge: 'DUAL PROTECTION STAINLESS STEEL TANK',
-    tollFree: '1800-315-9999',
-    affiliationBadge: "Life's Good",
-    brandThemeColors: {
-      primary: '#A50034',
-      darkBg: '#3d0818',
-      accent: '#f43f5e',
-      lightBg: '#fff1f2',
-      border: '#fecdd3',
-    },
-    description: 'Maintain peak hygienic safety with expert servicing for LG PuriCare, Stainless Steel Tank RO, and Dual Protection UV systems. Our certified technicians across Bangalore deliver thorough digital sterilization, genuine filter renewals, and precision leak resolution.',
-    metaTitle: 'LG RO Repair Bangalore | LG PuriCare Water Purifier Service & Filter Change',
-    metaDescription: 'Professional LG water purifier repair in Bangalore. Expert stainless steel tank descaling, genuine filter replacement, and prompt doorstep technician service.',
-    commonProblems: [
-      'LG Stainless Steel tank digital UV sterilizing indicator warning alert',
-      'Filter change alert icon glowing red on the LG PuriCare front panel',
-      'Slow water filtration speed into the dual protection storage tank',
-      'Water leaking from bottom drainage port or internal pressure valve',
-      'Booster pump making loud humming or excessive vibrating noise',
-      'No water dispensing from tap or capacitive touch sensor',
-    ],
-    brandFaqs: [
-      {
-        question: 'Do you provide specialized cleaning for LG stainless steel water tanks?',
-        answer: 'Yes! During servicing, we thoroughly descale, sanitize, and verify the internal dual protection stainless steel reservoir using food-grade sanitization procedures.',
-      },
-      {
-        question: 'How fast can an LG RO technician reach my location?',
-        answer: 'Our mobile technicians are stationed across Bangalore, reaching your address within 60 to 90 minutes of booking.',
-      },
-      {
-        question: 'Do you carry genuine LG PuriCare replacement filters and membranes?',
-        answer: 'Yes, we supply authentic LG-compatible sediment filters, activated pre-carbon blocks, post-carbon mineral cartridges, and certified high-rejection RO membranes.',
-      },
-      {
-        question: 'What is the diagnostic inspection fee for LG water purifiers?',
-        answer: 'Our doorstep inspection fee is ₹299. If you proceed with our recommended service or part replacement, this fee is adjusted on your invoice.',
-      },
-      {
-        question: 'Why is the red filter indicator glowing on my LG PuriCare?',
-        answer: 'The red indicator indicates that the internal filter capacity has reached its threshold. Our technician will perform the replacement and reset the internal diagnostic counter.',
-      },
-      {
-        question: 'Do you provide AMC plans for LG water purifiers in Bangalore?',
-        answer: 'Yes, our LG AMC plan provides complete yearly coverage with scheduled maintenance visits, filter replacements, and unlimited free breakdown repairs.',
-      },
-      {
-        question: 'What is the post-service warranty on LG repair jobs?',
-        answer: 'We provide a 30-day labor warranty on all repairs and standard replacement warranties on all newly installed spare parts.',
-      },
-      {
-        question: 'Why is my LG RO purifier making loud pump noise?',
-        answer: 'Unusual pump noise usually results from air entrapment, low inlet water pressure, or worn pump bearings. We diagnose and rectify pump issues quickly on-site.',
-      },
-      {
-        question: 'Can you calibrate the TDS level on an LG RO system?',
-        answer: 'Yes, our technicians adjust and balance the mineral output to ensure your drinking water is pure, crisp, and in the healthy TDS range.',
-      },
-    ],
-    popularSearches: [
-      'LG water purifier service Bangalore',
-      'LG PuriCare filter replacement',
-      'LG RO repair near me',
-      'LG stainless steel tank cleaning',
-      'LG RO AMC cost Bangalore'
-    ],
-    showcaseImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787239134/file_0000000041048211bfb990996067ea39_yiuihn.png',
-    heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194339_j4gjia.jpg',
-  },
-
   'livpure-service': {
     id: 'livpure',
     name: 'Livpure',
@@ -477,11 +396,11 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
     logoText: 'Livpure',
     logoUrl: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787456695/IMG-20260822-WA0038_eea1tq.jpg',
     subTagline: 'Crafted for Better Living',
-    tagline: 'Pure & Mineral-Rich Water — Specialized Livpure RO Repair & Maintenance',
+    tagline: 'Intelligent RO Purification & Pure Care — Specialized Livpure Water Purifier Maintenance',
     accentColor: 'from-purple-600 to-indigo-500',
     heroMotto: 'Pure Water. Healthy Families. Better Living.',
     calloutScript: 'Good Water Good Living',
-    techBadge: 'A HINDUSTAN UNILEVER GROUP BRAND',
+    techBadge: 'INTELLIGENT 7-STAGE PURIFICATION',
     tollFree: '1800-419-9399',
     affiliationBadge: 'Crafted for Better Living',
     brandThemeColors: {
@@ -491,44 +410,66 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
       lightBg: '#faf5ff',
       border: '#e9d5ff',
     },
-    description: 'Get expert Livpure water purifier service, repair, filter replacement, installation and AMC support from trained technicians. Genuine filters and spare parts for long-lasting performance and safe drinking water across Bangalore.',
-    metaTitle: 'Livpure RO Repair & Service Bangalore | Doorstep Filter Replacement',
-    metaDescription: 'Specialized Livpure RO repair & filter replacement across Bangalore. Fast doorstep service for Bolt, Touch, Smart models with genuine Livpure filters.',
+    description: 'Get expert Livpure water purifier service, repair, filter replacement, installation and AMC support from certified technicians across Bangalore. Genuine filters, mineral cartridges, and spare parts for long-lasting performance and pure drinking water.',
+    metaTitle: 'Livpure RO Repair Bangalore | Livpure Water Purifier Service & Filter Change',
+    metaDescription: 'Specialized Livpure RO repair & filter replacement across Bangalore. Fast doorstep service for Bolt, Touch, Platino, Smart models with genuine Livpure filters.',
     commonProblems: [
-      'Livpure smart touch panel unresponsive or water not dispensing',
-      'Pre-filter and sediment cartridge choked with high borewell silt',
-      'Low water flow speed or storage reservoir taking hours to fill',
-      'Continuous wastewater dripping or auto-shutoff valve malfunction',
-      'Loud vibration sound or humming from booster pump',
-      'Bitter or flat taste indicating expired RO membrane',
+      'Livpure smart touch panel unresponsive or water dispensing stopped',
+      'Sediment filter or pre-carbon cartridge choked due to borewell silt',
+      'Low water flow speed or storage tank taking excessive hours to fill',
+      'Continuous drain wastewater discharge or auto-shutoff valve issue',
+      'Booster pump producing loud vibration sound or humming noise',
+      'Water taste has turned bitter or sour indicating depleted RO membrane',
     ],
     brandFaqs: [
       {
         question: 'Why is my Livpure water purifier not dispensing water?',
-        answer: 'Possible reasons include clogged filters, low inlet pressure, membrane issues, or electrical faults.',
+        answer: 'Possible causes include a choked sediment pre-filter, low municipal/borewell water inlet pressure, an exhausted RO membrane, or a faulty solenoid valve. Our technician checks the full pipeline.',
       },
       {
-        question: 'How often should Livpure filters be replaced?',
-        answer: 'Filter replacement depends on water quality and usage. Regular maintenance helps maintain purification efficiency.',
+        question: 'How fast can a Livpure RO technician reach my location in Bangalore?',
+        answer: 'Our certified mobile technicians are stationed across Bangalore, reaching your doorstep within 60 to 90 minutes of booking.',
       },
       {
-        question: 'Do you provide Livpure AMC service?',
-        answer: 'Yes, we offer annual maintenance plans for Livpure water purifiers with scheduled servicing and component checks.',
+        question: 'How often should Livpure filters and membranes be replaced?',
+        answer: 'Sediment and carbon pre-filters should generally be replaced every 6 to 12 months, while the high-rejection RO membrane typically lasts 18 to 24 months based on input TDS levels.',
       },
       {
-        question: 'Do technicians provide doorstep service?',
-        answer: 'Yes, we provide doorstep service for Livpure water purifiers within serviceable areas across Bangalore.',
+        question: 'Do you supply genuine Livpure-compatible replacement filters and membranes?',
+        answer: 'Yes, we supply authentic Livpure-compatible sediment filters, activated pre-carbon blocks, post-carbon mineralizers, and certified high-rejection RO membranes.',
+      },
+      {
+        question: 'What is the diagnostic inspection fee for Livpure water purifiers?',
+        answer: 'Our doorstep inspection and diagnosis fee is ₹299. If you approve our recommended service or part replacement, this fee is adjusted on your final invoice.',
+      },
+      {
+        question: 'Do you provide Annual Maintenance Contracts (AMC) for Livpure purifiers in Bangalore?',
+        answer: 'Yes! Our Livpure AMC plan offers comprehensive yearly protection with scheduled preventive servicing, free replacement filters, and unlimited emergency breakdown visits.',
+      },
+      {
+        question: 'Can you repair Livpure smart touch panels and digital sensors?',
+        answer: 'Yes, our technicians specialize in repairing touch sensors, smart LED indicators, PCB motherboards, and electronic dispensing switches for Livpure Touch and Bolt models.',
+      },
+      {
+        question: 'What warranty is offered on Livpure repair services?',
+        answer: 'Every service includes a 30-day labor warranty and standard replacement warranties on all installed spare parts and pumps.',
+      },
+      {
+        question: 'Can you test and calibrate the output TDS on my Livpure RO machine?',
+        answer: 'Yes, our technicians carry calibrated digital TDS meters to balance output minerals, ensuring fresh, sweet, and healthy drinking water.',
       },
     ],
     popularSearches: [
-      'Livpure service Bangalore',
+      'Livpure water purifier service Bangalore',
       'Livpure RO repair near me',
       'Livpure filter replacement cost',
+      'Livpure Bolt Touch service',
       'Livpure AMC plan Bangalore',
       'Livpure technician Bangalore'
     ],
     showcaseImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787239134/file_00000000cb9082119ada12e5c50c238d_yb23pj.png',
     heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194243_himoc3.jpg',
+    heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194243_himoc3.jpg',
   },
 };
 
@@ -572,7 +513,7 @@ export const HOMEPAGE_FAQS: FAQItem[] = [
   },
   {
     question: 'Which water purifier brands do you repair and service in Bangalore?',
-    answer: 'We service all leading domestic and commercial water purifier brands including Kent, Aquaguard (Eureka Forbes), Pureit, AO Smith, LG, Livpure, Blue Star, Havells, V-Guard, Zero B, and custom multi-stage RO+UV+UF systems.',
+    answer: 'We service all leading domestic and commercial water purifier brands including Kent, Aquaguard (Eureka Forbes), Pureit, AO Smith, Livpure, Blue Star, Havells, V-Guard, Zero B, and custom multi-stage RO+UV+UF systems.',
   },
   {
     question: 'What is the visiting and diagnostic inspection fee?',
@@ -651,8 +592,8 @@ export const HOMEPAGE_TESTIMONIALS: Testimonial[] = [
     name: 'Sneha Rao',
     locality: 'JP Nagar 7th Phase',
     rating: 5,
-    brandServiced: 'LG PuriCare',
-    comment: 'Amazing service! They cleaned the stainless steel tank thoroughly and changed the carbon block. Water flow is back to normal. Highly recommend their service in South Bangalore.',
+    brandServiced: 'Livpure Touch',
+    comment: 'Amazing service! The technician arrived within 70 minutes, replaced the sediment cartridge and calibrated the TDS level. Water taste is fresh and pure now. Highly recommended!',
     date: '1 month ago',
   },
   {

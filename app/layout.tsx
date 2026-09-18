@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import './globals.css';
-import { Header } from '@/src/components/Header';
-import { Footer } from '@/src/components/Footer';
 import { CallWidgets } from '@/src/components/CallWidgets';
 import { BUSINESS_DETAILS } from '@/src/data/content';
 
@@ -20,7 +18,7 @@ export const metadata: Metadata = {
     template: `%s | ${BUSINESS_DETAILS.name}`,
   },
   description:
-    'Fastest 60–90 min doorstep RO water purifier repair, filter replacement, AMC & installation service in Bangalore. Kent, Aquaguard, Pureit, AO Smith & LG expert service.',
+    'Fastest 60–90 min doorstep RO water purifier repair, filter replacement, AMC & installation service in Bangalore. Kent, Aquaguard, Pureit, AO Smith & Livpure expert service.',
   robots: {
     index: true,
     follow: true,
@@ -64,3 +62,4 @@ export default function RootLayout({
     </html>
   );
 }
+

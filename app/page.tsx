@@ -6,7 +6,7 @@ import { HOMEPAGE_FAQS } from '@/src/data/content';
 export const metadata: Metadata = {
   title: 'RO Service 24x7 | Best RO Water Purifier Repair & Service Bangalore | Call 080502 91180',
   description:
-    'Fastest 60–90 min doorstep RO water purifier repair, filter replacement, AMC & installation service in Bangalore. Expert technicians for Kent, Aquaguard, Pureit, AO Smith & LG.',
+    'Fastest 60–90 min doorstep RO water purifier repair, filter replacement, AMC & installation service in Bangalore. Expert technicians for Kent, Aquaguard, Pureit, AO Smith & Livpure.',
   alternates: {
     canonical: 'https://www.roservice24x7.in',
   },

@@ -41,14 +41,14 @@ export default function DisclaimerPage() {
                 {BUSINESS_DETAILS.name} is an independent multi-brand water purifier sales, repair, and doorstep service provider operating in Bangalore, Karnataka.
               </p>
               <p className="text-slate-600 text-xs sm:text-sm">
-                We are NOT an official authorized service center, franchise, or direct subsidiary of Kent RO Systems, Eureka Forbes (Aquaguard), Pureit, AO Smith India, LG Electronics, or any other trademark owner unless explicitly stated.
+                We are NOT an official authorized service center, franchise, or direct subsidiary of Kent RO Systems, Eureka Forbes (Aquaguard), Pureit, AO Smith India, Livpure, or any other trademark owner unless explicitly stated.
               </p>
             </div>
 
             <div className="space-y-3">
               <h2 className="text-base sm:text-lg font-bold text-slate-900">2. Trademarks &amp; Brand Name Usage</h2>
               <p className="text-slate-600 text-xs sm:text-sm">
-                All brand names, product titles, logos, and trademarks (including Kent, Aquaguard, Pureit, AO Smith, LG, Havells) displayed on this website belong to their respective registered trademark owners.
+                All brand names, product titles, logos, and trademarks (including Kent, Aquaguard, Pureit, AO Smith, Livpure, Havells) displayed on this website belong to their respective registered trademark owners.
               </p>
               <p className="text-slate-600 text-xs sm:text-sm">
                 Reference to these brand names is strictly for identification, compatibility, and descriptive purposes to inform customers about the types of purifiers we service.

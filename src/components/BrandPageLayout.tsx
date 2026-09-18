@@ -7,6 +7,7 @@ import {
   MapPin,
   Check,
   ShieldCheck,
+  Headset,
   Star,
   Clock,
   Wrench,
@@ -270,18 +271,38 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
              - Mobile: collapse nav into hamburger menu, keep logo + CTA visible
       ======================================================== */}
       <header className={`sticky top-0 z-50 bg-white border-b border-slate-200 shadow-2xs transition-transform duration-300 ${isHeaderHidden ? '-translate-y-full' : 'translate-y-0'}`}>
+        {/* Top Banner (from user screenshot) */}
+        <div className="bg-[#002b66] text-white text-[10px] sm:text-xs py-2 px-4 font-medium tracking-wide">
+          <div className="max-w-7xl mx-auto flex items-center justify-center sm:justify-between gap-3 sm:gap-4 flex-wrap">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+              <span>India's Most Trusted RO Brand</span>
+            </div>
+            <div className="hidden sm:block text-white/30 text-xs">|</div>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <Truck className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+              <span>Service Across 500+ Cities</span>
+            </div>
+            <div className="hidden sm:block text-white/30 text-xs">|</div>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <Headset className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+              <span>24x7 Customer Support</span>
+            </div>
+          </div>
+        </div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16 sm:h-20">
             
-            {/* Logo (left) - Exact brand logo image */}
-            <div className="flex items-center gap-3">
-              <Link href={brand.slug} className="flex items-center gap-2 group">
+            {/* Logo (left) - Exact brand logo image + House of Purity */}
+            <div className="flex items-center gap-4 sm:gap-5">
+              <Link href="/" className="flex items-center group">
                 {brand.logoUrl ? (
                   <div className="h-10 sm:h-12 flex items-center justify-center">
                     <img
                       src={brand.logoUrl}
                       alt={`${brand.name} Logo`}
-                      className="h-full w-auto max-w-[140px] sm:max-w-[170px] object-contain"
+                      className="h-full w-auto max-w-[120px] sm:max-w-[140px] object-contain"
                     />
                   </div>
                 ) : (
@@ -292,81 +313,39 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                     >
                       {brand.name}
                     </span>
-                    <span className="text-[10px] font-semibold text-slate-400 tracking-wider">
-                      {brand.subTagline || 'Innovation has a name.'}
-                    </span>
                   </div>
                 )}
               </Link>
+              
+              <div className="hidden sm:block h-8 w-px bg-slate-200"></div>
+              
+              <div className="hidden sm:block text-[11px] font-bold text-slate-700 tracking-[0.15em] uppercase">
+                {brand.subTagline || 'HOUSE OF PURITY'}
+              </div>
             </div>
 
-            {/* Nav links (center - desktop): Home, Our Services, AMC Plans, Filters & Parts, Why Brand, Support */}
-            <nav className="hidden lg:flex items-center gap-6 xl:gap-7 text-xs sm:text-sm font-semibold text-slate-600">
-              <Link href={brand.slug} className="text-slate-950 font-bold hover:text-slate-900 transition-colors">
-                Home
-              </Link>
-              <a href="#services" className="hover:text-slate-950 transition-colors">
-                Our Services
-              </a>
-              <a href="#services" className="hover:text-slate-950 transition-colors">
-                AMC Plans
-              </a>
-              <a href="#parts" className="hover:text-slate-950 transition-colors">
-                Filters &amp; Parts
-              </a>
-              <a href="#why-choose-us" className="hover:text-slate-950 transition-colors">
-                Why {brand.name.toUpperCase()}
-              </a>
-              <a href="#support-faqs" className="hover:text-slate-950 transition-colors">
-                Support
-              </a>
-            </nav>
-
-            {/* Right: Divider + Phone number w/ icon + Primary CTA button */}
-            <div className="flex items-center gap-3 sm:gap-4">
-              
-              {/* Divider */}
-              <div className="hidden sm:block h-6 w-px bg-slate-200" />
-
-              {/* Phone number w/ icon (desktop) */}
-              <div className="hidden sm:flex items-center gap-2.5">
-                <div
-                  className="w-8 h-8 rounded-full bg-blue-50 text-[#0066cc] flex items-center justify-center shrink-0"
-                >
-                  <Phone className="w-4 h-4" />
-                </div>
-                <div className="flex flex-col text-left">
-                  <a
-                    href={`tel:${displayPhone}`}
-                    className="text-xs sm:text-sm font-bold text-slate-950 hover:text-blue-700 leading-none"
-                  >
-                    {displayPhone}
-                  </a>
-                  <span className="text-[10px] text-slate-500 font-medium mt-0.5">
-                    Mon - Sun | 8AM - 8PM
-                  </span>
-                </div>
-              </div>
-
-              {/* Primary CTA button (rounded pill, right-most) */}
-              <button
-                onClick={scrollToBookingForm}
-                className="bg-[#0b5cbe] hover:bg-[#094fa5] text-white text-xs sm:text-sm font-bold px-4 sm:px-5 py-2.5 rounded-lg sm:rounded-full shadow-xs transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap"
-              >
-                <span>Book a Service</span>
-                <ArrowRight className="w-4 h-4" />
+            {/* Right: Search + Phone + Hamburger */}
+            <div className="flex items-center gap-5 sm:gap-7 text-slate-800">
+              <button onClick={() => setSearchOpen(!searchOpen)} className="hover:text-blue-700 transition-colors">
+                <Search className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
               </button>
+              
+              <a href={`tel:${displayPhone}`} className="hover:text-blue-700 transition-colors">
+                <Phone className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
+              </a>
 
-              {/* Mobile hamburger menu toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle Menu"
-                className="lg:hidden p-2 text-slate-700 hover:text-slate-900 focus:outline-none"
+                className="hover:text-blue-700 transition-colors focus:outline-none"
               >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                {mobileMenuOpen ? (
+                  <X className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.5} />
+                ) : (
+                  <Menu className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.5} />
+                )}
               </button>
             </div>
-
           </div>
         </div>
 
@@ -408,7 +387,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
           </div>
           
           <nav className="flex flex-col space-y-4 text-xl font-extrabold text-slate-800">
-            <Link href={brand.slug} onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100 text-slate-900">Home</Link>
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100 text-slate-900">Home</Link>
             <a href="#services" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">Services</a>
             <a href="#services" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">AMC Plans</a>
             <a href="#parts" onClick={() => setMobileMenuOpen(false)} className="py-2 border-b border-slate-100">Filters &amp; Parts</a>
@@ -508,7 +487,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                   const IconComp = item.icon;
                   return (
                     <div
-                      key={idx}
+                      key={`marquee-item-${idx}`}
                       className="flex items-center gap-1.5 bg-white/90 border border-slate-200/90 rounded-md px-2 py-1 shadow-2xs"
                     >
                       <div className="w-4 h-4 rounded-full border border-blue-200 bg-blue-50 text-[#0066cc] flex items-center justify-center shrink-0">
@@ -743,94 +722,106 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                * 4: Water Quality Check (Droplets) + "Get your water tested and ensure your purifier is working efficiently."
              - Each card has top image, inline icon + title, description, and "Know More →" link
       ======================================================== */}
-      <section id="services" className="py-14 sm:py-20 bg-white border-b border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <div className="xl:flex xl:gap-5.5 items-stretch">
-            
-            {/* Left Column: Heading & Intro matching screenshot */}
-            <div className="xl:w-1/5 xl:shrink-0 mb-8 xl:mb-0 flex flex-col justify-between py-1 lg:py-2 pr-0 xl:pr-2">
-              <div>
-                <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">
-                  OUR SERVICES
-                </span>
-                <h2 className="text-2xl sm:text-3xl xl:text-[26px] font-extrabold text-[#002b66] tracking-tight leading-[1.2]">
-                  Complete {brand.name}
-                  <span className="block mt-1 font-extrabold">Water Purifier Care</span>
-                </h2>
-                <p className="text-xs sm:text-[13px] text-slate-600 mt-3 leading-relaxed">
-                  From expert repairs to genuine filter replacements, we keep your {brand.name} purifier performing at its best.
-                </p>
-              </div>
+      <section id="services" className="py-14 sm:py-20 bg-gradient-to-b from-white via-slate-50/60 to-white border-b border-slate-100 overflow-hidden relative">
+        {/* Subtle Ambient White Glow in background */}
+        <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-64 bg-white rounded-full blur-3xl opacity-80 pointer-events-none -z-0" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-64 bg-white rounded-full blur-3xl opacity-80 pointer-events-none -z-0" />
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-36 bg-gradient-to-r from-transparent via-white to-transparent blur-2xl opacity-75 pointer-events-none -z-0" />
 
-              <div className="pt-4 sm:pt-6">
-                <button
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4 relative z-10">
+          <div>
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">
+              OUR SERVICES
+            </span>
+            <h2 className="text-2xl sm:text-3xl xl:text-[28px] font-extrabold text-[#002b66] tracking-tight leading-[1.2]">
+              Complete {brand.name}
+              <span className="block mt-1 font-extrabold">Water Purifier Care</span>
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-xl leading-relaxed">
+              From expert repairs to genuine filter replacements, we keep your {brand.name} purifier performing at its best.
+            </p>
+          </div>
+          <button
+            onClick={scrollToBookingForm}
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0066cc] hover:text-[#0052a3] group cursor-pointer"
+          >
+            <span className="underline underline-offset-4 decoration-[#0066cc] group-hover:decoration-[#0052a3]">
+              View All Services
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+          </button>
+        </div>
+
+        {/* Marquee Container with Left & Right White Glowing Edge Masks */}
+        <div className="relative w-full overflow-hidden pb-6 pt-2">
+          {/* Left glowing fade mask */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 sm:w-36 md:w-52 bg-gradient-to-r from-white via-white/95 to-transparent z-20" />
+          {/* Right glowing fade mask */}
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 sm:w-36 md:w-52 bg-gradient-to-l from-white via-white/95 to-transparent z-20" />
+
+          <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-6 px-6 relative z-10">
+            {[...servicesList, ...servicesList, ...servicesList, ...servicesList].map((service, idx) => {
+              const IconComp = service.icon;
+              return (
+                <div
+                  key={`marquee-item-${idx}`}
+                  className="w-[285px] sm:w-[330px] shrink-0 bg-white rounded-2xl border border-slate-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.04),0_0_20px_rgba(255,255,255,0.95)] hover:shadow-[0_16px_40px_rgba(0,102,204,0.14),0_0_35px_rgba(255,255,255,1)] hover:border-blue-300/80 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden flex flex-col group cursor-pointer relative"
                   onClick={scrollToBookingForm}
-                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0066cc] hover:text-[#0052a3] group cursor-pointer"
                 >
-                  <span className="underline underline-offset-4 decoration-[#0066cc] group-hover:decoration-[#0052a3]">
-                    View All Services
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                </button>
-              </div>
-            </div>
+                  {/* Subtle Top White Sheen */}
+                  <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-white to-transparent z-30 opacity-90" />
 
-            {/* 4 Service Cards matching screenshot */}
-            <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 sm:pb-0 sm:overflow-visible sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5 xl:w-4/5">
-              {servicesList.map((service, idx) => {
-                const IconComp = service.icon;
-                return (
-                  <div
-                    key={idx}
-                    className="w-[85vw] sm:w-auto shrink-0 snap-start bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col justify-between group"
-                  >
                   {/* Card Image */}
-                  <div className="h-40 sm:h-44 overflow-hidden bg-slate-100 relative">
+                  <div className="h-44 sm:h-50 overflow-hidden bg-slate-100 relative">
                     <img
                       src={service.image}
                       alt={`${service.title} - ${brand.name} RO Water Purifier`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-black/10 opacity-60 group-hover:opacity-30 transition-opacity" />
+
+                    {/* Floating Glass Pill Badge with White Glow */}
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10.5px] font-semibold bg-white/95 backdrop-blur-md text-slate-800 shadow-[0_2px_8px_rgba(0,0,0,0.06),0_0_12px_rgba(255,255,255,0.9)] border border-white">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        Doorstep Service
+                      </span>
+                    </div>
                   </div>
 
                   {/* Card Body */}
-                  <div className="p-4 sm:p-4.5 flex-1 flex flex-col justify-between">
+                  <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between bg-white relative z-20">
                     <div>
                       {/* Icon + Title inline */}
-                      <div className="flex items-center gap-1.5 mb-2">
-                        <div className="text-[#0066cc] shrink-0">
-                          <IconComp className="w-4 h-4" />
+                      <div className="flex items-center gap-3 mb-2.5">
+                        <div className="w-10 h-10 rounded-xl bg-blue-50/90 border border-blue-100/80 text-[#0066cc] flex items-center justify-center shrink-0 shadow-2xs group-hover:scale-105 group-hover:bg-[#0066cc] group-hover:text-white transition-all duration-300">
+                          <IconComp className="w-4 h-4 sm:w-5 sm:h-5" />
                         </div>
-                        <h3 className="text-sm sm:text-[15px] font-bold text-slate-900 leading-snug">
+                        <h3 className="text-base sm:text-[17px] font-bold text-slate-900 leading-snug group-hover:text-[#0066cc] transition-colors">
                           {service.title}
                         </h3>
                       </div>
-
                       {/* Description */}
-                      <p className="text-xs text-slate-600 leading-relaxed">
+                      <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed mb-4">
                         {service.description}
                       </p>
                     </div>
 
-                    {/* Know More link */}
-                    <div className="pt-4 mt-auto">
-                      <button
-                        onClick={scrollToBookingForm}
-                        className="inline-flex items-center gap-1 text-xs font-bold text-[#0066cc] hover:text-[#0052a3] hover:underline cursor-pointer group/btn"
-                      >
-                        <span>Know More</span>
-                        <ArrowRight className="w-3 h-3 transition-transform group-hover/btn:translate-x-0.5" />
-                      </button>
+                    {/* Footer link / CTA */}
+                    <div className="pt-3 border-t border-slate-100/90 flex items-center justify-between mt-auto">
+                      <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0066cc] group-hover:text-[#0052a3] transition-colors">
+                        <span>Book Service</span>
+                        <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                      </span>
+                      <span className="text-[11px] font-medium text-slate-400 group-hover:text-slate-600 transition-colors">
+                        60–90 Mins
+                      </span>
                     </div>
                   </div>
                 </div>
               );
             })}
-            </div>
-
           </div>
-
         </div>
       </section>
 
@@ -885,7 +876,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
             {whyChoosePoints.map((point, idx) => {
               const IconComp = point.icon;
               return (
-                <div key={idx} className="flex items-start gap-4">
+                <div key={`marquee-item-${idx}`} className="flex items-start gap-4">
                   <div className="text-[#0052a3] shrink-0 pt-0.5">
                     <IconComp className="w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
                   </div>
@@ -954,7 +945,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               const isOpen = !!openFaqs[idx];
               return (
                 <div
-                  key={idx}
+                  key={`marquee-item-${idx}`}
                   className="border border-slate-200 rounded-2xl bg-white overflow-hidden transition-all duration-200"
                 >
                   <button

@@ -19,9 +19,9 @@ interface BrandFooterStyle {
 }
 
 const BRAND_FOOTER_CONFIGS: Record<string, BrandFooterStyle> = {
-  '/lg-service': {
-    bg: '#A50034',
-    badgeAccent: '#FCA5A5',
+  '/livpure-service': {
+    bg: '#581c87',
+    badgeAccent: '#d8b4fe',
   },
   '/aquaguard-service': {
     bg: '#0072BC',

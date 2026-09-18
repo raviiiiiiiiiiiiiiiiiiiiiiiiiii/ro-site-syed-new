@@ -5,7 +5,6 @@ export const SUBDOMAIN_ROUTE_MAP: Record<string, PageRoute> = {
   aquaguard: '/aquaguard-service',
   pureit: '/pureit-service',
   aosmith: '/aosmith-service',
-  lg: '/lg-service',
   livpure: '/livpure-service',
 };
 
