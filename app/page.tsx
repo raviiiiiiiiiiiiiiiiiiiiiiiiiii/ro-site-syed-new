@@ -46,7 +46,8 @@ export default function HomePage() {
       lightBg: '#f0f5fb',
       border: '#e1e9f2',
     },
-    heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744713/file_0000000034308206b0aa824a3917a047_ogubmc.png',
+    heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813499/IMG-20260918-WA0073_qesfc9.jpg',
+    heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813499/IMG-20260918-WA0073_qesfc9.jpg',
     partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744713/file_00000000be388230a7ea3fe9b5fef059_oqqijq.png',
     bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744714/file_00000000c0e082118f500d75d9418d25_a6woez.png',
     serviceImages: {

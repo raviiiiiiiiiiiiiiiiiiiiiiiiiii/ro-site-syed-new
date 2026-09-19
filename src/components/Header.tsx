@@ -127,8 +127,12 @@ export const Header: React.FC<HeaderProps> = ({
               }}
               className="flex items-center gap-2.5 sm:gap-3 text-left focus:outline-none group py-1"
             >
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#003d82] via-[#005bb5] to-[#0070e0] flex items-center justify-center text-white shadow-xs shrink-0 group-hover:scale-[1.03] transition-transform">
-                <Droplets className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-200" />
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-xs shrink-0 group-hover:scale-[1.03] transition-transform">
+                <img
+                  src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
+                  alt="RO Service Center Online 24x7"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="font-extrabold text-base sm:text-lg lg:text-xl text-[#002b66] tracking-tight leading-tight group-hover:text-[#0052a3] transition-colors">

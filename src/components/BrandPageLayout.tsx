@@ -42,6 +42,7 @@ import {
   Youtube,
   Linkedin,
   Lock,
+  Loader2,
 } from 'lucide-react';
 import { BrandInfo } from '@/src/types';
 import { BUSINESS_DETAILS, BANGALORE_LOCALITIES } from '@/src/data/content';
@@ -236,12 +237,36 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // SEO Keywords Tab state
-  const [selectedKeywordTab, setSelectedKeywordTab] = useState(brand.id);
+  // Active Brand SEO Keywords (matches current brand or multi-brand)
+  const activeKw =
+    SEO_BRAND_KEYWORDS.find((k) => k.id === brand.id) ||
+    SEO_BRAND_KEYWORDS.find((k) => k.brandName.toLowerCase() === brand.name.toLowerCase()) ||
+    SEO_BRAND_KEYWORDS.find((k) => k.id === 'ro-service-24x7') ||
+    SEO_BRAND_KEYWORDS[0];
 
-  useEffect(() => {
-    setSelectedKeywordTab(brand.id);
-  }, [brand.id]);
+  const brandDisplayName =
+    brand.id === 'ro-service-24x7' ||
+    brand.name.toLowerCase().includes('multi-brand') ||
+    brand.name.toLowerCase().includes('ro service center')
+      ? 'RO'
+      : brand.name === 'KENT'
+      ? 'Kent'
+      : brand.name;
+
+  const lookingForHeading = `${brandDisplayName} Water Purifier Service Bangalore`;
+
+  const lookingForKeywords = [
+    `${brandDisplayName} water purifier service Bangalore`,
+    `${brandDisplayName} service center near me`,
+    `${brandDisplayName} water purifier repair in Bangalore`,
+    `${brandDisplayName} filter replacement Bangalore`,
+    `${brandDisplayName} water purifier maintenance Bangalore`,
+    `${brandDisplayName} AMC service Bangalore`,
+    `${brandDisplayName} technician near me`,
+    `${brandDisplayName} water purifier service Bangalore`,
+    `${brandDisplayName} service center near me`,
+    `${brandDisplayName} water purifier repair in Bangalore`,
+  ];
 
   // Booking Form State
   const [fullName, setFullName] = useState('');
@@ -250,6 +275,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   const [serviceType, setServiceType] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formError, setFormError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Pincode Availability Checker State
   const [checkPincode, setCheckPincode] = useState('');
@@ -309,7 +335,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   // Hero Image resolution: prioritize brand.heroBgImage, then fallback to brand-specific requested Cloudinary URLs or showcaseImage
   const heroImageToDisplay = brand.heroBgImage || (
     brand.id === 'ro-service-24x7'
-      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744713/file_0000000034308206b0aa824a3917a047_ogubmc.png'
+      ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813499/IMG-20260918-WA0073_qesfc9.jpg'
       : brand.id === 'aquaguard'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000b97c8211b0ff0be33d753076_wncmpj.png'
       : brand.id === 'livpure'
@@ -359,8 +385,8 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
     setMobileFooterOpen((prev) => ({ ...prev, [column]: !prev[column] }));
   };
 
-  // Handle Form Submission
-  const handleBookingSubmit = (e: React.FormEvent) => {
+  // Handle Form Submission via FormSubmit
+  const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName.trim()) {
       setFormError('Please enter your full name.');
@@ -376,7 +402,40 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       return;
     }
     setFormError('');
-    setFormSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/syedsmaula786@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          'Customer Name': fullName.trim(),
+          'Mobile Number': cleanPhone,
+          'Pincode': pincode.trim() || 'Bangalore (Not specified)',
+          'Service Type': serviceType,
+          'Brand': brand.name,
+          'Page URL': typeof window !== 'undefined' ? window.location.href : '',
+          'Submitted At': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+          _subject: `New RO Lead: ${fullName.trim()} - ${brand.name} (${cleanPhone})`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+
+      if (response.ok || response.status === 200) {
+        setFormSubmitted(true);
+      } else {
+        setFormSubmitted(true);
+      }
+    } catch (err) {
+      console.warn('FormSubmit lead sending note:', err);
+      setFormSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Handle Pincode Check
@@ -397,6 +456,32 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       available: true,
       message: `Service is Available! Our certified ${brand.name} technician can reach your doorstep within 60 to 90 minutes.`,
     });
+  };
+
+  // Handle Newsletter Submission via FormSubmit
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim()) return;
+    try {
+      await fetch('https://formsubmit.co/ajax/syedsmaula786@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          Email: newsletterEmail.trim(),
+          Brand: brand.name,
+          Subscription: 'Newsletter & Updates',
+          _subject: `New Newsletter Subscriber: ${newsletterEmail.trim()}`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+    } catch (err) {
+      console.warn('Newsletter submission:', err);
+    }
+    setNewsletterSubmitted(true);
   };
 
   // Resolve service images per brand
@@ -562,14 +647,13 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
     <div className="min-h-screen bg-white text-slate-900 font-sans antialiased selection:bg-slate-900 selection:text-white">
       
       {/* ========================================================
-          1. STICKY HEADER (Hidden on desktop devices, visible on mobile)
+          1. STICKY HEADER
              - Logo (left)
-             - Nav links (center): Home, Services, AMC Plans, Filters & Parts, Why [Brand], Support
-             - Search icon + phone number w/ icon (right)
-             - Primary CTA button (rounded pill, right-most)
-             - Mobile: collapse nav into hamburger menu, keep logo + CTA visible
+             - Nav links (center): Home, Services, AMC Plans, Filters & Parts, Why [Brand], FAQs (desktop)
+             - Search icon + phone number w/ icon + Book Service CTA (right)
+             - Mobile: hamburger menu button (hidden on desktop), collapse nav into drawer
       ======================================================== */}
-      <header className={`md:hidden sticky top-0 z-50 bg-white border-b border-slate-200 shadow-2xs transition-transform duration-300 ${isHeaderHidden ? '-translate-y-full' : 'translate-y-0'}`}>
+      <header className={`sticky top-0 z-50 bg-white border-b border-slate-200 shadow-2xs transition-transform duration-300 ${isHeaderHidden ? '-translate-y-full' : 'translate-y-0'}`}>
         {/* Top Announcement Bar: announcement | announcement | announcement (strictly 1 line on all devices) */}
         <div className="bg-[#002b66] text-white py-1.5 sm:py-2 px-2 overflow-hidden select-none">
           <div className="max-w-7xl mx-auto flex items-center justify-center gap-1.5 min-[380px]:gap-2.5 sm:gap-4 md:gap-6 whitespace-nowrap flex-nowrap text-[9.5px] min-[360px]:text-[10.5px] sm:text-xs font-medium">
@@ -596,11 +680,15 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 sm:h-20">
             
-            {/* Logo (left) - Styled RO Service Center Online 24x7 Brand Identity */}
+            {/* Logo (left) - RO Service Center Online 24x7 Brand Identity */}
             <div className="flex items-center gap-3 sm:gap-4">
               <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group select-none">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#003d82] via-[#005bb5] to-[#0070e0] flex items-center justify-center text-white shadow-xs shrink-0 group-hover:scale-[1.03] transition-transform">
-                  <Droplets className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-200" />
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-xs shrink-0 group-hover:scale-[1.03] transition-transform">
+                  <img
+                    src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
+                    alt="RO Service Center Online 24x7"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <div className="flex flex-col">
                   <span className="font-extrabold text-[15px] sm:text-[18px] lg:text-[20px] text-[#002b66] tracking-tight leading-tight group-hover:text-[#0052a3] transition-colors">
@@ -646,10 +734,11 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                 <Phone className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.5} />
               </a>
 
+              {/* Hamburger Menu Button - Hidden on desktop devices (md and above) */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Toggle Menu"
-                className="hover:text-blue-700 transition-colors focus:outline-none"
+                className="md:hidden hover:text-blue-700 transition-colors focus:outline-none"
               >
                 {mobileMenuOpen ? (
                   <X className="w-6 h-6 sm:w-7 sm:h-7" strokeWidth={1.5} />
@@ -731,36 +820,45 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       {/* ========================================================
           2. HERO SECTION + DOCKED BOOKING FORM
       ======================================================== */}
-      {brand.id === 'ro-service-24x7' ? (
-        /* ========================================================
-            HOMEPAGE HERO SECTION:
-            Exact same header, text, badges, button, rating
-            Layout: text -> image (rounded container) -> form
-        ======================================================== */
-        <section className="bg-white pt-6 sm:pt-8 pb-10 sm:pb-14 border-b border-slate-200/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+      <section className="relative w-full aspect-[5/3] sm:aspect-auto min-h-0 sm:min-h-[440px] max-h-none sm:max-h-[580px] lg:max-h-[640px] flex items-start sm:items-center overflow-hidden border-b border-slate-200/80 bg-white">
+        {/* HERO BACKGROUND IMAGE: 16:9 background banner */}
+        {heroImageToDisplay && (
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <div
+              className="w-full h-full bg-cover bg-[right_top] sm:bg-[center_top] bg-no-repeat"
+              style={{ backgroundImage: `url(${heroImageToDisplay})` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent sm:from-white/35 sm:via-white/15 pointer-events-none" />
+          </div>
+        )}
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:py-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             
-            {/* 1. TEXT, BUTTONS, BADGES ETC (Exact same as before) */}
-            <div className="space-y-2 sm:space-y-3.5 text-left max-w-3xl">
+            {/* Left Column: Title, Subheading, Description, Badges & CTAs */}
+            <div className="lg:col-span-6 xl:col-span-5 space-y-2 sm:space-y-3.5 text-left">
+              
               {/* Eyebrow Label */}
               <div className="text-[9px] sm:text-xs font-bold uppercase tracking-wider text-slate-600">
-                INDIA&apos;S MOST TRUSTED RO BRAND
+                {brand.id === 'ro-service-24x7' ? 'BANGALORE\'S MOST TRUSTED RO SERVICE' : 'INDIA\'S MOST TRUSTED RO BRAND'}
               </div>
 
               {/* Large Bold H1 */}
               <h1 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0c2b5e] leading-tight sm:leading-[1.15]">
-                <span className="block">{brand.name.toUpperCase()} RO</span>
+                <span className="block">{brand.id === 'ro-service-24x7' ? 'RO SERVICE ONLINE 24x7' : `${brand.name.toUpperCase()} RO`}</span>
                 <span className="block">Service at Your Doorstep</span>
               </h1>
 
               {/* Subheading / Tagline */}
               <p className="hidden sm:block text-xs sm:text-sm font-bold text-slate-800 tracking-tight">
-                Pure Water. Healthy Families. Brighter Tomorrows.
+                {brand.heroMotto || 'Pure Water. Healthy Families. Brighter Tomorrows.'}
               </p>
 
               {/* Short description paragraph */}
-              <p className="hidden sm:block text-xs sm:text-[13px] text-slate-600 leading-relaxed max-w-xl">
-                Get expert {brand.name.toUpperCase()} water purifier service, repair, filter replacement, installation and AMC support from certified technicians. Genuine spare parts, fast and reliable service across your city.
+              <p className="hidden sm:block text-xs sm:text-[13px] text-slate-600 leading-relaxed max-w-md">
+                {brand.id === 'ro-service-24x7'
+                  ? 'Fastest 60–90 min doorstep RO water purifier repair, filter replacement, AMC & installation service in Bangalore. Expert technicians for Kent, Aquaguard, Pureit, AO Smith & Livpure.'
+                  : `Get expert ${brand.name.toUpperCase()} water purifier service, repair, filter replacement, installation and AMC support from certified technicians. Genuine spare parts, fast and reliable service across your city.`}
               </p>
 
               {/* Row of 4 small icon+text feature badges */}
@@ -768,13 +866,13 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                 {[
                   { label: 'Same Day Service', icon: Zap },
                   { label: 'Certified Technicians', icon: ShieldCheck },
-                  { label: `Genuine ${brand.name.toUpperCase()} Parts`, icon: Settings },
+                  { label: brand.id === 'ro-service-24x7' ? 'Genuine RO Parts' : `Genuine ${brand.name.toUpperCase()} Parts`, icon: Settings },
                   { label: 'Doorstep Support', icon: Clock },
                 ].map((item, idx) => {
                   const IconComp = item.icon;
                   return (
                     <div
-                      key={`home-feature-${idx}`}
+                      key={`marquee-item-${idx}`}
                       className="flex items-center gap-1.5 bg-white/90 border border-slate-200/90 rounded-md px-2 py-1 shadow-2xs"
                     >
                       <div className="w-4 h-4 rounded-full border border-blue-200 bg-blue-50 text-[#0066cc] flex items-center justify-center shrink-0">
@@ -822,424 +920,174 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               </div>
             </div>
 
-            {/* 2. THEN IMAGE (ROUNDED CONTAINER) */}
-            <div className="w-full">
-              <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm bg-white">
-                <img
-                  src={heroImageToDisplay}
-                  alt={`${brand.name} RO Service`}
-                  className="w-full h-auto object-cover"
-                  loading="eager"
-                />
-              </div>
-            </div>
-
-            {/* 3. THEN FORM (Exact same form as before) */}
-            <div
-              ref={bookingFormRef}
-              id="booking-section"
-              className="rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-white relative shadow-2xl overflow-hidden border border-blue-900/50 bg-[#0c3975] bg-cover bg-center sm:bg-[center_right] bg-no-repeat"
-              style={{
-                backgroundImage: `url('https://res.cloudinary.com/dieq3fjuv/image/upload/v1789668617/file_00000000aa70820b93ba0ee61bc6377c_prruge.png')`,
-              }}
-            >
-              {/* Soft gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0c2b5e]/90 via-[#0c2b5e]/60 to-transparent sm:from-[#0c2b5e]/80 sm:via-[#0c2b5e]/30 sm:to-transparent pointer-events-none" />
-
-              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                
-                {/* Form Column */}
-                <div className="lg:col-span-8 xl:col-span-7 space-y-4">
-                  <div>
-                    <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                      Book {brand.name.toUpperCase()} Service Now
-                    </h2>
-                    <p className="text-xs sm:text-sm text-blue-100/90 mt-1">
-                      Get professional {brand.name.toUpperCase()} RO repair, installation, maintenance and filter replacement at your doorstep.
-                    </p>
-                  </div>
-
-                  {formSubmitted ? (
-                    <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 text-center space-y-2">
-                      <CheckCircle className="w-9 h-9 text-emerald-400 mx-auto" />
-                      <h3 className="text-base font-bold text-white">Service Request Received!</h3>
-                      <p className="text-xs text-blue-100 max-w-md mx-auto">
-                        Thank you, <strong className="text-white">{fullName}</strong>. A certified {brand.name.toUpperCase()} technician will contact you on <strong className="text-white">{phone}</strong> shortly.
-                      </p>
-                      <button
-                        onClick={() => {
-                          setFormSubmitted(false);
-                          setFullName('');
-                          setPhone('');
-                          setPincode('');
-                        }}
-                        className="text-xs text-emerald-300 underline font-semibold mt-1 cursor-pointer"
-                      >
-                        Book another service
-                      </button>
-                    </div>
-                  ) : (
-                    <form onSubmit={handleBookingSubmit} className="space-y-3">
-                      {formError && (
-                        <div className="bg-rose-900/80 border border-rose-400 text-rose-100 text-xs px-3 py-2 rounded-lg">
-                          {formError}
-                        </div>
-                      )}
-
-                      {/* Row 1: 3 Fields (Full Name, Mobile Number, Enter Your Pincode) */}
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                            <User className="w-3.5 h-3.5" />
-                          </div>
-                          <input
-                            type="text"
-                            required
-                            placeholder="Full Name"
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
-                            className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                          />
-                        </div>
-
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                            <Phone className="w-3.5 h-3.5" />
-                          </div>
-                          <input
-                            type="tel"
-                            required
-                            maxLength={10}
-                            placeholder="Mobile Number"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
-                            className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                          />
-                        </div>
-
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                            <MapPin className="w-3.5 h-3.5" />
-                          </div>
-                          <input
-                            type="text"
-                            maxLength={6}
-                            placeholder="Enter Your Pincode"
-                            value={pincode}
-                            onChange={(e) => setPincode(e.target.value)}
-                            className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                          />
-                        </div>
-                      </div>
-
-                      {/* Row 2: 2 Fields (Select Service Type ~60%, Submit Button ~40%) */}
-                      <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
-                        <div className="relative sm:col-span-7">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                            <Wrench className="w-3.5 h-3.5" />
-                          </div>
-                          <select
-                            value={serviceType}
-                            onChange={(e) => setServiceType(e.target.value)}
-                            className={`w-full pl-9 pr-8 py-2.5 bg-white text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400 appearance-none cursor-pointer ${
-                              serviceType === '' ? 'text-slate-400' : 'text-slate-900'
-                            }`}
-                          >
-                            <option value="" disabled>Select Service Type</option>
-                            <option value="RO Repair & Service" className="text-slate-900">RO Repair &amp; Service</option>
-                            <option value="Filter Replacement" className="text-slate-900">Filter Replacement</option>
-                            <option value="AMC Maintenance Plan" className="text-slate-900">AMC Maintenance Plan</option>
-                            <option value="Water Quality Check" className="text-slate-900">Water Quality Check</option>
-                            <option value="Installation / Relocation" className="text-slate-900">Installation / Relocation</option>
-                          </select>
-                          <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
-                            <ChevronDown className="w-3.5 h-3.5" />
-                          </div>
-                        </div>
-
-                        <div className="sm:col-span-5">
-                          <button
-                            type="submit"
-                            className="w-full bg-[#0070e0] hover:bg-[#0060c5] text-white font-bold text-xs py-2.5 px-5 rounded-lg shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
-                          >
-                            <span>Book Service Now</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center justify-center gap-1.5 text-[11px] text-blue-200/90 pt-1">
-                        <Lock className="w-3 h-3 text-blue-200" />
-                        <span>Your information is safe with us.</span>
-                      </div>
-                    </form>
-                  )}
-                </div>
-
-                <div className="hidden lg:block lg:col-span-4 xl:col-span-5 pointer-events-none" />
-              </div>
-            </div>
+            {/* Right Column: Open space so background image remains unobstructed */}
+            <div className="hidden lg:block lg:col-span-6 xl:col-span-7 pointer-events-none" />
 
           </div>
-        </section>
-      ) : (
-        /* BRAND PAGES EXISTING HERO + FORM */
-        <>
-          <section className="relative w-full aspect-[5/3] sm:aspect-auto min-h-0 sm:min-h-[440px] max-h-none sm:max-h-[580px] lg:max-h-[640px] flex items-start sm:items-center overflow-hidden border-b border-slate-200/80 bg-white">
-            {/* HERO BACKGROUND IMAGE: 16:9 background banner */}
-            {heroImageToDisplay && (
-              <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                <div
-                  className="w-full h-full bg-cover bg-[right_top] sm:bg-[center_top] bg-no-repeat"
-                  style={{ backgroundImage: `url(${heroImageToDisplay})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent sm:from-white/35 sm:via-white/15 pointer-events-none" />
-              </div>
-            )}
+        </div>
+      </section>
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:py-6">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                
-                {/* Left Column: Title, Subheading, Description, Badges & CTAs */}
-                <div className="lg:col-span-6 xl:col-span-5 space-y-2 sm:space-y-3.5 text-left">
-                  
-                  {/* Eyebrow Label */}
-                  <div className="text-[9px] sm:text-xs font-bold uppercase tracking-wider text-slate-600">
-                    INDIA&apos;S MOST TRUSTED RO BRAND
-                  </div>
+      {/* LOWER HERO: THE BOOKING FORM CARD WITH BACKGROUND IMAGE */}
+      <section className="bg-slate-50 py-8 sm:py-12 border-b border-slate-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            ref={bookingFormRef}
+            id="booking-section"
+            className="rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-white relative shadow-2xl overflow-hidden border border-blue-900/50 bg-[#0c3975] bg-cover bg-center sm:bg-[center_right] bg-no-repeat"
+            style={{
+              backgroundImage: `url('https://res.cloudinary.com/dieq3fjuv/image/upload/v1789668617/file_00000000aa70820b93ba0ee61bc6377c_prruge.png')`,
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0c2b5e]/90 via-[#0c2b5e]/60 to-transparent sm:from-[#0c2b5e]/80 sm:via-[#0c2b5e]/30 sm:to-transparent pointer-events-none" />
 
-                  {/* Large Bold H1 */}
-                  <h1 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0c2b5e] leading-tight sm:leading-[1.15]">
-                    <span className="block">{brand.name.toUpperCase()} RO</span>
-                    <span className="block">Service at Your Doorstep</span>
-                  </h1>
-
-                  {/* Subheading / Tagline */}
-                  <p className="hidden sm:block text-xs sm:text-sm font-bold text-slate-800 tracking-tight">
-                    Pure Water. Healthy Families. Brighter Tomorrows.
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              
+              {/* Form Column */}
+              <div className="lg:col-span-8 xl:col-span-7 space-y-4">
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                    Book {brand.id === 'ro-service-24x7' ? 'Doorstep RO' : brand.name.toUpperCase()} Service Now
+                  </h2>
+                  <p className="text-xs sm:text-sm text-blue-100/90 mt-1">
+                    {brand.id === 'ro-service-24x7'
+                      ? 'Get professional doorstep RO repair, installation, maintenance and filter replacement for all major brands.'
+                      : `Get professional ${brand.name.toUpperCase()} RO repair, installation, maintenance and filter replacement at your doorstep.`}
                   </p>
+                </div>
 
-                  {/* Short description paragraph */}
-                  <p className="hidden sm:block text-xs sm:text-[13px] text-slate-600 leading-relaxed max-w-md">
-                    Get expert {brand.name.toUpperCase()} water purifier service, repair, filter replacement, installation and AMC support from certified technicians. Genuine spare parts, fast and reliable service across your city.
-                  </p>
-
-                  {/* Row of 4 small icon+text feature badges */}
-                  <div className="hidden sm:grid grid-cols-2 sm:grid-cols-4 gap-1.5 pt-0.5 max-w-lg">
-                    {[
-                      { label: 'Same Day Service', icon: Zap },
-                      { label: 'Certified Technicians', icon: ShieldCheck },
-                      { label: `Genuine ${brand.name.toUpperCase()} Parts`, icon: Settings },
-                      { label: 'Doorstep Support', icon: Clock },
-                    ].map((item, idx) => {
-                      const IconComp = item.icon;
-                      return (
-                        <div
-                          key={`marquee-item-${idx}`}
-                          className="flex items-center gap-1.5 bg-white/90 border border-slate-200/90 rounded-md px-2 py-1 shadow-2xs"
-                        >
-                          <div className="w-4 h-4 rounded-full border border-blue-200 bg-blue-50 text-[#0066cc] flex items-center justify-center shrink-0">
-                            <IconComp className="w-2.5 h-2.5" />
-                          </div>
-                          <span className="text-[10px] sm:text-[10.5px] font-semibold text-slate-800 leading-tight">
-                            {item.label}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* CTA Button */}
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1">
+                {formSubmitted ? (
+                  <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 text-center space-y-2">
+                    <CheckCircle className="w-9 h-9 text-emerald-400 mx-auto" />
+                    <h3 className="text-base font-bold text-white">Service Request Received!</h3>
+                    <p className="text-xs text-blue-100 max-w-md mx-auto">
+                      Thank you, <strong className="text-white">{fullName}</strong>. A certified {brand.id === 'ro-service-24x7' ? 'RO' : brand.name.toUpperCase()} technician will contact you on <strong className="text-white">{phone}</strong> shortly.
+                    </p>
                     <button
-                      onClick={scrollToBookingForm}
-                      className="bg-[#0066cc] hover:bg-[#0055b3] text-white text-[10px] sm:text-sm font-bold px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-lg shadow-sm transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer"
+                      onClick={() => {
+                        setFormSubmitted(false);
+                        setFullName('');
+                        setPhone('');
+                        setPincode('');
+                        setServiceType('');
+                      }}
+                      className="text-xs text-emerald-300 underline font-semibold mt-1 cursor-pointer"
                     >
-                      <span>Book a Service</span>
-                      <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                      Book another service
                     </button>
                   </div>
-
-                  {/* 4.5 Star Rating & 10,000+ Happy Customers Social Proof */}
-                  <div className="flex items-center flex-wrap gap-1.5 sm:gap-2 pt-1.5">
-                    <div className="flex items-center gap-1 sm:gap-1.5 bg-white/90 backdrop-blur-2xs border border-slate-200/90 rounded-full px-2 sm:px-2.5 py-0.5 sm:py-1 shadow-2xs">
-                      <div className="flex items-center">
-                        {[1, 2, 3, 4].map((i) => (
-                          <Star key={i} className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400" />
-                        ))}
-                        <div className="relative w-2.5 h-2.5 sm:w-3.5 sm:h-3.5">
-                          <Star className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 text-slate-300 fill-slate-200" />
-                          <div className="absolute inset-0 overflow-hidden w-1/2">
-                            <Star className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400" />
-                          </div>
-                        </div>
+                ) : (
+                  <form onSubmit={handleBookingSubmit} className="space-y-3">
+                    {formError && (
+                      <div className="bg-rose-900/80 border border-rose-400 text-rose-100 text-xs px-3 py-2 rounded-lg">
+                        {formError}
                       </div>
-                      <span className="text-[10px] sm:text-xs font-extrabold text-slate-900">4.5</span>
+                    )}
+
+                    {/* Row 1: 3 Fields (Full Name, Mobile Number, Enter Your Pincode) */}
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                          <User className="w-3.5 h-3.5" />
+                        </div>
+                        <input
+                          type="text"
+                          required
+                          placeholder="Full Name"
+                          value={fullName}
+                          onChange={(e) => setFullName(e.target.value)}
+                          className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        />
+                      </div>
+
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                          <Phone className="w-3.5 h-3.5" />
+                        </div>
+                        <input
+                          type="tel"
+                          required
+                          maxLength={10}
+                          placeholder="Mobile Number"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        />
+                      </div>
+
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                          <MapPin className="w-3.5 h-3.5" />
+                        </div>
+                        <input
+                          type="text"
+                          maxLength={6}
+                          placeholder="Enter Your Pincode"
+                          value={pincode}
+                          onChange={(e) => setPincode(e.target.value)}
+                          className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        />
+                      </div>
                     </div>
 
-                    <span className="text-[9px] sm:text-xs font-semibold text-slate-800 bg-white/70 sm:bg-transparent rounded-md px-1.5 sm:px-0 py-0.5">
-                      <span className="font-bold text-slate-950">10,000+</span> happy customers
-                    </span>
-                  </div>
-                </div>
-
-                {/* Right Column: Open space so background image remains unobstructed */}
-                <div className="hidden lg:block lg:col-span-6 xl:col-span-7 pointer-events-none" />
-
-              </div>
-            </div>
-          </section>
-
-          {/* LOWER HERO: THE BOOKING FORM CARD WITH BACKGROUND IMAGE */}
-          <section className="bg-slate-50 py-8 sm:py-12 border-b border-slate-200/80">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div
-                ref={bookingFormRef}
-                id="booking-section"
-                className="rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-white relative shadow-2xl overflow-hidden border border-blue-900/50 bg-[#0c3975] bg-cover bg-center sm:bg-[center_right] bg-no-repeat"
-                style={{
-                  backgroundImage: `url('https://res.cloudinary.com/dieq3fjuv/image/upload/v1789668617/file_00000000aa70820b93ba0ee61bc6377c_prruge.png')`,
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0c2b5e]/90 via-[#0c2b5e]/60 to-transparent sm:from-[#0c2b5e]/80 sm:via-[#0c2b5e]/30 sm:to-transparent pointer-events-none" />
-
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                  
-                  {/* Form Column */}
-                  <div className="lg:col-span-8 xl:col-span-7 space-y-4">
-                    <div>
-                      <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                        Book {brand.name.toUpperCase()} Service Now
-                      </h2>
-                      <p className="text-xs sm:text-sm text-blue-100/90 mt-1">
-                        Get professional {brand.name.toUpperCase()} RO repair, installation, maintenance and filter replacement at your doorstep.
-                      </p>
-                    </div>
-
-                    {formSubmitted ? (
-                      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 text-center space-y-2">
-                        <CheckCircle className="w-9 h-9 text-emerald-400 mx-auto" />
-                        <h3 className="text-base font-bold text-white">Service Request Received!</h3>
-                        <p className="text-xs text-blue-100 max-w-md mx-auto">
-                          Thank you, <strong className="text-white">{fullName}</strong>. A certified {brand.name.toUpperCase()} technician will contact you on <strong className="text-white">{phone}</strong> shortly.
-                        </p>
-                        <button
-                          onClick={() => {
-                            setFormSubmitted(false);
-                            setFullName('');
-                            setPhone('');
-                            setPincode('');
-                          }}
-                          className="text-xs text-emerald-300 underline font-semibold mt-1 cursor-pointer"
+                    {/* Row 2: 2 Fields (Select Service Type ~60%, Submit Button ~40%) */}
+                    <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+                      <div className="relative sm:col-span-7">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                          <Wrench className="w-3.5 h-3.5" />
+                        </div>
+                        <select
+                          value={serviceType}
+                          onChange={(e) => setServiceType(e.target.value)}
+                          className={`w-full pl-9 pr-8 py-2.5 bg-white text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400 appearance-none cursor-pointer ${
+                            serviceType === '' ? 'text-slate-400' : 'text-slate-900'
+                          }`}
                         >
-                          Book another service
-                        </button>
-                      </div>
-                    ) : (
-                      <form onSubmit={handleBookingSubmit} className="space-y-3">
-                        {formError && (
-                          <div className="bg-rose-900/80 border border-rose-400 text-rose-100 text-xs px-3 py-2 rounded-lg">
-                            {formError}
-                          </div>
-                        )}
-
-                        {/* Row 1: 3 Fields (Full Name, Mobile Number, Enter Your Pincode) */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                          <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                              <User className="w-3.5 h-3.5" />
-                            </div>
-                            <input
-                              type="text"
-                              required
-                              placeholder="Full Name"
-                              value={fullName}
-                              onChange={(e) => setFullName(e.target.value)}
-                              className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
-                          </div>
-
-                          <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                              <Phone className="w-3.5 h-3.5" />
-                            </div>
-                            <input
-                              type="tel"
-                              required
-                              maxLength={10}
-                              placeholder="Mobile Number"
-                              value={phone}
-                              onChange={(e) => setPhone(e.target.value)}
-                              className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
-                          </div>
-
-                          <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                              <MapPin className="w-3.5 h-3.5" />
-                            </div>
-                            <input
-                              type="text"
-                              maxLength={6}
-                              placeholder="Enter Your Pincode"
-                              value={pincode}
-                              onChange={(e) => setPincode(e.target.value)}
-                              className="w-full pl-9 pr-3 py-2.5 bg-white text-slate-900 placeholder-slate-400 text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                            />
-                          </div>
+                          <option value="" disabled>Select Service Type</option>
+                          <option value="RO Repair & Service" className="text-slate-900">RO Repair &amp; Service</option>
+                          <option value="Filter Replacement" className="text-slate-900">Filter Replacement</option>
+                          <option value="AMC Maintenance Plan" className="text-slate-900">AMC Maintenance Plan</option>
+                          <option value="Water Quality Check" className="text-slate-900">Water Quality Check</option>
+                          <option value="Installation / Relocation" className="text-slate-900">Installation / Relocation</option>
+                        </select>
+                        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                          <ChevronDown className="w-3.5 h-3.5" />
                         </div>
+                      </div>
 
-                        {/* Row 2: 2 Fields */}
-                        <div className="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
-                          <div className="relative sm:col-span-7">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                              <Wrench className="w-3.5 h-3.5" />
-                            </div>
-                            <select
-                              value={serviceType}
-                              onChange={(e) => setServiceType(e.target.value)}
-                              className={`w-full pl-9 pr-8 py-2.5 bg-white text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400 appearance-none cursor-pointer ${
-                                serviceType === '' ? 'text-slate-400' : 'text-slate-900'
-                              }`}
-                            >
-                              <option value="" disabled>Select Service Type</option>
-                              <option value="RO Repair & Service" className="text-slate-900">RO Repair &amp; Service</option>
-                              <option value="Filter Replacement" className="text-slate-900">Filter Replacement</option>
-                              <option value="AMC Maintenance Plan" className="text-slate-900">AMC Maintenance Plan</option>
-                              <option value="Water Quality Check" className="text-slate-900">Water Quality Check</option>
-                              <option value="Installation / Relocation" className="text-slate-900">Installation / Relocation</option>
-                            </select>
-                            <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
-                              <ChevronDown className="w-3.5 h-3.5" />
-                            </div>
-                          </div>
-
-                          <div className="sm:col-span-5">
-                            <button
-                              type="submit"
-                              className="w-full bg-[#0070e0] hover:bg-[#0060c5] text-white font-bold text-xs py-2.5 px-5 rounded-lg shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
-                            >
+                      <div className="sm:col-span-5">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full bg-[#0070e0] hover:bg-[#0060c5] disabled:opacity-75 text-white font-bold text-xs py-2.5 px-5 rounded-lg shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 className="w-4 h-4 animate-spin" />
+                              <span>Submitting...</span>
+                            </>
+                          ) : (
+                            <>
                               <span>Book Service Now</span>
                               <ArrowRight className="w-4 h-4" />
-                            </button>
-                          </div>
-                        </div>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
 
-                        <div className="flex items-center justify-center gap-1.5 text-[11px] text-blue-200/90 pt-1">
-                          <Lock className="w-3 h-3 text-blue-200" />
-                          <span>Your information is safe with us.</span>
-                        </div>
-                      </form>
-                    )}
-                  </div>
-
-                  <div className="hidden lg:block lg:col-span-4 xl:col-span-5 pointer-events-none" />
-                </div>
+                    <div className="flex items-center justify-center gap-1.5 text-[11px] text-blue-200/90 pt-1">
+                      <Lock className="w-3 h-3 text-blue-200" />
+                      <span>Your information is safe with us.</span>
+                    </div>
+                  </form>
+                )}
               </div>
+
+              <div className="hidden lg:block lg:col-span-4 xl:col-span-5 pointer-events-none" />
             </div>
-          </section>
-        </>
-      )}
+          </div>
+        </div>
+      </section>
 
       {/* ========================================================
           4. OUR SERVICES SECTION (Exact layout matching IMG-20260917-WA0022.jpg)
@@ -1560,87 +1408,12 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       {/* ========================================================
           10. BOTTOM BANNER (Section Above Footer)
       ======================================================== */}
-      <section className="w-full bg-white">
+      <section className="w-full bg-white border-b border-slate-200">
         <img 
           src={bottomBannerToDisplay}
           alt={`${brand.name} Banner`}
           className="w-full h-auto object-cover block"
         />
-      </section>
-
-      {/* ========================================================
-          POPULAR RO SERVICE SEARCHES & FOOTER KEYWORDS (Above Footer)
-      ======================================================== */}
-      <section className="bg-slate-50 border-t border-slate-200/90 py-10 sm:py-14 text-slate-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          {/* Header & Brand Switcher */}
-          <div className="space-y-3">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="text-xs font-extrabold tracking-wider uppercase text-slate-800 flex items-center gap-1.5">
-                <Search className="w-3.5 h-3.5 text-[#0066cc]" />
-                <span>Popular RO Service Searches</span>
-              </div>
-              <div className="flex flex-wrap items-center gap-1">
-                {SEO_BRAND_KEYWORDS.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => setSelectedKeywordTab(item.id)}
-                    className={`text-[11px] font-semibold px-2.5 py-1 rounded-md transition-all cursor-pointer ${
-                      selectedKeywordTab === item.id
-                        ? 'bg-[#0d3b84] text-white shadow-2xs'
-                        : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 hover:text-slate-900'
-                    }`}
-                  >
-                    {item.brandName}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Active Brand Keyword Block */}
-            {(() => {
-              const activeKw = SEO_BRAND_KEYWORDS.find((k) => k.id === selectedKeywordTab) || SEO_BRAND_KEYWORDS[0];
-              return (
-                <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 space-y-3 shadow-2xs">
-                  <div className="flex items-center justify-between flex-wrap gap-2">
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-900">
-                      Title: {activeKw.title}
-                    </h4>
-                    <span className="text-[11px] font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-full">
-                      Looking For:
-                    </span>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                    {activeKw.lookingFor.map((kw, idx) => (
-                      <button
-                        key={`kw-${idx}`}
-                        onClick={scrollToBookingForm}
-                        className="text-[10px] sm:text-[11px] bg-slate-50 border border-slate-200 hover:border-blue-400 hover:text-blue-700 text-slate-700 px-2.5 py-1 rounded-md transition-colors shadow-2xs text-left cursor-pointer"
-                      >
-                        {kw}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              );
-            })()}
-          </div>
-
-          {/* Footer Keywords Piped Strings */}
-          <div className="space-y-2 pt-4 border-t border-slate-200/80">
-            <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
-              Footer Keywords
-            </div>
-            <div className="space-y-2 text-[11px] sm:text-xs text-slate-600 leading-relaxed">
-              {FOOTER_KEYWORD_LINES.map((line, idx) => (
-                <p key={`footer-kw-line-${idx}`} className="bg-white border border-slate-200 rounded-lg px-3.5 py-2 font-medium text-slate-700 shadow-2xs">
-                  {line}
-                </p>
-              ))}
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* ========================================================
@@ -1663,12 +1436,16 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
           {/* Main 6-Column Section */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-start mb-10">
             
-            {/* Col 1: Styled Brand Identity */}
+            {/* Col 1: Brand Identity */}
             <div className="col-span-2 sm:col-span-1 flex flex-col items-start gap-2">
               <Link href="/" className="flex flex-col group select-none">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#003d82] via-[#005bb5] to-[#0070e0] flex items-center justify-center text-white shadow-xs shrink-0">
-                    <Droplets className="w-5 h-5 text-cyan-200" />
+                  <div className="w-9 h-9 rounded-xl overflow-hidden shadow-xs shrink-0">
+                    <img
+                      src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
+                      alt="RO Service Center Online 24x7"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#0070e0] bg-blue-50 px-2 py-0.5 rounded border border-blue-200/80 flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -1827,10 +1604,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                 </div>
               ) : (
                 <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    if (newsletterEmail.trim()) setNewsletterSubmitted(true);
-                  }}
+                  onSubmit={handleNewsletterSubmit}
                   className="flex items-center gap-2"
                 >
                   <input
@@ -1852,6 +1626,47 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               )}
             </div>
 
+          </div>
+
+          {/* ========================================================
+              LOOKING FOR & FOOTER KEYWORDS (Below Footer Columns, Above Disclaimer)
+          ======================================================== */}
+          <div className="pt-8 pb-6 border-t border-slate-200 space-y-6">
+            {/* Looking For Keywords Block (Redesigned with Green Ticks matching reference) */}
+            <div className="space-y-4">
+              <h3 className="text-xl sm:text-2xl font-extrabold text-slate-950 tracking-tight">
+                {lookingForHeading}
+              </h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-3.5 pt-1">
+                {lookingForKeywords.map((kw, idx) => (
+                  <button
+                    key={`kw-tick-${idx}`}
+                    onClick={scrollToBookingForm}
+                    className="flex items-start gap-3 text-left group cursor-pointer transition-colors py-0.5"
+                  >
+                    <Check className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5 stroke-[2.5]" />
+                    <span className="text-sm sm:text-base font-medium text-slate-800 group-hover:text-blue-700 transition-colors">
+                      {kw}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Footer Keywords Piped Strings */}
+            <div className="space-y-2 pt-6 border-t border-slate-100">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                Footer Keywords
+              </div>
+              <div className="space-y-2 text-[11px] sm:text-xs text-slate-600 leading-relaxed">
+                {FOOTER_KEYWORD_LINES.map((line, idx) => (
+                  <p key={`footer-kw-line-${idx}`} className="bg-slate-50/70 border border-slate-200 rounded-lg px-3.5 py-2 font-medium text-slate-700 shadow-2xs">
+                    {line}
+                  </p>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* ========================================================

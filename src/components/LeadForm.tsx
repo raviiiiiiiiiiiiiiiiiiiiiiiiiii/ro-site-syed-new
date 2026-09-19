@@ -115,23 +115,24 @@ export const LeadForm: React.FC<LeadFormProps> = ({
     try {
       const endpoint = `https://formsubmit.co/ajax/${BUSINESS_DETAILS.formSubmitEmail}`;
 
-      const payload = new FormData();
-      payload.append('fullName', formData.fullName);
-      payload.append('mobileNumber', formData.mobileNumber);
-      payload.append('pinCode', formData.pinCode || 'Bangalore');
-      payload.append('selectedBrand', formData.selectedBrand);
-      payload.append('serviceType', formData.serviceType || 'RO Repair');
-      payload.append('sourcePage', sourcePage);
-      payload.append('_subject', `New RO Service Lead: ${formData.fullName} (${formData.selectedBrand})`);
-      payload.append('_captcha', 'false');
-      payload.append('_template', 'table');
-
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
+          'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: payload,
+        body: JSON.stringify({
+          'Customer Name': formData.fullName.trim(),
+          'Mobile Number': formData.mobileNumber.trim(),
+          'Pincode': formData.pinCode.trim() || 'Bangalore (Not specified)',
+          'Brand': formData.selectedBrand,
+          'Service Type': formData.serviceType || 'RO Repair',
+          'Source Page': sourcePage,
+          'Submitted At': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+          _subject: `New RO Lead: ${formData.fullName.trim()} - ${formData.selectedBrand} (${formData.mobileNumber.trim()})`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
       });
 
       if (response.ok || response.status === 200) {

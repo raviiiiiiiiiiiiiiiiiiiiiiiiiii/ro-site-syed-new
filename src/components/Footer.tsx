@@ -66,8 +66,12 @@ export const Footer: React.FC<FooterProps> = ({ currentRoute: propCurrentRoute, 
           {/* Column 1: Brand Info */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-11 h-11 bg-white/10 border border-white/20 rounded-xl flex items-center justify-center shadow-md overflow-hidden shrink-0">
-                <Droplets className="w-6 h-6 text-cyan-300" />
+              <div className="w-11 h-11 rounded-xl overflow-hidden shadow-md shrink-0">
+                <img
+                  src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
+                  alt="RO Service Center Online 24x7"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center font-['Outfit'] font-bold text-xl sm:text-2xl tracking-tight leading-none text-white">
