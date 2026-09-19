@@ -218,13 +218,14 @@ const SEO_BRAND_KEYWORDS = [
   },
 ];
 
-const FOOTER_KEYWORD_LINES = [
-  'KENT Water Purifier Service | KENT RO Service | KENT Water Purifier Repair | KENT Service Center | KENT Filter Replacement | KENT AMC Service',
-  'Aquaguard Water Purifier Service | Aquaguard RO Service | Aquaguard Water Purifier Repair | Aquaguard Service Center | Aquaguard Filter Replacement | Eureka Aquaguard Service',
-  'AO Smith Water Purifier Service | AO Smith RO Service | AO Smith Water Purifier Repair | AO Smith Service Center | AO Smith Filter Replacement | AO Smith RO Repair',
-  'Pureit Water Purifier Service | Pureit RO Service | Pureit Water Purifier Repair | Pureit Service Center | Pureit Filter Replacement | Pureit RO Repair',
-  'Livpure Water Purifier Service | Livpure RO Service | Livpure Water Purifier Repair | Livpure Service Center | Livpure Filter Replacement | Livpure RO Repair',
-];
+const BRAND_RELEVANT_FOOTER_KEYWORDS: Record<string, string> = {
+  kent: 'KENT Water Purifier Service | KENT RO Service | KENT Water Purifier Repair | KENT Service Center | KENT Filter Replacement | KENT AMC Service',
+  aquaguard: 'Aquaguard Water Purifier Service | Aquaguard RO Service | Aquaguard Water Purifier Repair | Aquaguard Service Center | Aquaguard Filter Replacement | Eureka Aquaguard Service',
+  'ao-smith': 'AO Smith Water Purifier Service | AO Smith RO Service | AO Smith Water Purifier Repair | AO Smith Service Center | AO Smith Filter Replacement | AO Smith RO Repair',
+  pureit: 'Pureit Water Purifier Service | Pureit RO Service | Pureit Water Purifier Repair | Pureit Service Center | Pureit Filter Replacement | Pureit RO Repair',
+  livpure: 'Livpure Water Purifier Service | Livpure RO Service | Livpure Water Purifier Repair | Livpure Service Center | Livpure Filter Replacement | Livpure RO Repair',
+  havells: 'Havells Water Purifier Service | Havells RO Service | Havells Water Purifier Repair | Havells Service Center | Havells Filter Replacement | Havells RO Repair',
+};
 
 export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   // Navigation & Mobile menu
@@ -267,6 +268,33 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
     `${brandDisplayName} service center near me`,
     `${brandDisplayName} water purifier repair in Bangalore`,
   ];
+
+  // Check if current page is the homepage
+  const isHomepage =
+    brand.id === 'ro-service-24x7' ||
+    brand.slug === '/' ||
+    brand.name.toLowerCase().includes('ro service center');
+
+  // Relevant keywords for brand pages only (Strictly excluded on homepage)
+  const getRelevantBrandKeywords = (): string | null => {
+    if (isHomepage) return null;
+
+    const key = brand.id.toLowerCase().replace(/-service$/, '');
+    if (BRAND_RELEVANT_FOOTER_KEYWORDS[key]) {
+      return BRAND_RELEVANT_FOOTER_KEYWORDS[key];
+    }
+    const nameLower = brand.name.toLowerCase();
+    if (nameLower.includes('kent')) return BRAND_RELEVANT_FOOTER_KEYWORDS.kent;
+    if (nameLower.includes('aquaguard')) return BRAND_RELEVANT_FOOTER_KEYWORDS.aquaguard;
+    if (nameLower.includes('smith') || nameLower.includes('ao-smith')) return BRAND_RELEVANT_FOOTER_KEYWORDS['ao-smith'];
+    if (nameLower.includes('pureit')) return BRAND_RELEVANT_FOOTER_KEYWORDS.pureit;
+    if (nameLower.includes('livpure')) return BRAND_RELEVANT_FOOTER_KEYWORDS.livpure;
+    if (nameLower.includes('havells')) return BRAND_RELEVANT_FOOTER_KEYWORDS.havells;
+
+    return `${brand.name} Water Purifier Service | ${brand.name} RO Service | ${brand.name} Water Purifier Repair | ${brand.name} Service Center | ${brand.name} Filter Replacement | ${brand.name} AMC Service`;
+  };
+
+  const relevantBrandKeywordString = getRelevantBrandKeywords();
 
   // Booking Form State
   const [fullName, setFullName] = useState('');
@@ -1629,9 +1657,9 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
           </div>
 
           {/* ========================================================
-              LOOKING FOR & FOOTER KEYWORDS (Below Footer Columns, Above Disclaimer)
+              LOOKING FOR (Below Footer Columns, Above Disclaimer)
           ======================================================== */}
-          <div className="pt-8 pb-6 border-t border-slate-200 space-y-6">
+          <div className="pt-8 pb-6 border-t border-slate-200">
             {/* Looking For Keywords Block (Redesigned with Green Ticks matching reference) */}
             <div className="space-y-4">
               <h3 className="text-xl sm:text-2xl font-extrabold text-slate-950 tracking-tight">
@@ -1650,20 +1678,6 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                       {kw}
                     </span>
                   </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Footer Keywords Piped Strings */}
-            <div className="space-y-2 pt-6 border-t border-slate-100">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                Footer Keywords
-              </div>
-              <div className="space-y-2 text-[11px] sm:text-xs text-slate-600 leading-relaxed">
-                {FOOTER_KEYWORD_LINES.map((line, idx) => (
-                  <p key={`footer-kw-line-${idx}`} className="bg-slate-50/70 border border-slate-200 rounded-lg px-3.5 py-2 font-medium text-slate-700 shadow-2xs">
-                    {line}
-                  </p>
                 ))}
               </div>
             </div>
@@ -1696,6 +1710,15 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               {brand.heroMotto || 'Pure Water. Healthy Families. Brighter Tomorrows.'}
             </div>
           </div>
+
+          {/* Relevant Brand Keywords (Placed all the way down below Copyright & Motto; strictly excluded on homepage) */}
+          {!isHomepage && relevantBrandKeywordString && (
+            <div className="pt-3 pb-1 text-center sm:text-left">
+              <p className="text-[11px] sm:text-xs text-slate-500 font-normal leading-relaxed">
+                {relevantBrandKeywordString}
+              </p>
+            </div>
+          )}
 
         </div>
       </footer>
