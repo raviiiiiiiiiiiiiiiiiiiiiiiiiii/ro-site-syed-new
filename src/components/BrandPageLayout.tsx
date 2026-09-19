@@ -711,13 +711,23 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
             {/* Logo (left) - RO Service Center Online 24x7 Brand Identity */}
             <div className="flex items-center gap-3 sm:gap-4">
               <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group select-none">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-xs shrink-0 group-hover:scale-[1.03] transition-transform">
-                  <img
-                    src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
-                    alt="RO Service Center Online 24x7"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                {!isHomepage && brand.logoUrl ? (
+                  <div className="h-10 sm:h-12 w-auto max-w-[90px] sm:max-w-[120px] rounded-xl overflow-hidden bg-white shadow-2xs shrink-0 flex items-center justify-center p-1 border border-slate-200/80 group-hover:scale-[1.03] transition-transform">
+                    <img
+                      src={brand.logoUrl}
+                      alt={`${brand.name} Logo`}
+                      className="h-full w-auto max-w-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-xs shrink-0 group-hover:scale-[1.03] transition-transform">
+                    <img
+                      src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
+                      alt="RO Service Center Online 24x7"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
                 <div className="flex flex-col">
                   <span className="font-extrabold text-[15px] sm:text-[18px] lg:text-[20px] text-[#002b66] tracking-tight leading-tight group-hover:text-[#0052a3] transition-colors">
                     RO Service Center
@@ -1468,13 +1478,23 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
             <div className="col-span-2 sm:col-span-1 flex flex-col items-start gap-2">
               <Link href="/" className="flex flex-col group select-none">
                 <div className="flex items-center gap-2 mb-1.5">
-                  <div className="w-9 h-9 rounded-xl overflow-hidden shadow-xs shrink-0">
-                    <img
-                      src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
-                      alt="RO Service Center Online 24x7"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  {!isHomepage && brand.logoUrl ? (
+                    <div className="h-9 w-auto max-w-[90px] sm:max-w-[110px] rounded-lg overflow-hidden bg-white border border-slate-200/80 shadow-2xs shrink-0 flex items-center justify-center p-1">
+                      <img
+                        src={brand.logoUrl}
+                        alt={`${brand.name} Logo`}
+                        className="h-full w-auto max-w-full object-contain"
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-9 h-9 rounded-xl overflow-hidden shadow-xs shrink-0">
+                      <img
+                        src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
+                        alt="RO Service Center Online 24x7"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
                   <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#0070e0] bg-blue-50 px-2 py-0.5 rounded border border-blue-200/80 flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     24x7
