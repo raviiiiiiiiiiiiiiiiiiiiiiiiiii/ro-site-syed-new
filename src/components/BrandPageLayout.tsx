@@ -46,6 +46,7 @@ import {
 } from 'lucide-react';
 import { BrandInfo } from '@/src/types';
 import { BUSINESS_DETAILS, BANGALORE_LOCALITIES } from '@/src/data/content';
+import { optimizeCloudinary } from '@/src/utils/imageOptimizer';
 
 interface BrandPageLayoutProps {
   brand: BrandInfo;
@@ -361,7 +362,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   const displayPhone = BUSINESS_DETAILS.phone;
 
   // Hero Image resolution: prioritize brand.heroBgImage, then fallback to brand-specific requested Cloudinary URLs or showcaseImage
-  const heroImageToDisplay = brand.heroBgImage || (
+  const heroImageRaw = brand.heroBgImage || (
     brand.id === 'ro-service-24x7'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813499/IMG-20260918-WA0073_qesfc9.jpg'
       : brand.id === 'aquaguard'
@@ -374,9 +375,10 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789748961/IMG-20260918-WA0071_woclww.jpg'
       : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000087882078f47eb6ab54f5d99_aeo7v5.png'
   );
+  const heroImageToDisplay = optimizeCloudinary(heroImageRaw, { width: 1200 });
 
   // Bottom Banner Image resolution (Section above footer): prioritize brand.bottomBannerImage, then fallback to brand-specific requested URLs
-  const bottomBannerToDisplay = brand.bottomBannerImage || (
+  const bottomBannerRaw = brand.bottomBannerImage || (
     brand.id === 'ro-service-24x7'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744714/file_00000000c0e082118f500d75d9418d25_a6woez.png'
       : brand.id === 'pureit'
@@ -389,9 +391,10 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0044_mt8t6n.jpg'
       : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789674504/IMG-20260918-WA0002_whpvlb.jpg'
   );
+  const bottomBannerToDisplay = optimizeCloudinary(bottomBannerRaw, { width: 1200 });
 
   // Parts / Filters Banner Image resolution (Section just above Why Choose Us): prioritize brand.partsBannerImage, then fallback to brand-specific requested URLs
-  const partsBannerToDisplay = brand.partsBannerImage || (
+  const partsBannerRaw = brand.partsBannerImage || (
     brand.id === 'ro-service-24x7'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744713/file_00000000be388230a7ea3fe9b5fef059_oqqijq.png'
       : brand.id === 'aquaguard'
@@ -404,6 +407,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742670/file_00000000980c8230b73a31ab0aba807a_jujtjk.png'
       : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789672646/file_0000000075fc8208a4db72abe1abf045_bakaut.png'
   );
+  const partsBannerToDisplay = optimizeCloudinary(partsBannerRaw, { width: 1200 });
 
   const toggleFaq = (index: number) => {
     setOpenFaqs((prev) => ({ ...prev, [index]: !prev[index] }));
@@ -513,9 +517,9 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   };
 
   // Resolve service images per brand
-  const qualityImage = 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg';
+  const qualityImage = optimizeCloudinary('https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg', { width: 450 });
 
-  const repairImage = brand.serviceImages?.repair || (
+  const repairImage = optimizeCloudinary(brand.serviceImages?.repair || (
     brand.id === 'ro-service-24x7'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744767/file_0000000072548211b75cdf8e48b91b7d_mmuame.png'
       : brand.id === 'ao-smith'
@@ -527,9 +531,9 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       : brand.id === 'aquaguard'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0050_ffapvn.jpg'
       : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0015_ptidj8.jpg'
-  );
+  ), { width: 450 });
 
-  const filterImage = brand.serviceImages?.filter || (
+  const filterImage = optimizeCloudinary(brand.serviceImages?.filter || (
     brand.id === 'ro-service-24x7'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744766/file_00000000696c8211b0e9d31b75c0009e_rpigfw.png'
       : brand.id === 'ao-smith'
@@ -541,9 +545,9 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       : brand.id === 'aquaguard'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743946/IMG-20260918-WA0059_ndexit.jpg'
       : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0017_qm0y3k.jpg'
-  );
+  ), { width: 450 });
 
-  const amcImage = brand.serviceImages?.amc || (
+  const amcImage = optimizeCloudinary(brand.serviceImages?.amc || (
     brand.id === 'ro-service-24x7'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789744767/file_000000008d20821198976eef39c910a9_dwhpb5.png'
       : brand.id === 'ao-smith'
@@ -555,7 +559,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       : brand.id === 'aquaguard'
       ? 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0057_hnngfr.jpg'
       : 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0016_y94ufa.jpg'
-  );
+  ), { width: 450 });
 
   const servicesList = [
     {
@@ -714,16 +718,24 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                 {!isHomepage && brand.logoUrl ? (
                   <div className="h-10 sm:h-12 w-auto max-w-[90px] sm:max-w-[120px] rounded-xl overflow-hidden bg-white shadow-2xs shrink-0 flex items-center justify-center p-1 border border-slate-200/80 group-hover:scale-[1.03] transition-transform">
                     <img
-                      src={brand.logoUrl}
+                      src={optimizeCloudinary(brand.logoUrl, { width: 140 })}
                       alt={`${brand.name} Logo`}
+                      width={100}
+                      height={40}
+                      loading="eager"
+                      decoding="async"
                       className="h-full w-auto max-w-full object-contain"
                     />
                   </div>
                 ) : (
                   <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-xs shrink-0 group-hover:scale-[1.03] transition-transform">
                     <img
-                      src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
+                      src={optimizeCloudinary("https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg", { width: 100 })}
                       alt="RO Service Center Online 24x7"
+                      width={44}
+                      height={44}
+                      loading="eager"
+                      decoding="async"
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -794,6 +806,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
             <div className="max-w-xl mx-auto flex items-center gap-2">
               <input
                 type="text"
+                aria-label={`Search ${brand.name} RO services`}
                 placeholder={`Search ${brand.name} RO services, filter change, AMC...`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -801,6 +814,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               />
               <button
                 onClick={scrollToBookingForm}
+                aria-label="Find RO Service"
                 style={{ backgroundColor: primaryColor }}
                 className="text-white text-xs font-bold px-4 py-2 rounded-full cursor-pointer"
               >
@@ -973,7 +987,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
             id="booking-section"
             className="rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-white relative shadow-2xl overflow-hidden border border-blue-900/50 bg-[#0c3975] bg-cover bg-center sm:bg-[center_right] bg-no-repeat"
             style={{
-              backgroundImage: `url('https://res.cloudinary.com/dieq3fjuv/image/upload/v1789668617/file_00000000aa70820b93ba0ee61bc6377c_prruge.png')`,
+              backgroundImage: `url('${optimizeCloudinary("https://res.cloudinary.com/dieq3fjuv/image/upload/v1789668617/file_00000000aa70820b93ba0ee61bc6377c_prruge.png", { width: 900 })}')`,
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-[#0c2b5e]/90 via-[#0c2b5e]/60 to-transparent sm:from-[#0c2b5e]/80 sm:via-[#0c2b5e]/30 sm:to-transparent pointer-events-none" />
@@ -1029,6 +1043,8 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                         </div>
                         <input
                           type="text"
+                          id="booking-full-name"
+                          aria-label="Full Name"
                           required
                           placeholder="Full Name"
                           value={fullName}
@@ -1043,6 +1059,8 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                         </div>
                         <input
                           type="tel"
+                          id="booking-phone"
+                          aria-label="Mobile Number"
                           required
                           maxLength={10}
                           placeholder="Mobile Number"
@@ -1058,6 +1076,8 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                         </div>
                         <input
                           type="text"
+                          id="booking-pincode"
+                          aria-label="Enter Your Pincode"
                           maxLength={6}
                           placeholder="Enter Your Pincode"
                           value={pincode}
@@ -1074,6 +1094,8 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                           <Wrench className="w-3.5 h-3.5" />
                         </div>
                         <select
+                          id="booking-service-type"
+                          aria-label="Select Service Type"
                           value={serviceType}
                           onChange={(e) => setServiceType(e.target.value)}
                           className={`w-full pl-9 pr-8 py-2.5 bg-white text-xs rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-400 appearance-none cursor-pointer ${
@@ -1095,6 +1117,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                       <div className="sm:col-span-5">
                         <button
                           type="submit"
+                          aria-label="Book Service Now"
                           disabled={isSubmitting}
                           className="w-full bg-[#0070e0] hover:bg-[#0060c5] disabled:opacity-75 text-white font-bold text-xs py-2.5 px-5 rounded-lg shadow-md transition-all flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
                         >
@@ -1192,6 +1215,10 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                     <img
                       src={service.image}
                       alt={`${service.title} - ${brand.name} RO Water Purifier`}
+                      width={330}
+                      height={200}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-black/10 opacity-60 group-hover:opacity-30 transition-opacity" />
@@ -1240,6 +1267,10 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
         <img
           src={partsBannerToDisplay}
           alt={`${brand.name} Compatible Filters`}
+          width={1200}
+          height={320}
+          loading="lazy"
+          decoding="async"
           className="w-full h-auto object-cover block"
         />
       </section>
@@ -1265,7 +1296,15 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                 TRUSTED BY MILLIONS
               </span>
               {brand.logoUrl ? (
-                <img src={brand.logoUrl} alt={brand.name} className="h-8 sm:h-10 object-contain sm:ml-auto" />
+                <img 
+                  src={optimizeCloudinary(brand.logoUrl, { width: 160 })} 
+                  alt={brand.name} 
+                  width={140}
+                  height={40}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-8 sm:h-10 object-contain sm:ml-auto" 
+                />
               ) : (
                 <div className="text-2xl sm:text-3xl font-black text-[#002b66] leading-none">
                   {brand.name}
@@ -1304,8 +1343,12 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
           {/* Healthy Water Banner Image */}
           <div className="w-full rounded-2xl overflow-hidden shadow-sm border border-slate-100">
             <img 
-              src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743272/IMG-20260918-WA0049_o2bgrk.jpg"
+              src={optimizeCloudinary("https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743272/IMG-20260918-WA0049_o2bgrk.jpg", { width: 1200 })}
               alt="Healthy Water For Every Family"
+              width={1200}
+              height={400}
+              loading="lazy"
+              decoding="async"
               className="w-full h-auto object-cover"
             />
           </div>
@@ -1358,6 +1401,8 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                 >
                   <button
                     onClick={() => toggleFaq(idx)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${idx}`}
                     className="w-full p-4 sm:p-5 text-left flex items-start justify-between gap-3 cursor-pointer hover:bg-slate-50 transition-colors"
                   >
                     <span className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
@@ -1369,7 +1414,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                   </button>
 
                   {isOpen && (
-                    <div className="px-4 sm:px-5 pb-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 mt-1 pt-3">
+                    <div id={`faq-answer-${idx}`} className="px-4 sm:px-5 pb-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 mt-1 pt-3">
                       {faq.answer}
                     </div>
                   )}
@@ -1408,6 +1453,8 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                     </div>
                     <input
                       type="text"
+                      id="check-pincode-input"
+                      aria-label="Enter Your Pincode to check service availability"
                       maxLength={6}
                       placeholder="Enter Your Pincode"
                       value={checkPincode}
@@ -1418,6 +1465,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
                   <button
                     type="submit"
+                    aria-label="Check Service Availability"
                     style={{ backgroundColor: primaryColor }}
                     className="w-full sm:w-auto text-white font-bold text-xs py-2.5 px-5 rounded-xl shadow-xs hover:opacity-95 transition-all whitespace-nowrap cursor-pointer"
                   >
@@ -1450,6 +1498,10 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
         <img 
           src={bottomBannerToDisplay}
           alt={`${brand.name} Banner`}
+          width={1200}
+          height={360}
+          loading="lazy"
+          decoding="async"
           className="w-full h-auto object-cover block"
         />
       </section>
@@ -1481,16 +1533,24 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                   {!isHomepage && brand.logoUrl ? (
                     <div className="h-9 w-auto max-w-[90px] sm:max-w-[110px] rounded-lg overflow-hidden bg-white border border-slate-200/80 shadow-2xs shrink-0 flex items-center justify-center p-1">
                       <img
-                        src={brand.logoUrl}
+                        src={optimizeCloudinary(brand.logoUrl, { width: 140 })}
                         alt={`${brand.name} Logo`}
+                        width={90}
+                        height={36}
+                        loading="lazy"
+                        decoding="async"
                         className="h-full w-auto max-w-full object-contain"
                       />
                     </div>
                   ) : (
                     <div className="w-9 h-9 rounded-xl overflow-hidden shadow-xs shrink-0">
                       <img
-                        src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
+                        src={optimizeCloudinary("https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg", { width: 90 })}
                         alt="RO Service Center Online 24x7"
+                        width={36}
+                        height={36}
+                        loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -1751,6 +1811,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
           <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative space-y-4">
             <button
               onClick={() => setVideoModalOpen(false)}
+              aria-label="Close video modal"
               className="absolute top-4 right-4 p-2 rounded-full text-slate-400 hover:text-slate-900 bg-slate-100 cursor-pointer"
             >
               <X className="w-5 h-5" />
@@ -1820,6 +1881,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                 setVideoModalOpen(false);
                 scrollToBookingForm();
               }}
+              aria-label={`Book ${brand.name} Service Now`}
               style={{ backgroundColor: primaryColor }}
               className="w-full text-white font-bold py-3 rounded-xl text-sm shadow-xs cursor-pointer"
             >
