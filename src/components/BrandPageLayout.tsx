@@ -855,16 +855,14 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                 {displayPhone}
               </a>
             </div>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                scrollToBookingForm();
-              }}
+            <a
+              href={`tel:${displayPhone}`}
+              onClick={() => setMobileMenuOpen(false)}
               className="w-full bg-[#0b5cbe] hover:bg-[#094fa5] text-white text-base font-bold py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              Book a Service
-              <ArrowRight className="w-5 h-5" />
-            </button>
+              <Phone className="w-5 h-5 fill-current" />
+              <span>Call 08050291180</span>
+            </a>
           </div>
         </div>
       )}
@@ -940,13 +938,13 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
               {/* CTA Button */}
               <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1">
-                <button
-                  onClick={scrollToBookingForm}
+                <a
+                  href={`tel:${displayPhone}`}
                   className="bg-[#0066cc] hover:bg-[#0055b3] text-white text-[10px] sm:text-sm font-bold px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-lg shadow-sm transition-all flex items-center gap-1.5 sm:gap-2 cursor-pointer"
                 >
-                  <span>Book a Service</span>
-                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                </button>
+                  <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" />
+                  <span>Call 08050291180</span>
+                </a>
               </div>
 
               {/* 4.5 Star Rating & 10,000+ Happy Customers Social Proof */}
@@ -1876,17 +1874,18 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               </div>
             </div>
 
-            <button
+            <a
+              href={`tel:${displayPhone}`}
               onClick={() => {
                 setVideoModalOpen(false);
-                scrollToBookingForm();
               }}
-              aria-label={`Book ${brand.name} Service Now`}
+              aria-label={`Call ${brand.name} Helpline`}
               style={{ backgroundColor: primaryColor }}
-              className="w-full text-white font-bold py-3 rounded-xl text-sm shadow-xs cursor-pointer"
+              className="w-full text-white font-bold py-3 rounded-xl text-sm shadow-xs cursor-pointer flex items-center justify-center gap-2"
             >
-              Book {brand.name} Service Now
-            </button>
+              <Phone className="w-4 h-4 fill-current" />
+              <span>Call 08050291180</span>
+            </a>
           </div>
         </div>
       )}

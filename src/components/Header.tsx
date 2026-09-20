@@ -159,12 +159,13 @@ export const Header: React.FC<HeaderProps> = ({
                 Home
               </Link>
 
-              <button
-                onClick={() => handleScrollToForm()}
-                className="text-sm font-semibold text-slate-700 hover:text-slate-950 transition-colors"
+              <a
+                href={`tel:${BUSINESS_DETAILS.phone}`}
+                className="text-sm font-semibold text-slate-700 hover:text-slate-950 transition-colors flex items-center gap-1.5"
               >
-                Book Doorstep Visit
-              </button>
+                <Phone className="w-3.5 h-3.5 text-[#0070e0]" />
+                <span>Call 08050291180</span>
+              </a>
 
               {/* Policies Dropdown */}
               <div className="relative">
@@ -352,12 +353,14 @@ export const Header: React.FC<HeaderProps> = ({
                 </Link>
               </div>
 
-              <button
-                onClick={() => handleScrollToForm()}
-                className="w-full text-center px-4 py-2.5 rounded-xl bg-sky-600 text-white font-bold text-sm shadow-md"
+              <a
+                href={`tel:${BUSINESS_DETAILS.phone}`}
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center px-4 py-2.5 rounded-xl bg-sky-600 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2"
               >
-                Book Doorstep Visit
-              </button>
+                <Phone className="w-4 h-4 fill-white" />
+                <span>Call 08050291180</span>
+              </a>
             </div>
           </div>
         )}
