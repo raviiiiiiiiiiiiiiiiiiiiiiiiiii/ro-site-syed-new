@@ -30,6 +30,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Syed Maula (Senior Water Purification Engineer)',
     readingTime: '6 min read',
     category: 'Maintenance & Service Guide',
+    // Kent Service Image (AMC / Maintenance)
     image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0016_y94ufa.jpg',
     relatedBrandSlug: 'kent-service',
     relatedBrandName: 'Kent RO',
@@ -40,7 +41,7 @@ export const BLOG_POSTS: BlogPost[] = [
           heading: '1. External Pre-Filter (Spun Polypropylene Cartridge): Every 3 to 4 Months',
           paragraphs: [
             'The external bowl filter sitting on your wall is your purifier\'s first line of defense. In Bangalore, construction dust and pipeline rust choke this 5-micron spun candle rapidly.',
-            'If the bowl looks dark brown or black, water inlet pressure drops sharply. This forces your internal booster pump to strain and overheat. Replacing this ₹250–₹350 cartridge every 90 to 120 days doubles the lifespan of your internal sediment and carbon filters.',
+            'If the bowl looks dark brown or black, water inlet pressure drops sharply. This forces your internal booster pump to strain and overheat. Replacing this cartridge every 90 to 120 days doubles the lifespan of your internal sediment and carbon filters.',
           ],
           bulletPoints: [
             'Cauvery municipal water: Change every 4 to 6 months',
@@ -86,11 +87,12 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Ramesh K. (Master Water Specialist)',
     readingTime: '5 min read',
     category: 'Troubleshooting & Repairs',
-    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg',
+    // Aquaguard Service Image (Repair)
+    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0050_ffapvn.jpg',
     relatedBrandSlug: 'aquaguard-service',
     relatedBrandName: 'Aquaguard RO',
     content: {
-      lead: 'The Reverse Osmosis (RO) membrane is the costliest and most critical component inside any modern water purifier. While pre-filters cost a few hundred rupees, a genuine high-rejection membrane ranges between ₹1,400 and ₹2,800. Recognizing the early warning signs of membrane failure protects your household health and prevents pump burnouts.',
+      lead: 'The Reverse Osmosis (RO) membrane is the costliest and most critical component inside any modern water purifier. While pre-filters cost a fraction of the unit price, a genuine high-rejection membrane is crucial for mineral and contaminant removal. Recognizing the early warning signs of membrane failure protects your household health and prevents pump burnouts.',
       sections: [
         {
           heading: 'Sign 1: Output Water Taste Has Turned Salty, Bitter, or Hard',
@@ -136,52 +138,53 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'RO Service Centre Editorial Team',
     readingTime: '7 min read',
     category: 'Brand Comparison & Costs',
-    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0057_hnngfr.jpg',
+    // Pureit Service Image (AMC)
+    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0056_ayukpn.jpg',
     relatedBrandSlug: 'pureit-service',
     relatedBrandName: 'Pureit RO',
     content: {
-      lead: 'When buying an RO water purifier, most Bangalore consumers only evaluate the sticker price of the appliance (₹12,000 to ₹22,000). However, the real cost of owning an RO purifier lies in its ongoing maintenance. Over a 5-year operating lifespan, maintenance expenses frequently exceed the original purchase price.',
+      lead: 'When buying an RO water purifier, most Bangalore consumers only evaluate the sticker price of the appliance. However, the real cost of owning an RO purifier lies in its ongoing maintenance. Over a 5-year operating lifespan, maintenance expenses frequently exceed the original purchase price.',
       sections: [
         {
           heading: '1. Pureit RO Maintenance: Proprietary GKK Kits',
           paragraphs: [
             'Pureit purifiers (such as Ultima, Copper+, and Advanced) utilize patented GermKill Kit (GKK) cartridges equipped with an electronic digital life indicator. When the counter reaches zero, the system shuts off water flow automatically.',
-            'Genuine GKK-1 and GKK-2 kits cost between ₹1,800 and ₹3,400 depending on capacity (2,000 to 6,000 liters). Because the electronic chip enforces cartridge replacement, you cannot postpone maintenance once the light turns red.',
+            'Genuine GKK-1 and GKK-2 kits provide certified microbial removal. Because the electronic chip enforces cartridge replacement, timely renewal ensures uninterrupted clean water.',
           ],
           bulletPoints: [
-            'Average Annual Maintenance: ₹2,400 – ₹3,800',
-            'Pros: Guaranteed microbiological safety, no guesswork on cartridge life',
-            'Cons: Higher locked-in proprietary component pricing',
+            'Guaranteed microbiological safety, no guesswork on cartridge life',
+            'Digital electronic auto-shutoff keeps water 100% pure',
+            'Professional doorstep GKK renewal with indicator reset in 30 mins',
           ],
         },
         {
           heading: '2. Kent RO Maintenance: Modular Standard Components',
           paragraphs: [
             'Kent water purifiers (Grand Plus, Prime Plus, Pearl) use universal 10-inch inline filters and standard 1812-size RO membranes. This modular construction makes Kent one of the most flexible and economical brands to service in Bengaluru.',
-            'High-quality OEM-grade replacement kits featuring sediment, carbon, mineral alkaline cartridge, and 80 GPD membrane cost between ₹1,600 and ₹2,600 through certified multi-brand service centers, compared to ₹4,500+ charged by official company AMCs.',
+            'High-quality OEM-grade replacement kits featuring sediment, carbon, mineral alkaline cartridge, and 80 GPD membrane ensure optimal water quality and long pump life.',
           ],
           bulletPoints: [
-            'Average Annual Maintenance: ₹1,600 – ₹2,800',
-            'Pros: Universal spare availability, affordable sediment candles, modular servicing',
-            'Cons: Need trusted technicians to ensure authentic components are installed',
+            'Universal spare availability and modular servicing',
+            'Mineral RO controller calibration for healthy TDS balance',
+            'Rapid doorstep service across all Bangalore localities',
           ],
         },
         {
           heading: '3. Aquaguard (Eureka Forbes) Maintenance: Active Copper & Chemi-Block',
           paragraphs: [
-            'Eureka Forbes Aquaguard systems (Geneus, Enhance, Blaze, Superb) incorporate specialized Active Copper, Zinc Booster, and patented Chemi-Block cartridges. In high-limescale localities, the electronic mineral-guard sensor can trigger error beeps requiring calibration.',
-            'Official Eureka Forbes service visits carry visiting fees of ₹500–₹800, and their comprehensive annual contracts range from ₹3,500 to ₹5,200.',
+            'Eureka Forbes Aquaguard systems (Geneus, Enhance, Blaze, Superb) incorporate specialized Active Copper, Zinc Booster, and patented Chemi-Block cartridges. In high-limescale localities, proper cartridge renewal protects the internal components.',
+            'Certified multi-brand technicians provide genuine copper and mineral-guard cartridges at transparent rates.',
           ],
           bulletPoints: [
-            'Average Annual Maintenance: ₹2,200 – ₹3,600',
-            'Pros: Excellent mineral infusion technology and dual RO+UV configurations',
-            'Cons: Expensive company service calls and proprietary bayonet connectors on newer models',
+            'Excellent mineral infusion technology and dual RO+UV configurations',
+            'Dedicated Active Copper cartridges for healthy everyday hydration',
+            'Same-day doorstep inspection and diagnostic support in Bangalore',
           ],
         },
         {
-          heading: '4. Summary: How to Save 40% to 50% on RO Upkeep in Bangalore',
+          heading: '4. Summary: How to Ensure Long-Term Reliability in Bangalore',
           paragraphs: [
-            'By choosing an independent certified service center like RO Service Centre 24x7, you get identical 100% genuine, food-grade, lab-tested filter media and NSF-certified RO membranes at direct wholesale rates with 30-day doorstep labor guarantees and zero visiting fee inflation.',
+            'By choosing an independent certified service center like RO Service Centre 24x7, you get 100% genuine, food-grade, lab-tested filter media and NSF-certified RO membranes with 30-day doorstep labor guarantees and fast 60–90 minute arrival.',
           ],
         },
       ],
@@ -196,7 +199,8 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Syed Maula (Senior Service Engineer)',
     readingTime: '5 min read',
     category: 'Emergency Troubleshooting',
-    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0050_ffapvn.jpg',
+    // AO Smith Service Image (Repair)
+    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0051_ov3w2q.jpg',
     relatedBrandSlug: 'aosmith-service',
     relatedBrandName: 'AO Smith RO',
     content: {
@@ -238,7 +242,8 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Ramesh K. (Water Quality Specialist)',
     readingTime: '6 min read',
     category: 'Water Quality & Health',
-    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743946/IMG-20260918-WA0059_ndexit.jpg',
+    // Livpure Service Image (Repair)
+    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0053_jzf7ky.jpg',
     relatedBrandSlug: 'livpure-service',
     relatedBrandName: 'Livpure RO',
     content: {
@@ -276,7 +281,8 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Syed Maula (Senior Kent Specialist)',
     readingTime: '5 min read',
     category: 'Troubleshooting & Repairs',
-    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0052_wlnsxq.jpg',
+    // Kent Service Image (Repair)
+    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0015_ptidj8.jpg',
     relatedBrandSlug: 'kent-service',
     relatedBrandName: 'Kent RO',
     content: {
@@ -312,7 +318,8 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Ramesh K. (Water Purification Specialist)',
     readingTime: '6 min read',
     category: 'Maintenance & Service Guide',
-    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0056_ayukpn.jpg',
+    // Aquaguard Service Image (Filter Replacement)
+    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743946/IMG-20260918-WA0059_ndexit.jpg',
     relatedBrandSlug: 'aquaguard-service',
     relatedBrandName: 'Aquaguard RO',
     content: {
@@ -331,9 +338,9 @@ export const BLOG_POSTS: BlogPost[] = [
             'The patented Chemi-Block cartridge absorbs excess chlorine and foul odors before water reaches the thin-film composite RO membrane. In tanker-supplied areas like Bellandur and Sarjapur, replacing this block every 9 to 12 months prevents premature membrane breakdown.',
           ],
           bulletPoints: [
-            'Doorstep diagnostic & inspection fee: ₹299 (adjusted against service bill)',
-            'Sediment & carbon cartridge kit: ₹999 – ₹1,499 with 30-day labor warranty',
-            'Comprehensive Annual Maintenance Contract: ₹2,499 with 3 visits & parts',
+            'Doorstep diagnostic & inspection fee adjusted against service bill',
+            'Sediment & carbon cartridge kit with 30-day labor warranty',
+            'Comprehensive Annual Maintenance Contract with scheduled visits & parts',
           ],
         },
       ],
@@ -348,7 +355,8 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Syed Maula (Water Treatment Engineer)',
     readingTime: '5 min read',
     category: 'Filter Replacement & AMC',
-    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0051_ov3w2q.jpg',
+    // Pureit Service Image (Filter)
+    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743947/IMG-20260918-WA0060_1_r10zsw.jpg',
     relatedBrandSlug: 'pureit-service',
     relatedBrandName: 'Pureit RO',
     content: {
@@ -384,7 +392,8 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Ramesh K. (Master RO Technician)',
     readingTime: '6 min read',
     category: 'Brand Comparison & Costs',
-    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0053_jzf7ky.jpg',
+    // AO Smith Service Image (Filter Replacement)
+    image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743947/IMG-20260918-WA0061_tsglkw.jpg',
     relatedBrandSlug: 'aosmith-service',
     relatedBrandName: 'AO Smith RO',
     content: {
@@ -420,6 +429,7 @@ export const BLOG_POSTS: BlogPost[] = [
     author: 'Syed Maula (Lead Technician)',
     readingTime: '5 min read',
     category: 'Maintenance & Service Guide',
+    // Livpure Service Image (Filter Replacement)
     image: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743946/IMG-20260918-WA0058_fwab01.jpg',
     relatedBrandSlug: 'livpure-service',
     relatedBrandName: 'Livpure RO',
@@ -447,3 +457,104 @@ export const BLOG_POSTS: BlogPost[] = [
     },
   },
 ];
+
+/**
+ * Returns brand-specific image strictly matching the brand page assets
+ * This guarantees no cross-brand image mismatch on brand pages or brand blog pages.
+ */
+export function getBrandBlogImage(
+  brandKey?: string,
+  postSlugOrIndex?: string | number,
+  fallbackImage?: string
+): string {
+  if (!brandKey) return fallbackImage || BLOG_POSTS[0].image;
+
+  const key = brandKey.toLowerCase().replace(/-service$/, '');
+
+  if (key.includes('kent')) {
+    const kentImages = [
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0015_ptidj8.jpg', // Kent Repair
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0017_qm0y3k.jpg', // Kent Filter
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0016_y94ufa.jpg', // Kent AMC
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0018_m8dnkp.jpg', // Kent Quality
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789674504/IMG-20260918-WA0002_whpvlb.jpg', // Kent Banner
+    ];
+    if (typeof postSlugOrIndex === 'number') return kentImages[postSlugOrIndex % kentImages.length];
+    if (typeof postSlugOrIndex === 'string') {
+      let hash = 0;
+      for (let i = 0; i < postSlugOrIndex.length; i++) hash += postSlugOrIndex.charCodeAt(i);
+      return kentImages[hash % kentImages.length];
+    }
+    return kentImages[0];
+  }
+
+  if (key.includes('aquaguard')) {
+    const aquaImages = [
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0050_ffapvn.jpg', // Aquaguard Repair
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743946/IMG-20260918-WA0059_ndexit.jpg', // Aquaguard Filter
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0057_hnngfr.jpg', // Aquaguard AMC
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0044_mt8t6n.jpg', // Aquaguard Banner
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194328_pcq7uw.png', // Aquaguard Hero
+    ];
+    if (typeof postSlugOrIndex === 'number') return aquaImages[postSlugOrIndex % aquaImages.length];
+    if (typeof postSlugOrIndex === 'string') {
+      let hash = 0;
+      for (let i = 0; i < postSlugOrIndex.length; i++) hash += postSlugOrIndex.charCodeAt(i);
+      return aquaImages[hash % aquaImages.length];
+    }
+    return aquaImages[0];
+  }
+
+  if (key.includes('pureit')) {
+    const pureitImages = [
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0052_wlnsxq.jpg', // Pureit Repair
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743947/IMG-20260918-WA0060_1_r10zsw.jpg', // Pureit Filter
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0056_ayukpn.jpg', // Pureit AMC
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742395/file_0000000062e4820b88f376aa9d87322a_zgjamt.png', // Pureit Banner
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194420_cdv3yx.jpg', // Pureit Hero
+    ];
+    if (typeof postSlugOrIndex === 'number') return pureitImages[postSlugOrIndex % pureitImages.length];
+    if (typeof postSlugOrIndex === 'string') {
+      let hash = 0;
+      for (let i = 0; i < postSlugOrIndex.length; i++) hash += postSlugOrIndex.charCodeAt(i);
+      return pureitImages[hash % pureitImages.length];
+    }
+    return pureitImages[0];
+  }
+
+  if (key.includes('smith') || key.includes('ao')) {
+    const aoSmithImages = [
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0051_ov3w2q.jpg', // AO Smith Repair
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743947/IMG-20260918-WA0061_tsglkw.jpg', // AO Smith Filter
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743916/IMG-20260918-WA0055_uvysaw.jpg', // AO Smith AMC
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0043_lofbp9.jpg', // AO Smith Banner
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789748961/IMG-20260918-WA0071_woclww.jpg', // AO Smith Hero
+    ];
+    if (typeof postSlugOrIndex === 'number') return aoSmithImages[postSlugOrIndex % aoSmithImages.length];
+    if (typeof postSlugOrIndex === 'string') {
+      let hash = 0;
+      for (let i = 0; i < postSlugOrIndex.length; i++) hash += postSlugOrIndex.charCodeAt(i);
+      return aoSmithImages[hash % aoSmithImages.length];
+    }
+    return aoSmithImages[0];
+  }
+
+  if (key.includes('livpure')) {
+    const livpureImages = [
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743886/IMG-20260918-WA0053_jzf7ky.jpg', // Livpure Repair
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743946/IMG-20260918-WA0058_fwab01.jpg', // Livpure Filter
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0054_qks7en.jpg', // Livpure AMC
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0045_otqkvz.jpg', // Livpure Banner
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194243_himoc3.jpg', // Livpure Hero
+    ];
+    if (typeof postSlugOrIndex === 'number') return livpureImages[postSlugOrIndex % livpureImages.length];
+    if (typeof postSlugOrIndex === 'string') {
+      let hash = 0;
+      for (let i = 0; i < postSlugOrIndex.length; i++) hash += postSlugOrIndex.charCodeAt(i);
+      return livpureImages[hash % livpureImages.length];
+    }
+    return livpureImages[0];
+  }
+
+  return fallbackImage || 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789669453/IMG-20260917-WA0016_y94ufa.jpg';
+}

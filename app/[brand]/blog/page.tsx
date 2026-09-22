@@ -4,9 +4,18 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { headers } from 'next/headers';
-import { Calendar, Clock, ArrowRight, BookOpen, ChevronRight, Phone, ShieldCheck, Wrench, CheckCircle2 } from 'lucide-react';
+import {
+  Calendar,
+  Clock,
+  ArrowRight,
+  ShieldCheck,
+  ChevronRight,
+  Wrench,
+  BookOpen,
+  Phone,
+} from 'lucide-react';
 import { BRAND_PAGES_DATA, BUSINESS_DETAILS } from '@/src/data/content';
-import { BLOG_POSTS, BlogPost } from '@/src/data/blogPosts';
+import { BLOG_POSTS, BlogPost, getBrandBlogImage } from '@/src/data/blogPosts';
 import { Header } from '@/src/components/Header';
 import { Footer } from '@/src/components/Footer';
 
@@ -32,22 +41,22 @@ function getBrand(key: string) {
 
 export async function generateStaticParams() {
   const brandKeys = Object.keys(BRAND_PAGES_DATA);
-  const params: { brand: string }[] = [];
-  brandKeys.forEach((key) => {
-    params.push({ brand: key });
-    const b = BRAND_PAGES_DATA[key];
-    if (b?.id && b.id !== key) {
-      params.push({ brand: b.id });
-    }
-  });
-  return params;
+  return brandKeys.map((brand) => ({
+    brand,
+  }));
 }
 
 export async function generateMetadata({ params }: BrandBlogProps): Promise<Metadata> {
   const { brand: brandKey } = await params;
   const brand = getBrand(brandKey);
-  if (!brand) return {};
 
+  if (!brand) {
+    return {
+      title: 'Brand Blog Not Found | RO Service Centre 24x7',
+    };
+  }
+
+  // Handle subdomain-specific canonical URLs for Google Ads and SEO
   let canonicalUrl = `https://www.roservicecentre24x7.in/${brandKey}/blog`;
 
   try {
@@ -72,29 +81,35 @@ export async function generateMetadata({ params }: BrandBlogProps): Promise<Meta
       canonicalUrl = `${proto}://${hostClean}/blog`;
     }
   } catch {
-    // fallback during static prerendering
+    // fallback during prerender
   }
 
-  const title = `${brand.name} RO Service & Maintenance Blog | Bangalore Expert Guides`;
-  const description = `Practical guides, troubleshooting tips, filter replacement intervals, and maintenance costs specifically for ${brand.name} water purifiers in Bangalore.`;
+  const brandOgImage = getBrandBlogImage(brand.id, 0);
 
   return {
-    title,
-    description,
+    title: `${brand.name} RO Purifier Service Guides & Maintenance Blog | Bangalore`,
+    description: `Complete maintenance guides, troubleshooting tips, cartridge replacement intervals, and TDS guides for ${brand.name} water purifiers in Bangalore.`,
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title,
-      description,
+      title: `${brand.name} RO Purifier Service Guides & Maintenance Blog`,
+      description: `Expert repair advice, filter maintenance schedules, and troubleshooting for ${brand.name} purifiers in Bangalore.`,
       url: canonicalUrl,
       type: 'website',
-      siteName: 'RO Service Centre 24x7 Bangalore',
+      images: [
+        {
+          url: brandOgImage,
+          width: 1200,
+          height: 630,
+          alt: `${brand.name} RO Service Guides`,
+        },
+      ],
     },
   };
 }
 
-export default async function BrandBlogIndexPage({ params }: BrandBlogProps) {
+export default async function BrandBlogPage({ params }: BrandBlogProps) {
   const { brand: brandKey } = await params;
   const brand = getBrand(brandKey);
 
@@ -144,14 +159,14 @@ export default async function BrandBlogIndexPage({ params }: BrandBlogProps) {
       telephone: '+918050291180',
       url: 'https://www.roservicecentre24x7.in',
     },
-    blogPost: postsToShow.map((post) => ({
+    blogPost: postsToShow.map((post, idx) => ({
       '@type': 'BlogPosting',
       headline: post.title,
       description: post.description,
-      url: `https://www.roservicecentre24x7.in/blog/${post.slug}`,
+      url: `https://www.roservicecentre24x7.in/${brandKey}/blog/${post.slug}`,
       datePublished: post.publishedAt,
       dateModified: post.modifiedAt,
-      image: post.image,
+      image: getBrandBlogImage(brand.id, post.slug || idx, post.image),
       author: {
         '@type': 'Person',
         name: post.author,
@@ -169,34 +184,42 @@ export default async function BrandBlogIndexPage({ params }: BrandBlogProps) {
       <Header />
 
       <main className="flex-1">
-        {/* Brand Blog Hero Section */}
-        <section
-          style={{ backgroundColor: brandDarkBg }}
-          className="text-white py-14 sm:py-20 relative overflow-hidden"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-xs text-white/70 mb-6 font-medium">
-              <Link href="/" className="hover:text-white transition-colors">
+        {/* Breadcrumb Header */}
+        <section className="bg-white border-b border-slate-200/80 py-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <nav className="flex items-center gap-1.5 text-xs text-slate-500 font-medium overflow-x-auto whitespace-nowrap py-1">
+              <Link href="/" className="hover:text-[#0066cc] transition-colors">
                 Home
               </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/40" />
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
               <Link
                 href={`/${brand.slug.replace(/^\//, '')}`}
-                className="hover:text-white transition-colors"
+                className="hover:text-[#0066cc] transition-colors"
               >
                 {brand.name} Service
               </Link>
-              <ChevronRight className="w-3.5 h-3.5 text-white/40" />
-              <span className="text-white font-semibold">Blog &amp; Guides</span>
+              <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+              <span className="text-slate-800 font-semibold">{brand.name} Blog &amp; Guides</span>
             </nav>
+          </div>
+        </section>
 
+        {/* Hero Section */}
+        <section
+          style={{
+            background: `linear-gradient(135deg, ${brandDarkBg} 0%, ${brandPrimaryColor} 100%)`,
+          }}
+          className="py-12 sm:py-16 text-white relative overflow-hidden"
+        >
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
+          
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 text-white text-xs font-bold uppercase tracking-wider mb-4 backdrop-blur-xs">
-                <BookOpen className="w-3.5 h-3.5 text-cyan-300" />
-                {brand.name} Maintenance &amp; Care Hub
-              </span>
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight mb-4 text-white">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-bold uppercase tracking-wider mb-4 backdrop-blur-xs">
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>{brand.name} Knowledge Base &amp; Troubleshooter</span>
+              </div>
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-4">
                 {brand.name} RO Purifier Guides &amp; Care
               </h1>
               <p className="text-base sm:text-lg text-white/90 leading-relaxed mb-6">
@@ -209,7 +232,7 @@ export default async function BrandBlogIndexPage({ params }: BrandBlogProps) {
                   className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white text-slate-900 font-bold text-xs sm:text-sm hover:bg-slate-100 transition-colors shadow-xs"
                 >
                   <Wrench className="w-4 h-4 text-blue-600" />
-                  <span>Book {brand.name} Service (₹299 Visit)</span>
+                  <span>Book {brand.name} Service</span>
                 </Link>
 
                 <a
@@ -246,68 +269,73 @@ export default async function BrandBlogIndexPage({ params }: BrandBlogProps) {
               </Link>
             </div>
 
-            {/* Grid of Posts - strictly NO pill on cards as requested */}
+            {/* Grid of Posts - strictly NO pill on cards, and using brand-matched images only */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {postsToShow.map((post) => (
-                <article
-                  key={post.slug}
-                  className="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group hover:border-blue-300"
-                >
-                  {/* Thumbnail Image - NO pill */}
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="relative h-52 w-full bg-slate-100 block overflow-hidden"
-                  >
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                    />
-                  </Link>
+              {postsToShow.map((post, idx) => {
+                const brandImage = getBrandBlogImage(brand.id, post.slug || idx, post.image);
+                const postUrl = `/${brandKey}/blog/${post.slug}`;
 
-                  {/* Body */}
-                  <div className="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                      {/* Meta */}
-                      <div className="flex items-center gap-3 text-xs text-slate-400 mb-3">
-                        <span className="flex items-center gap-1">
-                          <Calendar className="w-3.5 h-3.5" />
-                          {post.publishedAt}
-                        </span>
-                        <span>•</span>
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5" />
-                          {post.readingTime}
-                        </span>
+                return (
+                  <article
+                    key={post.slug}
+                    className="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group hover:border-blue-300"
+                  >
+                    {/* Thumbnail Image - NO pill, using strictly brand-matched images */}
+                    <Link
+                      href={postUrl}
+                      className="relative h-52 w-full bg-slate-100 block overflow-hidden"
+                    >
+                      <Image
+                        src={brandImage}
+                        alt={post.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      />
+                    </Link>
+
+                    {/* Body */}
+                    <div className="p-6 flex-1 flex flex-col justify-between">
+                      <div>
+                        {/* Meta */}
+                        <div className="flex items-center gap-3 text-xs text-slate-400 mb-3">
+                          <span className="flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5" />
+                            {post.publishedAt}
+                          </span>
+                          <span>•</span>
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3.5 h-3.5" />
+                            {post.readingTime}
+                          </span>
+                        </div>
+
+                        <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug mb-3">
+                          <Link href={postUrl}>{post.title}</Link>
+                        </h3>
+
+                        <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3 mb-6">
+                          {post.description}
+                        </p>
                       </div>
 
-                      <h3 className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug mb-3">
-                        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                      </h3>
+                      <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+                        <Link
+                          href={postUrl}
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 group-hover:text-blue-700 transition-colors"
+                        >
+                          <span>Read Full Guide</span>
+                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                        </Link>
 
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3 mb-6">
-                        {post.description}
-                      </p>
+                        <span className="text-[11px] font-semibold text-slate-400 bg-slate-50 px-2.5 py-1 rounded-md">
+                          {brand.name}
+                        </span>
+                      </div>
                     </div>
-
-                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 group-hover:text-blue-700 transition-colors"
-                      >
-                        <span>Read Full Guide</span>
-                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-
-                      <span className="text-[11px] font-semibold text-slate-400 bg-slate-50 px-2.5 py-1 rounded-md">
-                        {brand.name}
-                      </span>
-                    </div>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                );
+              })}
             </div>
 
             {/* Doorstep Emergency Assistance Box */}
@@ -318,48 +346,21 @@ export default async function BrandBlogIndexPage({ params }: BrandBlogProps) {
                   Bangalore Certified Technicians
                 </div>
                 <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900">
-                  Experiencing an urgent issue with your {brand.name} RO?
+                  Facing an issue with your {brand.name} RO?
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 max-w-xl">
-                  Get certified doorstep technicians to your home within 60 to 90 minutes. 100% genuine compatible spares, high-TDS rejection membranes, and 30-day labor warranty.
+                  Our certified independent technicians reach anywhere in Bangalore within 60 to 90 minutes. Transparent pricing and genuine spare parts.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto shrink-0">
+              <div className="flex flex-wrap items-center gap-4 shrink-0">
                 <a
                   href={`tel:${BUSINESS_DETAILS.phone}`}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition-colors text-center cursor-pointer"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm shadow-md transition-colors"
                 >
                   <Phone className="w-4 h-4" />
                   <span>Call {BUSINESS_DETAILS.phone}</span>
                 </a>
-                <Link
-                  href={`/${brand.slug.replace(/^\//, '')}`}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm transition-colors text-center cursor-pointer"
-                >
-                  <span>Book Doorstep Visit</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Explore Other Brand Guides */}
-            <div className="mt-14 pt-8 border-t border-slate-200">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4">
-                Explore Blog Guides for Other Water Purifier Brands:
-              </h4>
-              <div className="flex flex-wrap gap-2.5">
-                {Object.entries(BRAND_PAGES_DATA).map(([key, b]) => {
-                  if (b.id === brand.id) return null;
-                  return (
-                    <Link
-                      key={key}
-                      href={`/${key}/blog`}
-                      className="text-xs font-medium bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-700 px-3.5 py-1.5 rounded-lg border border-slate-200 transition-colors"
-                    >
-                      {b.name} RO Blog &amp; Guides →
-                    </Link>
-                  );
-                })}
               </div>
             </div>
 

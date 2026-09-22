@@ -8,16 +8,12 @@ import {
   Calendar,
   Clock,
   User,
-  ArrowLeft,
   Phone,
   CheckCircle,
-  ShieldCheck,
   ChevronRight,
-  ArrowRight,
-  Wrench,
 } from 'lucide-react';
 import { BRAND_PAGES_DATA, BUSINESS_DETAILS } from '@/src/data/content';
-import { BLOG_POSTS, BlogPost } from '@/src/data/blogPosts';
+import { BLOG_POSTS, getBrandBlogImage } from '@/src/data/blogPosts';
 import { Header } from '@/src/components/Header';
 import { Footer } from '@/src/components/Footer';
 
@@ -92,6 +88,8 @@ export async function generateMetadata({ params }: BrandBlogPostProps): Promise<
     // fallback during static prerendering
   }
 
+  const brandPostImage = getBrandBlogImage(brand.id, post.slug, post.image);
+
   return {
     title: `${post.title} | ${brand.name} RO Service Bangalore`,
     description: post.description,
@@ -105,7 +103,7 @@ export async function generateMetadata({ params }: BrandBlogPostProps): Promise<
       type: 'article',
       images: [
         {
-          url: post.image,
+          url: brandPostImage,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -125,11 +123,39 @@ export default async function BrandBlogPostPage({ params }: BrandBlogPostProps) 
   }
 
   const primaryColor = brand.brandThemeColors?.primary || '#0b5cbe';
+  const postImage = getBrandBlogImage(brand.id, post.slug, post.image);
 
   const relatedPosts = BLOG_POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
 
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    image: postImage,
+    datePublished: post.publishedAt,
+    dateModified: post.modifiedAt,
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'RO Service Centre 24x7',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194243_himoc3.jpg',
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-[#f8fbfe] text-slate-900 flex flex-col font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+
       <Header />
 
       <main className="flex-1 pb-16">
@@ -199,10 +225,10 @@ export default async function BrandBlogPostPage({ params }: BrandBlogPostProps) 
             </div>
           </header>
 
-          {/* Featured Image */}
+          {/* Featured Image - strictly brand page image */}
           <div className="relative h-64 sm:h-96 w-full rounded-2xl overflow-hidden mb-8 shadow-xs border border-slate-200/80 bg-slate-100">
             <Image
-              src={post.image}
+              src={postImage}
               alt={post.title}
               fill
               priority
@@ -267,28 +293,31 @@ export default async function BrandBlogPostPage({ params }: BrandBlogPostProps) 
           {/* Related Posts */}
           <div className="mt-16 pt-8 border-t border-slate-200">
             <h3 className="text-lg font-bold text-slate-900 mb-6">
-              More RO Maintenance Guides &amp; Tips
+              More {brand.name} Maintenance Guides &amp; Tips
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              {relatedPosts.map((rPost) => (
-                <Link
-                  key={rPost.slug}
-                  href={`/blog/${rPost.slug}`}
-                  className="bg-white p-4 rounded-xl border border-slate-200/80 shadow-2xs hover:shadow-xs transition-all group flex flex-col justify-between"
-                >
-                  <div>
-                    <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider">
-                      {rPost.category}
+              {relatedPosts.map((rPost, rIdx) => {
+                const rPostImage = getBrandBlogImage(brand.id, rPost.slug || rIdx, rPost.image);
+                return (
+                  <Link
+                    key={rPost.slug}
+                    href={`/${brandKey}/blog/${rPost.slug}`}
+                    className="bg-white p-4 rounded-xl border border-slate-200/80 shadow-2xs hover:shadow-xs transition-all group flex flex-col justify-between"
+                  >
+                    <div>
+                      <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider">
+                        {rPost.category}
+                      </span>
+                      <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2 mt-1 mb-2">
+                        {rPost.title}
+                      </h4>
+                    </div>
+                    <span className="text-[11px] font-bold text-slate-500 group-hover:text-blue-600 inline-flex items-center gap-1 mt-2">
+                      Read Guide →
                     </span>
-                    <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2 mt-1 mb-2">
-                      {rPost.title}
-                    </h4>
-                  </div>
-                  <span className="text-[11px] font-bold text-slate-500 group-hover:text-blue-600 inline-flex items-center gap-1 mt-2">
-                    Read Guide →
-                  </span>
-                </Link>
-              ))}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </article>

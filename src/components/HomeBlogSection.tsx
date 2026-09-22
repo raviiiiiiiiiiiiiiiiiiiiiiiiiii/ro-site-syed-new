@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { BookOpen, Calendar, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
-import { BLOG_POSTS } from '@/src/data/blogPosts';
+import { BookOpen, Calendar, Clock, ArrowRight } from 'lucide-react';
+import { BLOG_POSTS, getBrandBlogImage } from '@/src/data/blogPosts';
 
 interface HomeBlogSectionProps {
   brandSlug?: string;
@@ -32,7 +32,7 @@ export const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({
       })
     : BLOG_POSTS.slice(0, 6);
 
-  // Fallback if brand has fewer than 2 posts: show brand posts first, followed by general guides
+  // Fallback if brand has fewer than 2 posts: show brand posts first, followed by other guides
   const displayPosts = isBrand && filteredPosts.length < 2
     ? [...filteredPosts, ...BLOG_POSTS.filter(p => !filteredPosts.some(fp => fp.slug === p.slug)).slice(0, 3 - filteredPosts.length)]
     : (isBrand ? filteredPosts : BLOG_POSTS);
@@ -80,75 +80,84 @@ export const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({
           </Link>
         </div>
 
-        {/* Blog Cards Grid (NO pill on cards as requested) */}
+        {/* Blog Cards Grid (Strictly NO pill on cards, and brand-matched images only) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {displayPosts.map((post) => (
-            <article
-              key={post.slug}
-              className="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group hover:border-blue-300/80"
-            >
-              {/* Thumbnail Image - Pill removed as requested */}
-              <Link href={`/blog/${post.slug}`} className="relative h-48 sm:h-52 w-full bg-slate-100 block overflow-hidden">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                />
-              </Link>
+          {displayPosts.map((post, idx) => {
+            const postImage = isBrand
+              ? getBrandBlogImage(brandSlug, post.slug || idx, post.image)
+              : post.image;
+            const postHref = isBrand
+              ? `/${brandSlug?.replace(/^\//, '')}/blog/${post.slug}`
+              : `/blog/${post.slug}`;
 
-              {/* Content Body */}
-              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                <div>
-                  {/* Meta Bar */}
-                  <div className="flex items-center gap-3 text-xs text-slate-400 mb-2.5">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3.5 h-3.5" />
-                      {post.publishedAt}
-                    </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5" />
-                      {post.readingTime}
-                    </span>
+            return (
+              <article
+                key={post.slug}
+                className="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group hover:border-blue-300/80"
+              >
+                {/* Thumbnail Image - Strictly only brand images used when on brand page */}
+                <Link href={postHref} className="relative h-48 sm:h-52 w-full bg-slate-100 block overflow-hidden">
+                  <Image
+                    src={postImage}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                </Link>
+
+                {/* Content Body */}
+                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                  <div>
+                    {/* Meta Bar */}
+                    <div className="flex items-center gap-3 text-xs text-slate-400 mb-2.5">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-3.5 h-3.5" />
+                        {post.publishedAt}
+                      </span>
+                      <span>•</span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-3.5 h-3.5" />
+                        {post.readingTime}
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0066cc] transition-colors leading-snug mb-2.5">
+                      <Link href={postHref}>
+                        {post.title}
+                      </Link>
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed line-clamp-2 sm:line-clamp-3 mb-5">
+                      {post.description}
+                    </p>
                   </div>
 
-                  {/* Title */}
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0066cc] transition-colors leading-snug mb-2.5">
-                    <Link href={`/blog/${post.slug}`}>
-                      {post.title}
-                    </Link>
-                  </h3>
-
-                  {/* Excerpt */}
-                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed line-clamp-2 sm:line-clamp-3 mb-5">
-                    {post.description}
-                  </p>
-                </div>
-
-                {/* Footer Link */}
-                <div className="pt-3.5 border-t border-slate-100 flex items-center justify-between mt-auto">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0066cc] group-hover:text-[#0052a3] transition-colors"
-                  >
-                    <span>Read Guide</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-
-                  {post.relatedBrandSlug && (
+                  {/* Footer Link */}
+                  <div className="pt-3.5 border-t border-slate-100 flex items-center justify-between mt-auto">
                     <Link
-                      href={`/${post.relatedBrandSlug}`}
-                      className="text-[11px] font-semibold text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200/80 px-2 py-0.5 rounded transition-colors"
+                      href={postHref}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0066cc] group-hover:text-[#0052a3] transition-colors"
                     >
-                      {post.relatedBrandName} →
+                      <span>Read Guide</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                     </Link>
-                  )}
+
+                    {post.relatedBrandSlug && (
+                      <Link
+                        href={`/${post.relatedBrandSlug}`}
+                        className="text-[11px] font-semibold text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200/80 px-2 py-0.5 rounded transition-colors"
+                      >
+                        {post.relatedBrandName} →
+                      </Link>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
       </div>
