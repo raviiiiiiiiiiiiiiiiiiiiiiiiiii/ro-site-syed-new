@@ -927,7 +927,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               {/* Large Bold H1 */}
               <h1 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0c2b5e] leading-tight sm:leading-[1.15]">
                 <span className="block">{brand.id === 'ro-service-24x7' ? 'RO Service Centre Online 24x7' : `${brand.name.toUpperCase()} RO Service`}</span>
-                <span className="block">Fast Doorstep Care in Bangalore</span>
+                <span className="block">Fast Doorstep service in 60 mins</span>
               </h1>
 
               {/* Subheading / Tagline */}
