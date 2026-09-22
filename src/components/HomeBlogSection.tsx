@@ -4,7 +4,50 @@ import Image from 'next/image';
 import { BookOpen, Calendar, Clock, ArrowRight, ShieldCheck } from 'lucide-react';
 import { BLOG_POSTS } from '@/src/data/blogPosts';
 
-export const HomeBlogSection: React.FC = () => {
+interface HomeBlogSectionProps {
+  brandSlug?: string;
+  brandName?: string;
+  brandThemeColor?: string;
+}
+
+export const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({
+  brandSlug,
+  brandName,
+  brandThemeColor = '#0066cc',
+}) => {
+  const isBrand = Boolean(brandSlug && brandName);
+
+  // If brand is provided, filter posts relevant to that brand
+  const filteredPosts = isBrand
+    ? BLOG_POSTS.filter((post) => {
+        const cleanSlug = brandSlug?.toLowerCase().replace(/-service$/, '');
+        const targetSlug = post.relatedBrandSlug?.toLowerCase().replace(/-service$/, '');
+        const targetName = post.relatedBrandName?.toLowerCase() || '';
+        const nameClean = brandName?.toLowerCase() || '';
+        return (
+          targetSlug === cleanSlug ||
+          targetName.includes(nameClean) ||
+          post.title.toLowerCase().includes(nameClean)
+        );
+      })
+    : BLOG_POSTS.slice(0, 6);
+
+  // Fallback if brand has fewer than 2 posts: show brand posts first, followed by general guides
+  const displayPosts = isBrand && filteredPosts.length < 2
+    ? [...filteredPosts, ...BLOG_POSTS.filter(p => !filteredPosts.some(fp => fp.slug === p.slug)).slice(0, 3 - filteredPosts.length)]
+    : (isBrand ? filteredPosts : BLOG_POSTS);
+
+  const sectionTitle = isBrand
+    ? `${brandName} RO Purifier Maintenance & Care Guides`
+    : 'RO Purifier Maintenance & Care Guides';
+
+  const sectionSubtitle = isBrand
+    ? `Practical maintenance guides, troubleshooting tips, and filter replacement schedules for ${brandName} water purifiers in Bangalore.`
+    : 'Practical guides and maintenance tips from senior Bangalore technicians to keep your water clean, tasty, and 100% safe.';
+
+  const viewAllUrl = isBrand ? `/${brandSlug?.replace(/^\//, '')}/blog` : '/blog';
+  const viewAllLabel = isBrand ? `View All ${brandName} Guides & Articles` : 'View All Guides & Articles';
+
   return (
     <section id="homepage-blog-section" className="py-16 sm:py-24 bg-white border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -12,35 +55,39 @@ export const HomeBlogSection: React.FC = () => {
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
           <div>
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 text-[#0066cc] text-xs font-bold uppercase tracking-wider mb-3">
+            <span
+              style={{ color: brandThemeColor, backgroundColor: `${brandThemeColor}12` }}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3"
+            >
               <BookOpen className="w-3.5 h-3.5" />
-              Expert RO Knowledge Base
+              {isBrand ? `${brandName} Expert Knowledge Base` : 'Expert RO Knowledge Base'}
             </span>
             <h2 className="text-2xl sm:text-4xl font-black text-[#002b66] tracking-tight leading-tight">
-              RO Purifier Maintenance &amp; Care Guides
+              {sectionTitle}
             </h2>
             <p className="text-sm sm:text-base text-slate-600 mt-2 max-w-2xl">
-              Practical guides and maintenance tips from senior Bangalore technicians to keep your water clean, tasty, and 100% safe.
+              {sectionSubtitle}
             </p>
           </div>
 
           <Link
-            href="/blog"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#0066cc] hover:text-[#0052a3] group cursor-pointer self-start sm:self-auto shrink-0"
+            href={viewAllUrl}
+            style={{ color: brandThemeColor }}
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold hover:underline group cursor-pointer self-start sm:self-auto shrink-0"
           >
-            <span>View All Guides &amp; Articles</span>
+            <span>{viewAllLabel}</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
-        {/* Blog Cards Grid */}
+        {/* Blog Cards Grid (NO pill on cards as requested) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {BLOG_POSTS.map((post) => (
+          {displayPosts.map((post) => (
             <article
               key={post.slug}
               className="bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col overflow-hidden group hover:border-blue-300/80"
             >
-              {/* Thumbnail Image */}
+              {/* Thumbnail Image - Pill removed as requested */}
               <Link href={`/blog/${post.slug}`} className="relative h-48 sm:h-52 w-full bg-slate-100 block overflow-hidden">
                 <Image
                   src={post.image}
@@ -49,9 +96,6 @@ export const HomeBlogSection: React.FC = () => {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
-                <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-[11px] font-bold text-[#0066cc] px-3 py-1 rounded-full shadow-2xs">
-                  {post.category}
-                </div>
               </Link>
 
               {/* Content Body */}

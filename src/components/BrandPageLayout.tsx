@@ -260,24 +260,52 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
   const lookingForHeading = `${brandDisplayName} Water Purifier Service Bangalore`;
 
-  const lookingForKeywords = [
-    `${brandDisplayName} water purifier service Bangalore`,
-    `${brandDisplayName} service center near me`,
-    `${brandDisplayName} water purifier repair in Bangalore`,
-    `${brandDisplayName} filter replacement Bangalore`,
-    `${brandDisplayName} water purifier maintenance Bangalore`,
-    `${brandDisplayName} AMC service Bangalore`,
-    `${brandDisplayName} technician near me`,
-    `${brandDisplayName} water purifier service Bangalore`,
-    `${brandDisplayName} service center near me`,
-    `${brandDisplayName} water purifier repair in Bangalore`,
-  ];
-
   // Check if current page is the homepage
   const isHomepage =
     brand.id === 'ro-service-24x7' ||
     brand.slug === '/' ||
     brand.name.toLowerCase().includes('ro service center');
+
+  const HOMEPAGE_LOOKING_FOR_KEYWORDS = [
+    'Water Purifier Service',
+    'RO Service',
+    'RO Repair Service',
+    'Water Purifier Repair',
+    'Filter Replacement Service',
+    'RO Service Center',
+    'KENT Water Purifier Service',
+    'Aquaguard Water Purifier Service',
+    'Pureit Water Purifier Service',
+    'AO Smith Water Purifier Service',
+    'Livpure Water Purifier Service',
+    'Havells Water Purifier Service',
+    'V-Guard Water Purifier Service',
+    'ZeroB Water Purifier Service',
+    'KENT RO Service',
+    'Aquaguard RO Service',
+    'Pureit RO Service',
+    'AO Smith RO Service',
+    'Livpure RO Service',
+    'RO Water Purifier Service',
+  ];
+
+  const HOMEPAGE_BOTTOM_KEYWORDS =
+    'Water Purifier Service | RO Service | RO Repair Service | Water Purifier Repair | Filter Replacement Service | KENT Water Purifier Service | Aquaguard Water Purifier Service | Pureit Water Purifier Service | AO Smith Water Purifier Service | Livpure Water Purifier Service | Havells Water Purifier Service | V-Guard Water Purifier Service | ZeroB Water Purifier Service';
+
+  const lookingForKeywords = isHomepage
+    ? HOMEPAGE_LOOKING_FOR_KEYWORDS
+    : [
+        `${brandDisplayName} water purifier service Bangalore`,
+        `${brandDisplayName} service center near me`,
+        `${brandDisplayName} water purifier repair in Bangalore`,
+        `${brandDisplayName} filter replacement Bangalore`,
+        `${brandDisplayName} water purifier maintenance Bangalore`,
+        `${brandDisplayName} AMC service Bangalore`,
+        `${brandDisplayName} technician near me`,
+        `${brandDisplayName} water purifier service Bangalore`,
+        `${brandDisplayName} service center near me`,
+        `${brandDisplayName} water purifier repair in Bangalore`,
+      ];
 
   // Relevant keywords for brand pages only (Strictly excluded on homepage)
   const getRelevantBrandKeywords = (): string | null => {
@@ -1369,8 +1397,12 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
         onBookClick={scrollToBookingForm} 
       />
 
-      {/* Homepage Blog & Water Purifier Maintenance Knowledge Hub (Moved above FAQ) */}
-      {isHomepage && <HomeBlogSection />}
+      {/* Blog & Water Purifier Maintenance Knowledge Hub (Above FAQ, rendered on homepage and all brand pages) */}
+      <HomeBlogSection
+        brandSlug={isHomepage ? undefined : (brand.slug || brand.id).replace(/^\//, '')}
+        brandName={isHomepage ? undefined : brand.name}
+        brandThemeColor={primaryColor}
+      />
 
 
 
@@ -1807,14 +1839,20 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
             </div>
           </div>
 
-          {/* Relevant Brand Keywords (Placed all the way down below Copyright & Motto; strictly excluded on homepage) */}
-          {!isHomepage && relevantBrandKeywordString && (
+          {/* Keywords at very bottom (Homepage specified keywords & Brand-specific keywords) */}
+          {isHomepage ? (
+            <div className="pt-3 pb-1 text-center sm:text-left">
+              <p className="text-[11px] sm:text-xs text-slate-500 font-normal leading-relaxed">
+                {HOMEPAGE_BOTTOM_KEYWORDS}
+              </p>
+            </div>
+          ) : relevantBrandKeywordString ? (
             <div className="pt-3 pb-1 text-center sm:text-left">
               <p className="text-[11px] sm:text-xs text-slate-500 font-normal leading-relaxed">
                 {relevantBrandKeywordString}
               </p>
             </div>
-          )}
+          ) : null}
 
         </div>
       </footer>

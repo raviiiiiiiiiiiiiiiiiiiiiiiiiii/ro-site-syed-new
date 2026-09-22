@@ -109,9 +109,6 @@ export default function BlogIndexPage() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
-                    <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs text-[11px] font-bold text-[#0066cc] px-3 py-1 rounded-full shadow-2xs">
-                      {post.category}
-                    </div>
                   </Link>
 
                   {/* Body */}
