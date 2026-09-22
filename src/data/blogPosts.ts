@@ -494,7 +494,7 @@ export function getBrandBlogImage(
       'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743946/IMG-20260918-WA0059_ndexit.jpg', // Aquaguard Filter
       'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0057_hnngfr.jpg', // Aquaguard AMC
       'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0044_mt8t6n.jpg', // Aquaguard Banner
-      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194328_pcq7uw.png', // Aquaguard Hero
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1790093416/IMG-20260922-WA0045_fqt9bj.jpg', // Aquaguard Hero
     ];
     if (typeof postSlugOrIndex === 'number') return aquaImages[postSlugOrIndex % aquaImages.length];
     if (typeof postSlugOrIndex === 'string') {
@@ -511,7 +511,7 @@ export function getBrandBlogImage(
       'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743947/IMG-20260918-WA0060_1_r10zsw.jpg', // Pureit Filter
       'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789743917/IMG-20260918-WA0056_ayukpn.jpg', // Pureit AMC
       'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742395/file_0000000062e4820b88f376aa9d87322a_zgjamt.png', // Pureit Banner
-      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194420_cdv3yx.jpg', // Pureit Hero
+      'https://res.cloudinary.com/dieq3fjuv/image/upload/v1790093416/IMG-20260922-WA0044_sreaci.jpg', // Pureit Hero
     ];
     if (typeof postSlugOrIndex === 'number') return pureitImages[postSlugOrIndex % pureitImages.length];
     if (typeof postSlugOrIndex === 'string') {

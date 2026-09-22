@@ -231,7 +231,7 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
       'Aquaguard technician near me'
     ],
     showcaseImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787239134/file_000000009e748211af646f5d6dda5fcb_wzukgr.png',
-    heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194328_pcq7uw.png',
+    heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1790093416/IMG-20260922-WA0045_fqt9bj.jpg',
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666091/file_00000000b97c8211b0ff0be33d753076_wncmpj.png',
     partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742669/file_00000000dca481f594fbe17b45c4fbf9_o20n4v.png',
     bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742391/IMG-20260918-WA0044_mt8t6n.jpg',
@@ -321,7 +321,7 @@ export const BRAND_PAGES_DATA: Record<string, BrandInfo> = {
       'Pureit AMC plan Bangalore'
     ],
     showcaseImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1787239134/file_0000000011a48211aeafadfc49fb86c5_ohr8va.png',
-    heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1786544412/IMG_20260812_194420_cdv3yx.jpg',
+    heroImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1790093416/IMG-20260922-WA0044_sreaci.jpg',
     heroBgImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789666101/file_00000000c8308206b3080195508f65f9_kdu2po.png',
     partsBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742669/file_000000006a7881f89f7423968dbdf36e_nnkyny.png',
     bottomBannerImage: 'https://res.cloudinary.com/dieq3fjuv/image/upload/v1789742395/file_0000000062e4820b88f376aa9d87322a_zgjamt.png',
