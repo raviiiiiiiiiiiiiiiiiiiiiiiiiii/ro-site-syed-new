@@ -23,7 +23,7 @@ export function getRouteFromSubdomain(hostname?: string): PageRoute | null {
   if (!host) return null;
 
   const parts = host.split('.');
-  // Must have at least 3 labels (e.g. kent.roservice24x7.in)
+  // Must have at least 3 labels (e.g. kent.roservicecentre24x7.in)
   if (parts.length < 3) {
     return null;
   }

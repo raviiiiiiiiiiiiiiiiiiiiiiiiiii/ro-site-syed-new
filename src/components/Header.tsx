@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { Phone, Menu, X, ChevronDown, Calendar, ShieldCheck, User, Truck, Headset, Droplets } from 'lucide-react';
 import { BUSINESS_DETAILS, BRAND_PAGES_DATA } from '@/src/data/content';
@@ -128,9 +129,11 @@ export const Header: React.FC<HeaderProps> = ({
               className="flex items-center gap-2.5 sm:gap-3 text-left focus:outline-none group py-1"
             >
               <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden shadow-xs shrink-0 group-hover:scale-[1.03] transition-transform">
-                <img
+                <Image
                   src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
                   alt="RO Service Center Online 24x7"
+                  width={44}
+                  height={44}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -159,11 +162,21 @@ export const Header: React.FC<HeaderProps> = ({
                 Home
               </Link>
 
+              <Link
+                href="/blog"
+                style={currentRoute.startsWith('/blog') ? { color: brandTheme.primary } : undefined}
+                className={`text-sm font-semibold transition-colors ${
+                  currentRoute.startsWith('/blog') ? 'font-bold' : 'text-slate-700 hover:text-slate-950'
+                }`}
+              >
+                Blog
+              </Link>
+
               <a
                 href={`tel:${BUSINESS_DETAILS.phone}`}
                 className="text-sm font-semibold text-slate-700 hover:text-slate-950 transition-colors flex items-center gap-1.5"
               >
-                <Phone className="w-3.5 h-3.5 text-[#0070e0]" />
+                <Phone className="w-3.5 h-3.5 text-[#0070e0] animate-phone-rock" />
                 <span>Call 08050291180</span>
               </a>
 
@@ -312,6 +325,14 @@ export const Header: React.FC<HeaderProps> = ({
                 Home
               </Link>
 
+              <Link
+                href="/blog"
+                onClick={() => setMobileMenuOpen(false)}
+                className="px-3 py-2 text-sm font-bold text-slate-900 rounded-lg hover:bg-slate-50"
+              >
+                Blog &amp; Guides
+              </Link>
+
               <div className="px-3 pt-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
                 Legal &amp; Policies
               </div>
@@ -358,7 +379,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center px-4 py-2.5 rounded-xl bg-sky-600 text-white font-bold text-sm shadow-md flex items-center justify-center gap-2"
               >
-                <Phone className="w-4 h-4 fill-white" />
+                <Phone className="w-4 h-4 fill-white animate-phone-rock" />
                 <span>Call 08050291180</span>
               </a>
             </div>

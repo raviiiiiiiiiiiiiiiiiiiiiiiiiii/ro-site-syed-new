@@ -16,7 +16,7 @@ export function middleware(req: NextRequest) {
   const hostname = host.split(':')[0].trim();
   const parts = hostname.split('.');
 
-  // Subdomain detection: e.g. kent.roservicehelpline.in (3 parts) or kent.localhost (2 parts in local dev)
+  // Subdomain detection: e.g. kent.roservicecentre24x7.in (3 parts) or kent.localhost (2 parts in local dev)
   const isLocalhost = hostname.includes('localhost');
   const hasSubdomain = isLocalhost ? parts.length >= 2 : parts.length >= 3;
 

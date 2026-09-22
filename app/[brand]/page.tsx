@@ -38,10 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const brand = getBrand(brandKey);
   if (!brand) return {};
 
-  const subdomain = brand.id;
-  const canonicalUrl = subdomain
-    ? `https://${subdomain}.roservice24x7.in`
-    : `https://www.roservice24x7.in/${brandKey}`;
+  const canonicalUrl = `https://www.roservicecentre24x7.in/${brandKey}`;
 
   return {
     title: brand.metaTitle,
@@ -71,18 +68,35 @@ export default async function BrandPage({ params }: PageProps) {
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
+      '@id': `https://www.roservicecentre24x7.in/${brandKey}#service`,
+      url: `https://www.roservicecentre24x7.in/${brandKey}`,
       name: `${brand.name} Water Purifier Repair & Service Bangalore`,
       serviceType: 'Water Purifier Repair, Maintenance & Filter Replacement',
       provider: {
         '@type': 'LocalBusiness',
+        '@id': 'https://www.roservicecentre24x7.in/#localbusiness',
         name: BUSINESS_DETAILS.name,
         telephone: `+91${BUSINESS_DETAILS.phone}`,
+        url: 'https://www.roservicecentre24x7.in',
       },
       areaServed: {
         '@type': 'City',
         name: 'Bangalore',
       },
       description: brand.metaDescription,
+      offers: {
+        '@type': 'Offer',
+        price: '299',
+        priceCurrency: 'INR',
+        description: 'Doorstep inspection fee, 100% adjusted against final repair bill.',
+      },
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.8',
+        reviewCount: '10480',
+        bestRating: '5',
+        worstRating: '1',
+      },
     },
     {
       '@context': 'https://schema.org',

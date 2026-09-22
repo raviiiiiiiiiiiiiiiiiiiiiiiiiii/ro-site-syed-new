@@ -47,6 +47,9 @@ import {
 import { BrandInfo } from '@/src/types';
 import { BUSINESS_DETAILS, BANGALORE_LOCALITIES } from '@/src/data/content';
 import { optimizeCloudinary } from '@/src/utils/imageOptimizer';
+import { PricingTransparency } from './PricingTransparency';
+import { BrandComparison } from './BrandComparison';
+import { HomeBlogSection } from './HomeBlogSection';
 
 interface BrandPageLayoutProps {
   brand: BrandInfo;
@@ -1353,6 +1356,21 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
         </div>
       </section>
+
+      {/* Transparent Fixed Pricing Section */}
+      <PricingTransparency 
+        brandName={brand.id === 'ro-service-24x7' ? 'RO' : brand.name} 
+        onBookClick={scrollToBookingForm} 
+      />
+
+      {/* Brand Comparison (RO Service Centre 24x7 vs Authorized Brand Center) */}
+      <BrandComparison 
+        brandName={brand.id === 'ro-service-24x7' ? 'Official Brand Centers' : `${brand.name} Authorized Center`} 
+        onBookClick={scrollToBookingForm} 
+      />
+
+      {/* Homepage Blog & Water Purifier Maintenance Knowledge Hub (Moved above FAQ) */}
+      {isHomepage && <HomeBlogSection />}
 
 
 

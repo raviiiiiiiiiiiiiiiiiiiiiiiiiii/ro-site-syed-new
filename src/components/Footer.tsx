@@ -2,8 +2,9 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Phone, MapPin, Mail, Clock, Droplets } from 'lucide-react';
+import { Phone, MapPin, Mail, Clock, Droplets, BookOpen } from 'lucide-react';
 import { BUSINESS_DETAILS, BANGALORE_LOCALITIES } from '@/src/data/content';
 import { PageRoute } from '@/src/types';
 
@@ -67,9 +68,11 @@ export const Footer: React.FC<FooterProps> = ({ currentRoute: propCurrentRoute, 
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 rounded-xl overflow-hidden shadow-md shrink-0">
-                <img
+                <Image
                   src="https://res.cloudinary.com/dieq3fjuv/image/upload/v1789813995/IMG-20260918-WA0070_skegej.jpg"
                   alt="RO Service Center Online 24x7"
+                  width={44}
+                  height={44}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -87,9 +90,18 @@ export const Footer: React.FC<FooterProps> = ({ currentRoute: propCurrentRoute, 
               Bangalore's trusted independent water purifier repair, filter replacement, installation, and AMC service center. Servicing all major RO brands with doorstep technicians.
             </p>
 
-            <div className="flex items-center gap-2 text-xs text-white font-semibold pt-1">
-              <Clock className="w-4 h-4" />
-              <span>{BUSINESS_DETAILS.workingHours}</span>
+            <div className="flex flex-wrap gap-4 pt-1">
+              <div className="flex items-center gap-2 text-xs text-white font-semibold">
+                <Clock className="w-4 h-4" />
+                <span>{BUSINESS_DETAILS.workingHours}</span>
+              </div>
+              <Link
+                href="/blog"
+                className="flex items-center gap-1.5 text-xs text-cyan-200 hover:text-white font-bold underline transition-colors"
+              >
+                <BookOpen className="w-3.5 h-3.5" />
+                <span>RO Service Blog & Guides</span>
+              </Link>
             </div>
           </div>
 

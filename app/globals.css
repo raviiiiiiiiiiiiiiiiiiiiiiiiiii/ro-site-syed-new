@@ -81,3 +81,39 @@ div[data-nextjs-toast] {
   animation: softBounce 1.8s ease-in-out infinite;
 }
 
+@keyframes phoneRock {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-14deg);
+  }
+  40% {
+    transform: rotate(12deg);
+  }
+  60% {
+    transform: rotate(-8deg);
+  }
+  80% {
+    transform: rotate(6deg);
+  }
+}
+.animate-phone-rock {
+  animation: phoneRock 1.2s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes subtleGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px 2px rgba(0, 102, 204, 0.22), 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+  50% {
+    box-shadow: 0 0 22px 6px rgba(0, 102, 204, 0.42), 0 6px 20px rgba(0, 82, 204, 0.18);
+  }
+}
+.animate-subtle-glow {
+  animation: subtleGlow 2.4s ease-in-out infinite;
+}
+
+

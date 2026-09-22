@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Terms and Conditions | RO Service Centre 24x7 Bangalore',
   description: 'Terms and conditions for doorstep RO water purifier repair, maintenance, installation and filter replacement services by RO Service Centre 24x7 in Bangalore.',
   alternates: {
-    canonical: 'https://www.roservice24x7.in/terms-of-service',
+    canonical: 'https://www.roservicecentre24x7.in/terms-of-service',
   },
 };
 

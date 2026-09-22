@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Disclaimer & Brand Notice | RO Service Centre 24x7 Bangalore',
   description: 'Independent service center disclaimer and brand trademark notices for RO Service Centre 24x7 Bangalore.',
   alternates: {
-    canonical: 'https://www.roservice24x7.in/disclaimer',
+    canonical: 'https://www.roservicecentre24x7.in/disclaimer',
   },
 };
 

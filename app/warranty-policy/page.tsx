@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Warranty & Guarantee Policy | RO Service Center Online 24x7',
   description: 'Detailed warranty terms for RO water purifier repair, genuine filter replacements, and 30-day labor warranty by RO Service Center Online 24x7.',
   alternates: {
-    canonical: 'https://www.roservice24x7.in/warranty-policy',
+    canonical: 'https://www.roservicecentre24x7.in/warranty-policy',
   },
 };
 

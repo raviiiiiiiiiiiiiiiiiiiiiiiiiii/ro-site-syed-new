@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'About Us | RO Service Center Online 24x7 Bangalore',
   description: 'About RO Service Center Online 24x7 - Bangalore leading independent multi-brand doorstep water purifier service, repair, and AMC provider.',
   alternates: {
-    canonical: 'https://www.roservice24x7.in/about-us',
+    canonical: 'https://www.roservicecentre24x7.in/about-us',
   },
 };
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Refund & Return Policy | RO Service Centre 24x7 Bangalore',
   description: 'Cancellation and refund terms for doorstep RO water purifier repair, inspection fee policy, and 30-day labor warranty in Bangalore.',
   alternates: {
-    canonical: 'https://www.roservice24x7.in/refund-policy',
+    canonical: 'https://www.roservicecentre24x7.in/refund-policy',
   },
 };
 

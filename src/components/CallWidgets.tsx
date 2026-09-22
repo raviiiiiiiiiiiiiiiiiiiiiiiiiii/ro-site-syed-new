@@ -42,10 +42,16 @@ export const CallWidgets: React.FC<CallWidgetsProps> = ({
             <span>Call {phone}</span>
           </span>
 
-          {/* Minimalist Circular Button */}
-          <div className="relative w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center border border-slate-200/80 shadow-[0_6px_20px_rgba(0,0,0,0.08),0_1px_4px_rgba(0,0,0,0.04)] group-hover:shadow-[0_10px_28px_rgba(0,82,204,0.18)] group-hover:border-blue-300/80 group-hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer">
-            {/* Gentle Bouncing Call Handset Icon */}
-            <div className="flex items-center justify-center animate-soft-bounce">
+          {/* Minimalist Circular Button with Subtle Glow */}
+          <div className="relative w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-white/95 backdrop-blur-md flex items-center justify-center border border-blue-200/80 animate-subtle-glow group-hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer">
+            {/* Soft Ambient Aura */}
+            <div 
+              style={{ backgroundColor: theme.primary || '#0047ba' }} 
+              className="absolute inset-0 rounded-full opacity-15 blur-sm -z-10 group-hover:opacity-30 transition-opacity" 
+            />
+
+            {/* Subtle Side-to-Side Rocking Tilt Phone Icon */}
+            <div className="flex items-center justify-center animate-phone-rock">
               <Phone 
                 style={{ fill: theme.primary || '#0047ba', color: theme.primary || '#0047ba' }}
                 className="w-5 h-5 sm:w-5.5 sm:h-5.5 transition-transform duration-300 group-hover:scale-110" 

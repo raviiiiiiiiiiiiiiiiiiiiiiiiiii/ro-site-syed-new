@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Cancellation & Rescheduling Policy | RO Service Center Online 24x7',
   description: 'Doorstep water purifier service booking cancellation, rescheduling, and visiting fee terms for RO Service Center Online 24x7.',
   alternates: {
-    canonical: 'https://www.roservice24x7.in/cancellation-policy',
+    canonical: 'https://www.roservicecentre24x7.in/cancellation-policy',
   },
 };
 

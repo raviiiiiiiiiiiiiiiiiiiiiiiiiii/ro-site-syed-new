@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Cookie Policy | RO Service Centre 24x7 Bangalore',
   description: 'Cookie Policy for RO Service Centre 24x7 Bangalore. Information regarding cookies, session storage and analytics.',
   alternates: {
-    canonical: 'https://www.roservice24x7.in/cookie-policy',
+    canonical: 'https://www.roservicecentre24x7.in/cookie-policy',
   },
 };
 

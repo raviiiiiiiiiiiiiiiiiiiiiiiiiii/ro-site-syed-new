@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Privacy Policy | RO Service Centre 24x7 Bangalore',
   description: 'Privacy Policy for RO Service Centre 24x7. Learn how we handle and protect customer information for doorstep RO water purifier repair in Bangalore.',
   alternates: {
-    canonical: 'https://www.roservice24x7.in/privacy-policy',
+    canonical: 'https://www.roservicecentre24x7.in/privacy-policy',
   },
 };
 

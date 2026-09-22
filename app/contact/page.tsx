@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Contact Us | RO Service Center Online 24x7 Bangalore',
   description: 'Contact RO Service Center Online 24x7. Fast doorstep RO water purifier repair, helpline numbers, and email support in Bangalore.',
   alternates: {
-    canonical: 'https://www.roservice24x7.in/contact',
+    canonical: 'https://www.roservicecentre24x7.in/contact',
   },
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 import { ChevronRight } from 'lucide-react';
 import { BRAND_PAGES_DATA } from '../data/content';
@@ -38,13 +39,11 @@ export const BrandsGrid: React.FC<BrandsGridProps> = ({ onNavigate }) => {
                 <div>
                   {brand.logoUrl && (
                     <div className="bg-white p-3 rounded-xl border border-slate-200/80 w-fit mb-4 shadow-sm flex items-center justify-center">
-                      <img
+                      <Image
                         src={brand.logoUrl}
                         alt={`${brand.name} Logo`}
-                        width="140"
-                        height="36"
-                        loading="lazy"
-                        decoding="async"
+                        width={140}
+                        height={36}
                         className="h-8 sm:h-9 w-auto object-contain max-w-[140px]"
                       />
                     </div>
