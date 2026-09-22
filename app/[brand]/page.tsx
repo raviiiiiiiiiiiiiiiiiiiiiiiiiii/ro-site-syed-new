@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
 import { BRAND_PAGES_DATA, BUSINESS_DETAILS } from '@/src/data/content';
 import { BrandPageLayout } from '@/src/components/BrandPageLayout';
 
@@ -38,7 +39,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const brand = getBrand(brandKey);
   if (!brand) return {};
 
-  const canonicalUrl = `https://www.roservicecentre24x7.in/${brandKey}`;
+  let canonicalUrl = `https://www.roservicecentre24x7.in/${brandKey}`;
+
+  try {
+    const headersList = await headers();
+    const forwardedHost = headersList.get('x-forwarded-host');
+    const rawHost = forwardedHost || headersList.get('host') || '';
+    const hostClean = rawHost.toLowerCase().trim();
+    const hostname = hostClean.split(':')[0].trim();
+    const proto = headersList.get('x-forwarded-proto') || headersList.get('x-subdomain-proto') || 'https';
+    const subdomainHeader = headersList.get('x-subdomain');
+
+    // Detect if page is being loaded via a brand subdomain (e.g. kent.mydomain.in)
+    const isSubdomain =
+      Boolean(subdomainHeader) ||
+      (Boolean(hostname) &&
+        !hostname.startsWith('www.') &&
+        hostname !== 'roservicecentre24x7.in' &&
+        (hostname.startsWith(`${brand.id}.`) ||
+          hostname.startsWith(`${brandKey}.`) ||
+          hostname.startsWith(`${brand.name.toLowerCase().replace(/\s+/g, '')}.`)));
+
+    if (isSubdomain) {
+      // Subdomain canonical matches root of the subdomain to prevent Google Ads canonical mismatch
+      canonicalUrl = `${proto}://${hostClean}`;
+    }
+  } catch {
+    // Fallback to static URL during prerendering
+  }
 
   return {
     title: brand.metaTitle,
@@ -64,12 +92,38 @@ export default async function BrandPage({ params }: PageProps) {
     notFound();
   }
 
+  let pageUrl = `https://www.roservicecentre24x7.in/${brandKey}`;
+  try {
+    const headersList = await headers();
+    const forwardedHost = headersList.get('x-forwarded-host');
+    const rawHost = forwardedHost || headersList.get('host') || '';
+    const hostClean = rawHost.toLowerCase().trim();
+    const hostname = hostClean.split(':')[0].trim();
+    const proto = headersList.get('x-forwarded-proto') || headersList.get('x-subdomain-proto') || 'https';
+    const subdomainHeader = headersList.get('x-subdomain');
+
+    const isSubdomain =
+      Boolean(subdomainHeader) ||
+      (Boolean(hostname) &&
+        !hostname.startsWith('www.') &&
+        hostname !== 'roservicecentre24x7.in' &&
+        (hostname.startsWith(`${brand.id}.`) ||
+          hostname.startsWith(`${brandKey}.`) ||
+          hostname.startsWith(`${brand.name.toLowerCase().replace(/\s+/g, '')}.`)));
+
+    if (isSubdomain) {
+      pageUrl = `${proto}://${hostClean}`;
+    }
+  } catch {
+    // Fallback to default during prerendering
+  }
+
   const jsonLd = [
     {
       '@context': 'https://schema.org',
       '@type': 'Service',
-      '@id': `https://www.roservicecentre24x7.in/${brandKey}#service`,
-      url: `https://www.roservicecentre24x7.in/${brandKey}`,
+      '@id': `${pageUrl}#service`,
+      url: pageUrl,
       name: `${brand.name} Water Purifier Repair & Service Bangalore`,
       serviceType: 'Water Purifier Repair, Maintenance & Filter Replacement',
       provider: {
@@ -86,9 +140,8 @@ export default async function BrandPage({ params }: PageProps) {
       description: brand.metaDescription,
       offers: {
         '@type': 'Offer',
-        price: '299',
         priceCurrency: 'INR',
-        description: 'Doorstep inspection fee, 100% adjusted against final repair bill.',
+        description: 'Doorstep inspection and diagnosis, 100% adjusted against final repair bill upon approval.',
       },
       aggregateRating: {
         '@type': 'AggregateRating',

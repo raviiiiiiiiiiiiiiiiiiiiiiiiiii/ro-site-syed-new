@@ -38,12 +38,12 @@ export const HomeBlogSection: React.FC<HomeBlogSectionProps> = ({
     : (isBrand ? filteredPosts : BLOG_POSTS);
 
   const sectionTitle = isBrand
-    ? `${brandName} RO Purifier Maintenance & Care Guides`
-    : 'RO Purifier Maintenance & Care Guides';
+    ? `${brandName} RO Purifier Care & Maintenance Guides`
+    : 'Water Purifier Maintenance & Troubleshooting Guides';
 
   const sectionSubtitle = isBrand
-    ? `Practical maintenance guides, troubleshooting tips, and filter replacement schedules for ${brandName} water purifiers in Bangalore.`
-    : 'Practical guides and maintenance tips from senior Bangalore technicians to keep your water clean, tasty, and 100% safe.';
+    ? `Actionable maintenance schedules, fault checklists, and filter replacement guides specifically tailored for ${brandName} purifiers in Bangalore.`
+    : 'Actionable maintenance schedules, DIY fault checklists, and water quality insights from Bangalore senior water purification engineers.';
 
   const viewAllUrl = isBrand ? `/${brandSlug?.replace(/^\//, '')}/blog` : '/blog';
   const viewAllLabel = isBrand ? `View All ${brandName} Guides & Articles` : 'View All Guides & Articles';

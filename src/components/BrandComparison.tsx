@@ -20,8 +20,8 @@ const COMPARISON_DATA: ComparisonRow[] = [
   },
   {
     metric: 'Visiting & Inspection Charge',
-    ourService: '₹299 (100% Adjusted against final repair bill)',
-    brandCenter: '₹500 – ₹800 Non-refundable inspection fee',
+    ourService: '100% Adjusted against final repair bill upon approval',
+    brandCenter: 'Costly non-refundable inspection fee',
     ourHighlight: true,
   },
   {
@@ -68,13 +68,13 @@ export const BrandComparison: React.FC<BrandComparisonProps> = ({
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-100 text-[#0066cc] text-xs font-bold uppercase tracking-wider mb-3">
             <Zap className="w-3.5 h-3.5" />
-            Clear Comparison
+            Specialist Advantage
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-[#002b66] tracking-tight leading-tight">
-            Why Book With Us vs. Standard Company Service?
+            Why Bangalore Households Choose Our {brandName} Care
           </h2>
           <p className="text-sm sm:text-base text-slate-600 mt-3 leading-relaxed">
-            Skip the 3-day automated call-center queues and expensive markups. Get same-day certified doorstep service with real human accountability.
+            Skip the 3 to 5 day call-center backlogs and inflated corporate rates. Get same-day certified doorstep attention with transparent quotes and direct technician accountability.
           </p>
         </div>
 

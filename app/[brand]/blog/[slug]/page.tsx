@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 import {
   Calendar,
   Clock,
@@ -63,8 +64,33 @@ export async function generateMetadata({ params }: BrandBlogPostProps): Promise<
     };
   }
 
-  // Canonical is always the main blog post URL to prevent duplicate content
-  const canonicalUrl = `https://www.roservicecentre24x7.in/blog/${post.slug}`;
+  // Canonical URL handles both main domain and custom subdomain ad campaigns
+  let canonicalUrl = `https://www.roservicecentre24x7.in/blog/${post.slug}`;
+
+  try {
+    const headersList = await headers();
+    const forwardedHost = headersList.get('x-forwarded-host');
+    const rawHost = forwardedHost || headersList.get('host') || '';
+    const hostClean = rawHost.toLowerCase().trim();
+    const hostname = hostClean.split(':')[0].trim();
+    const proto = headersList.get('x-forwarded-proto') || headersList.get('x-subdomain-proto') || 'https';
+    const subdomainHeader = headersList.get('x-subdomain');
+
+    const isSubdomain =
+      Boolean(subdomainHeader) ||
+      (Boolean(hostname) &&
+        !hostname.startsWith('www.') &&
+        hostname !== 'roservicecentre24x7.in' &&
+        (hostname.startsWith(`${brand.id}.`) ||
+          hostname.startsWith(`${brandKey}.`) ||
+          hostname.startsWith(`${brand.name.toLowerCase().replace(/\s+/g, '')}.`)));
+
+    if (isSubdomain) {
+      canonicalUrl = `${proto}://${hostClean}/blog/${post.slug}`;
+    }
+  } catch {
+    // fallback during static prerendering
+  }
 
   return {
     title: `${post.title} | ${brand.name} RO Service Bangalore`,

@@ -921,13 +921,13 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               
               {/* Eyebrow Label */}
               <div className="text-[9px] sm:text-xs font-bold uppercase tracking-wider text-slate-600">
-                {brand.id === 'ro-service-24x7' ? 'BANGALORE\'S MOST TRUSTED RO SERVICE' : 'INDIA\'S MOST TRUSTED RO BRAND'}
+                {brand.id === 'ro-service-24x7' ? 'CERTIFIED BANGALORE WATER PURIFIER EXPERTS' : `CERTIFIED ${brand.name.toUpperCase()} SPECIALISTS BANGALORE`}
               </div>
 
               {/* Large Bold H1 */}
               <h1 className="text-xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0c2b5e] leading-tight sm:leading-[1.15]">
-                <span className="block">{brand.id === 'ro-service-24x7' ? 'RO SERVICE ONLINE 24x7' : `${brand.name.toUpperCase()} RO`}</span>
-                <span className="block">Service at Your Doorstep</span>
+                <span className="block">{brand.id === 'ro-service-24x7' ? 'RO Service Centre Online 24x7' : `${brand.name.toUpperCase()} RO Service`}</span>
+                <span className="block">Fast Doorstep Care in Bangalore</span>
               </h1>
 
               {/* Subheading / Tagline */}
@@ -938,8 +938,8 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               {/* Short description paragraph */}
               <p className="hidden sm:block text-xs sm:text-[13px] text-slate-600 leading-relaxed max-w-md">
                 {brand.id === 'ro-service-24x7'
-                  ? 'Fastest 60–90 min doorstep RO water purifier repair, filter replacement, AMC & installation service in Bangalore. Expert technicians for Kent, Aquaguard, Pureit, AO Smith & Livpure.'
-                  : `Get expert ${brand.name.toUpperCase()} water purifier service, repair, filter replacement, installation and AMC support from certified technicians. Genuine spare parts, fast and reliable service across your city.`}
+                  ? "Bangalore's premier doorstep water purifier specialists. Certified technicians arrive in 60–90 minutes with genuine replacement cartridges, digital TDS calibration, and a 30-day labor warranty."
+                  : `Bangalore's trusted doorstep specialists for ${brand.name} water purifiers. Factory-certified technicians arrive in 60–90 minutes with 100% genuine compatible spares, high-rejection membranes, and a 30-day warranty.`}
               </p>
 
               {/* Row of 4 small icon+text feature badges */}
@@ -1027,12 +1027,12 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               <div className="lg:col-span-8 xl:col-span-7 space-y-4">
                 <div>
                   <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                    Book {brand.id === 'ro-service-24x7' ? 'Doorstep RO' : brand.name.toUpperCase()} Service Now
+                    Schedule Instant Doorstep {brand.id === 'ro-service-24x7' ? 'RO' : brand.name} Service
                   </h2>
                   <p className="text-xs sm:text-sm text-blue-100/90 mt-1">
                     {brand.id === 'ro-service-24x7'
-                      ? 'Get professional doorstep RO repair, installation, maintenance and filter replacement for all major brands.'
-                      : `Get professional ${brand.name.toUpperCase()} RO repair, installation, maintenance and filter replacement at your doorstep.`}
+                      ? 'Fast technician dispatch across all Bangalore neighborhoods for fault diagnosis, urgent leak repair, and genuine filter renewals.'
+                      : `Direct technician dispatch for your ${brand.name} water purifier across Bangalore. Same-day inspection, urgent leak stoppage, and certified filter renewals.`}
                   </p>
                 </div>
 
@@ -1199,14 +1199,14 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 sm:mb-12 flex flex-col sm:flex-row sm:items-end justify-between gap-4 relative z-10">
           <div>
             <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">
-              OUR SERVICES
+              COMPREHENSIVE PURIFIER SOLUTIONS
             </span>
             <h2 className="text-2xl sm:text-3xl xl:text-[28px] font-extrabold text-[#002b66] tracking-tight leading-[1.2]">
               Complete {brand.name}
-              <span className="block mt-1 font-extrabold">Water Purifier Care</span>
+              <span className="block mt-1 font-extrabold">Repair, Service &amp; AMC Solutions</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-600 mt-3 max-w-xl leading-relaxed">
-              From expert repairs to genuine filter replacements, we keep your {brand.name} purifier performing at its best.
+              Precision diagnostics, factory-certified filter replacements, and scheduled maintenance designed specifically for Bangalore&apos;s diverse municipal and borewell water supplies.
             </p>
           </div>
           <button
@@ -1313,10 +1313,10 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 sm:mb-10 gap-6">
             <div>
               <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-slate-500 block mb-1">
-                WHY CHOOSE {brand.name.toUpperCase()} SERVICE?
+                PROVEN RELIABILITY &amp; EXCELLENCE
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#002b66] tracking-tight">
-                A Name You Can Trust
+                Why Bangalore Families Trust Our Care
               </h2>
             </div>
             
@@ -1344,7 +1344,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
           {/* Mobile-only summary text (replacing the hidden grid) */}
           <p className="block sm:hidden text-[13px] text-slate-600 mb-6 leading-relaxed">
-            Get expert {brand.name} water purifier service and repair from certified professionals. We guarantee genuine spare parts, transparent pricing, and fast doorstep support to ensure your family's drinking water remains safe.
+            Certified technicians with over a decade of field experience, authentic OEM-grade filtration spares, transparent written estimates, and an ironclad 30-day labor warranty ensuring your drinking water remains 100% safe.
           </p>
 
           {/* 4-column icon+title+description inline grid */}
@@ -1424,7 +1424,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                 FREQUENTLY ASKED QUESTIONS
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
-                Your Questions, Our Answers
+                Common Questions About {brand.id === 'ro-service-24x7' ? 'Doorstep RO' : brand.name} Service
               </h2>
             </div>
 
@@ -1488,10 +1488,10 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
               {/* Heading + description + pincode input with "Check Availability" button */}
               <div className="space-y-5 text-center">
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                  {brand.name} Water Purifier Service Near You
+                  Doorstep {brand.name} Technicians Across Bangalore
                 </h2>
                 <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  Looking for {brand.name} RO service, filter replacement, AMC maintenance, membrane replacement or water purifier repair near you?
+                  Check real-time technician availability in your neighborhood. We serve all Bangalore localities, tech corridors, and residential apartments with 60–90 minute arrivals.
                 </p>
 
                 <form onSubmit={handlePincodeCheck} className="flex flex-col sm:flex-row items-center gap-2.5 pt-2 max-w-lg mx-auto">

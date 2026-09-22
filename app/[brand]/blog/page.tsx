@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
 import { Calendar, Clock, ArrowRight, BookOpen, ChevronRight, Phone, ShieldCheck, Wrench, CheckCircle2 } from 'lucide-react';
 import { BRAND_PAGES_DATA, BUSINESS_DETAILS } from '@/src/data/content';
 import { BLOG_POSTS, BlogPost } from '@/src/data/blogPosts';
@@ -47,7 +48,33 @@ export async function generateMetadata({ params }: BrandBlogProps): Promise<Meta
   const brand = getBrand(brandKey);
   if (!brand) return {};
 
-  const canonicalUrl = `https://www.roservicecentre24x7.in/${brandKey}/blog`;
+  let canonicalUrl = `https://www.roservicecentre24x7.in/${brandKey}/blog`;
+
+  try {
+    const headersList = await headers();
+    const forwardedHost = headersList.get('x-forwarded-host');
+    const rawHost = forwardedHost || headersList.get('host') || '';
+    const hostClean = rawHost.toLowerCase().trim();
+    const hostname = hostClean.split(':')[0].trim();
+    const proto = headersList.get('x-forwarded-proto') || headersList.get('x-subdomain-proto') || 'https';
+    const subdomainHeader = headersList.get('x-subdomain');
+
+    const isSubdomain =
+      Boolean(subdomainHeader) ||
+      (Boolean(hostname) &&
+        !hostname.startsWith('www.') &&
+        hostname !== 'roservicecentre24x7.in' &&
+        (hostname.startsWith(`${brand.id}.`) ||
+          hostname.startsWith(`${brandKey}.`) ||
+          hostname.startsWith(`${brand.name.toLowerCase().replace(/\s+/g, '')}.`)));
+
+    if (isSubdomain) {
+      canonicalUrl = `${proto}://${hostClean}/blog`;
+    }
+  } catch {
+    // fallback during static prerendering
+  }
+
   const title = `${brand.name} RO Service & Maintenance Blog | Bangalore Expert Guides`;
   const description = `Practical guides, troubleshooting tips, filter replacement intervals, and maintenance costs specifically for ${brand.name} water purifiers in Bangalore.`;
 

@@ -8,8 +8,8 @@ interface PricingPlan {
   title: string;
   badge?: string;
   popular?: boolean;
-  price: string;
-  unit: string;
+  highlight: string;
+  subHighlight: string;
   description: string;
   features: string[];
 }
@@ -18,8 +18,8 @@ const PRICING_PLANS: PricingPlan[] = [
   {
     title: 'Inspection & Diagnosis',
     badge: '100% Adjustable',
-    price: '₹299',
-    unit: 'Visiting charge',
+    highlight: 'Comprehensive Diagnosis',
+    subHighlight: 'Adjusted in final repair bill upon approval',
     description: 'Complete fault diagnosis, raw vs purified TDS check, electrical and pump testing.',
     features: [
       'Adjusted in final repair bill',
@@ -32,8 +32,8 @@ const PRICING_PLANS: PricingPlan[] = [
     title: 'Routine Service & Cleaning',
     badge: 'Most Popular',
     popular: true,
-    price: '₹499',
-    unit: 'Per service',
+    highlight: 'Deep Sanitization Care',
+    subHighlight: 'Chemical tank & pipe flush',
     description: 'Comprehensive chemical sanitization, housing descaling, and high-pressure pipe flush.',
     features: [
       'Complete tank & body sanitization',
@@ -46,8 +46,8 @@ const PRICING_PLANS: PricingPlan[] = [
   {
     title: 'Filter Replacement Pack',
     badge: 'OEM Compatible',
-    price: '₹799',
-    unit: 'Starts from',
+    highlight: 'Certified OEM Filter Pack',
+    subHighlight: 'Sediment, carbon & post-carbon stages',
     description: 'Essential filtration renewal for muddy, odorous, or slow-dripping water output.',
     features: [
       'High-micron PP spun sediment filter',
@@ -60,8 +60,8 @@ const PRICING_PLANS: PricingPlan[] = [
   {
     title: 'RO Membrane & TDS Tuning',
     badge: 'High Rejection',
-    price: '₹1,499',
-    unit: 'Starts from',
+    highlight: 'High-Rejection RO Membrane',
+    subHighlight: 'Restores sweet, safe drinking water',
     description: 'Replaces choked reverse osmosis membrane to restore sweet, pure drinking water.',
     features: [
       '75 / 80 / 100 GPD high-TDS membrane',
@@ -90,13 +90,13 @@ export const PricingTransparency: React.FC<PricingTransparencyProps> = ({
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-100 text-[#0066cc] text-xs font-bold uppercase tracking-wider mb-3">
             <Tag className="w-3.5 h-3.5" />
-            Clear & Upfront Pricing
+            Service Packages &amp; Care Plans
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-[#002b66] tracking-tight leading-tight">
-            Transparent {brandName} Service Rates
+            Specialized {brandName} Care &amp; Maintenance Packages
           </h2>
           <p className="text-sm sm:text-base text-slate-600 mt-3 leading-relaxed">
-            No unexpected visiting fees or hidden extras. Every technician provides a clear itemized quote before starting any work.
+            Professional doorstep service tailored for all purifier models. Senior technicians carry genuine components and provide a written estimate with zero hidden extras before any repair starts.
           </p>
         </div>
 
@@ -132,15 +132,16 @@ export const PricingTransparency: React.FC<PricingTransparencyProps> = ({
                   {plan.description}
                 </p>
 
-                <div className="mb-6 pt-2 border-t border-slate-100">
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="text-3xl sm:text-4xl font-black text-[#002b66] tracking-tight">
-                      {plan.price}
-                    </span>
-                    <span className="text-xs text-slate-500 font-medium">
-                      / {plan.unit}
+                <div className="mb-6 pt-3 pb-2 border-t border-slate-100">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span className="text-sm font-bold text-[#002b66]">
+                      {plan.highlight}
                     </span>
                   </div>
+                  <p className="text-[11px] text-slate-500 mt-1">
+                    {plan.subHighlight}
+                  </p>
                 </div>
 
                 <div className="space-y-2.5 mb-8">
