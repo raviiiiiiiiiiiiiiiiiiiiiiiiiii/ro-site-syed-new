@@ -333,12 +333,14 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   const [phone, setPhone] = useState('');
   const [pincode, setPincode] = useState('');
   const [serviceType, setServiceType] = useState('');
+  const [bookingBotField, setBookingBotField] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formError, setFormError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Pincode Availability Checker State
   const [checkPincode, setCheckPincode] = useState('');
+  const [pincodeBotField, setPincodeBotField] = useState('');
   const [pincodeResult, setPincodeResult] = useState<{
     checked: boolean;
     available: boolean;
@@ -354,6 +356,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
 
   // Newsletter email state
   const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterBotField, setNewsletterBotField] = useState('');
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
 
   // Form scroll ref
@@ -448,9 +451,20 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
     setMobileFooterOpen((prev) => ({ ...prev, [column]: !prev[column] }));
   };
 
-  // Handle Form Submission via FormSubmit
+  // Helper to encode form data for Netlify Forms
+  const encodeFormData = (data: Record<string, string>) => {
+    return Object.keys(data)
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+      .join('&');
+  };
+
+  // Handle Form Submission via Netlify Forms
   const handleBookingSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (bookingBotField) {
+      setFormSubmitted(true);
+      return;
+    }
     if (!fullName.trim()) {
       setFormError('Please enter your full name.');
       return;
@@ -468,33 +482,30 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/syedsmaula786@gmail.com', {
+      const payload: Record<string, string> = {
+        'form-name': 'brand-quick-booking',
+        'bot-field': bookingBotField,
+        fullName: fullName.trim(),
+        phone: cleanPhone,
+        pincode: pincode.trim() || 'Bangalore (Not specified)',
+        serviceType: serviceType,
+        brand: brand.name,
+        pageUrl: typeof window !== 'undefined' ? window.location.href : '',
+      };
+
+      const response = await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          'Customer Name': fullName.trim(),
-          'Mobile Number': cleanPhone,
-          'Pincode': pincode.trim() || 'Bangalore (Not specified)',
-          'Service Type': serviceType,
-          'Brand': brand.name,
-          'Page URL': typeof window !== 'undefined' ? window.location.href : '',
-          'Submitted At': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-          _subject: `New RO Lead: ${fullName.trim()} - ${brand.name} (${cleanPhone})`,
-          _template: 'table',
-          _captcha: 'false',
-        }),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData(payload),
       });
 
-      if (response.ok || response.status === 200) {
+      if (response.ok || response.status === 200 || response.status === 302) {
         setFormSubmitted(true);
       } else {
         setFormSubmitted(true);
       }
     } catch (err) {
-      console.warn('FormSubmit lead sending note:', err);
+      console.warn('Netlify booking form note:', err);
       setFormSubmitted(true);
     } finally {
       setIsSubmitting(false);
@@ -502,7 +513,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
   };
 
   // Handle Pincode Check
-  const handlePincodeCheck = (e: React.FormEvent) => {
+  const handlePincodeCheck = async (e: React.FormEvent) => {
     e.preventDefault();
     const cleanPin = checkPincode.trim();
     if (!cleanPin || cleanPin.length !== 6 || !/^\d+$/.test(cleanPin)) {
@@ -519,30 +530,46 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
       available: true,
       message: `Service is Available! Our certified ${brand.name} technician can reach your doorstep within 60 to 90 minutes.`,
     });
-  };
 
-  // Handle Newsletter Submission via FormSubmit
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newsletterEmail.trim()) return;
+    if (pincodeBotField) return;
+
     try {
-      await fetch('https://formsubmit.co/ajax/syedsmaula786@gmail.com', {
+      await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          Email: newsletterEmail.trim(),
-          Brand: brand.name,
-          Subscription: 'Newsletter & Updates',
-          _subject: `New Newsletter Subscriber: ${newsletterEmail.trim()}`,
-          _template: 'table',
-          _captcha: 'false',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData({
+          'form-name': 'pincode-availability-check',
+          'bot-field': pincodeBotField,
+          pincode: cleanPin,
+          brand: brand.name,
         }),
       });
     } catch (err) {
-      console.warn('Newsletter submission:', err);
+      console.warn('Pincode check submission note:', err);
+    }
+  };
+
+  // Handle Newsletter Submission via Netlify Forms
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newsletterBotField) {
+      setNewsletterSubmitted(true);
+      return;
+    }
+    if (!newsletterEmail.trim()) return;
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeFormData({
+          'form-name': 'newsletter-subscription',
+          'bot-field': newsletterBotField,
+          email: newsletterEmail.trim(),
+          brand: brand.name,
+        }),
+      });
+    } catch (err) {
+      console.warn('Newsletter submission note:', err);
     }
     setNewsletterSubmitted(true);
   };
@@ -1057,7 +1084,29 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleBookingSubmit} className="space-y-3">
+                  <form
+                    name="brand-quick-booking"
+                    method="POST"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
+                    onSubmit={handleBookingSubmit}
+                    className="space-y-3"
+                  >
+                    {/* Hidden fields for Netlify Forms */}
+                    <input type="hidden" name="form-name" value="brand-quick-booking" />
+                    <input type="hidden" name="brand" value={brand.name} />
+                    <input type="hidden" name="pageUrl" value={typeof window !== 'undefined' ? window.location.href : ''} />
+                    <p className="hidden" style={{ display: 'none' }}>
+                      <label>
+                        Don’t fill this out if you're human:{' '}
+                        <input
+                          name="bot-field"
+                          value={bookingBotField}
+                          onChange={(e) => setBookingBotField(e.target.value)}
+                        />
+                      </label>
+                    </p>
+
                     {formError && (
                       <div className="bg-rose-900/80 border border-rose-400 text-rose-100 text-xs px-3 py-2 rounded-lg">
                         {formError}
@@ -1073,6 +1122,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                         <input
                           type="text"
                           id="booking-full-name"
+                          name="fullName"
                           aria-label="Full Name"
                           required
                           placeholder="Full Name"
@@ -1089,6 +1139,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                         <input
                           type="tel"
                           id="booking-phone"
+                          name="phone"
                           aria-label="Mobile Number"
                           required
                           maxLength={10}
@@ -1106,6 +1157,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                         <input
                           type="text"
                           id="booking-pincode"
+                          name="pincode"
                           aria-label="Enter Your Pincode"
                           maxLength={6}
                           placeholder="Enter Your Pincode"
@@ -1124,6 +1176,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                         </div>
                         <select
                           id="booking-service-type"
+                          name="serviceType"
                           aria-label="Select Service Type"
                           value={serviceType}
                           onChange={(e) => setServiceType(e.target.value)}
@@ -1494,7 +1547,26 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                   Check real-time technician availability in your neighborhood. We serve all Bangalore localities, tech corridors, and residential apartments with 60–90 minute arrivals.
                 </p>
 
-                <form onSubmit={handlePincodeCheck} className="flex flex-col sm:flex-row items-center gap-2.5 pt-2 max-w-lg mx-auto">
+                <form
+                  name="pincode-availability-check"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  onSubmit={handlePincodeCheck}
+                  className="flex flex-col sm:flex-row items-center gap-2.5 pt-2 max-w-lg mx-auto"
+                >
+                  <input type="hidden" name="form-name" value="pincode-availability-check" />
+                  <input type="hidden" name="brand" value={brand.name} />
+                  <p className="hidden" style={{ display: 'none' }}>
+                    <label>
+                      Don’t fill this out if you're human:{' '}
+                      <input
+                        name="bot-field"
+                        value={pincodeBotField}
+                        onChange={(e) => setPincodeBotField(e.target.value)}
+                      />
+                    </label>
+                  </p>
                   <div className="relative w-full sm:flex-1">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
                       <MapPin className="w-3.5 h-3.5" />
@@ -1502,6 +1574,7 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                     <input
                       type="text"
                       id="check-pincode-input"
+                      name="pincode"
                       aria-label="Enter Your Pincode to check service availability"
                       maxLength={6}
                       placeholder="Enter Your Pincode"
@@ -1760,11 +1833,28 @@ export function BrandPageLayout({ brand }: BrandPageLayoutProps) {
                 </div>
               ) : (
                 <form
+                  name="newsletter-subscription"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
                   onSubmit={handleNewsletterSubmit}
                   className="flex items-center gap-2"
                 >
+                  <input type="hidden" name="form-name" value="newsletter-subscription" />
+                  <input type="hidden" name="brand" value={brand.name} />
+                  <p className="hidden" style={{ display: 'none' }}>
+                    <label>
+                      Don’t fill this out if you're human:{' '}
+                      <input
+                        name="bot-field"
+                        value={newsletterBotField}
+                        onChange={(e) => setNewsletterBotField(e.target.value)}
+                      />
+                    </label>
+                  </p>
                   <input
                     type="email"
+                    name="email"
                     required
                     placeholder="Enter your email"
                     value={newsletterEmail}

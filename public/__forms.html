@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Netlify Forms Prerender Definitions</title>
+</head>
+<body>
+  <!-- 1. Lead Booking Form -->
+  <form name="lead-booking-form" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="lead-booking-form" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="fullName" />
+    <input type="tel" name="mobileNumber" />
+    <input type="text" name="pinCode" />
+    <input type="text" name="selectedBrand" />
+    <input type="text" name="serviceType" />
+    <input type="text" name="sourcePage" />
+  </form>
+
+  <!-- 2. Brand Quick Booking Form -->
+  <form name="brand-quick-booking" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="brand-quick-booking" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="fullName" />
+    <input type="tel" name="phone" />
+    <input type="text" name="pincode" />
+    <input type="text" name="serviceType" />
+    <input type="text" name="brand" />
+    <input type="text" name="pageUrl" />
+  </form>
+
+  <!-- 3. Pincode Availability Check Form -->
+  <form name="pincode-availability-check" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="pincode-availability-check" />
+    <input type="text" name="bot-field" />
+    <input type="text" name="pincode" />
+    <input type="text" name="brand" />
+  </form>
+
+  <!-- 4. Newsletter Subscription Form -->
+  <form name="newsletter-subscription" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="hidden" name="form-name" value="newsletter-subscription" />
+    <input type="text" name="bot-field" />
+    <input type="email" name="email" />
+    <input type="text" name="brand" />
+  </form>
+</body>
+</html>
